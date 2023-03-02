@@ -4,6 +4,7 @@ import Pages from "pages/Pages";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Loader from "common/components/Loader/Loader";
 import {authMeTC} from "features/auth/authSlice";
+import Header from "common/components/Header/Header";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
 
     return (
         <div className="App">
+            <Header/>
             <Pages/>
             {isAppLoading && <Loader/>}
         </div>

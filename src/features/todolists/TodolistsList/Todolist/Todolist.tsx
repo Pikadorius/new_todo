@@ -5,6 +5,7 @@ import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
 import {deleteTodoTC} from "features/todolists/todolistsSlice";
 import s from './Todolist.module.css'
+import {setAppPage} from "app/appSlice";
 
 
 const Todolist: FC<TodolistDomainType> = ({id, title, status}) => {
@@ -15,9 +16,14 @@ const Todolist: FC<TodolistDomainType> = ({id, title, status}) => {
         dispatch(deleteTodoTC(id))
     }
 
+    const chooseTodo = () => {
+        navigate(`${PATH.TODOLISTS}/${id}`)
+        dispatch(setAppPage(`"${title}": tasks`))
+    }
+
     return (
         <div className={s.container}>
-            <div onClick={() => navigate(`${PATH.TODOLISTS}/${id}`)}>
+            <div onClick={chooseTodo}>
                 {title}
             </div>
             <button onClick={deleteHandler}>x</button>

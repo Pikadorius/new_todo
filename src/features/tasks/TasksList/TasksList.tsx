@@ -22,7 +22,6 @@ const TasksList = () => {
 
     return (
         <>
-            <h1>Tasks</h1>
             <AddItemForm callback={addTask}/>
             <div>
                 {tasks.map(t => <Task key={t.id} {...t}/>)}

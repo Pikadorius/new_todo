@@ -3,7 +3,7 @@ import {createTodoTC, fetchTodosTC} from "features/todolists/todolistsSlice";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Todolist from "features/todolists/TodolistsList/Todolist/Todolist";
 import AddItemForm from "common/components/AddItemForm/AddItemForm";
-import {createTaskTC} from "features/tasks/tasksSlice";
+import {setAppPage} from "app/appSlice";
 
 const TodolistsList = () => {
 
@@ -12,6 +12,7 @@ const TodolistsList = () => {
 
     useEffect(() => {
         dispatch(fetchTodosTC())
+        dispatch(setAppPage('All todolists'))
     }, [])
 
     const addTodo = (title: string) => {
@@ -20,7 +21,6 @@ const TodolistsList = () => {
 
     return (
         <>
-            <h1>Todolists</h1>
             <AddItemForm callback={addTodo}/>
             {todolists.map(t=><Todolist {...t} key={t.id}/>)}
         </>
