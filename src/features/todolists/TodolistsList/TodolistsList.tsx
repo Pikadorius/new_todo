@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {fetchTodosTC} from "features/todolists/todolistsSlice";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import Todolist from "features/todolists/TodolistsList/Todolist/Todolist";
 
 const TodolistsList = () => {
 
@@ -9,12 +10,13 @@ const TodolistsList = () => {
 
     useEffect(() => {
         dispatch(fetchTodosTC())
-    })
+    }, [])
 
-    const todos = todolists.map(t => <li key={t.id}>{t.title}</li>)
 
     return (
-        <ul>{todos}</ul>
+        <>
+            {todolists.map(t=><Todolist {...t} key={t.id}/>)}
+        </>
     );
 };
 

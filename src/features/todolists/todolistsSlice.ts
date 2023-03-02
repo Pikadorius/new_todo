@@ -1,13 +1,16 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TodolistDomainType, TodolistResponseType} from "features/todolists/todolistsTypes";
-import {AppDispatch} from "store/store";
 import {todolistsAPI} from "features/todolists/todolistsAPI";
+import {setAppStatus} from "app/appSlice";
 
 const initialState = [] as TodolistDomainType[]
 
 export const fetchTodosTC = createAsyncThunk('fetchTodolists', async (_, {dispatch}) => {
+    dispatch(setAppStatus('loading'))
     const res = await todolistsAPI.fetchTodos()
     dispatch(setTodolists(res.data))
+    dispatch(setAppStatus('success'))
+
 })
 
 const todolistsSlice = createSlice({

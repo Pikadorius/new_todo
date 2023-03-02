@@ -7,6 +7,4 @@ export type TodolistResponseType = {
     order: number
 }
 
-export type FilterType = 'all' | 'active' | 'completed'
-
-export type TodolistDomainType = TodolistResponseType & { status: StatusType, filter: FilterType }
+export type TodolistDomainType = TodolistResponseType & { status: StatusType}
