@@ -1,4 +1,5 @@
 import React, {createRef, FC, KeyboardEvent} from 'react';
+import s from './AddItemForm.module.css'
 
 type PropsType = {
     callback: (value: string) => void
@@ -21,7 +22,7 @@ const AddItemForm: FC<PropsType> = ({callback}) => {
     }
 
     return (
-        <div>
+        <div className={s.container}>
             <input type={'text'} ref={inputRef} onKeyDown={onEnterHandler}/>
             <button onClick={addItem}>Add item</button>
         </div>
