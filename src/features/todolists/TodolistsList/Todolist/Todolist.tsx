@@ -8,7 +8,7 @@ import s from './Todolist.module.css'
 import {setAppPage} from "app/appSlice";
 
 
-const Todolist: FC<TodolistDomainType> = ({id, title, status}) => {
+const Todolist: FC<TodolistDomainType> = ({id, title, status,addedDate}) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 

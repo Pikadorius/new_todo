@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Todolist from "features/todolists/TodolistsList/Todolist/Todolist";
 import AddItemForm from "common/components/AddItemForm/AddItemForm";
 import {setAppPage} from "app/appSlice";
+import s from './TodolistList.module.css'
 
 const TodolistsList = () => {
 
@@ -22,7 +23,9 @@ const TodolistsList = () => {
     return (
         <>
             <AddItemForm callback={addTodo}/>
-            {todolists.map(t=><Todolist {...t} key={t.id}/>)}
+            <div className={s.todosSkeleton}>
+                {todolists.map(t => <Todolist {...t} key={t.id}/>)}
+            </div>
         </>
     );
 };
