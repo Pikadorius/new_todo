@@ -1,0 +1,34 @@
+.form {
+    margin: 0 auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #282c34;
+    padding: 50px 50px 30px;
+    border-radius: 5px;
+}
+
+.field {
+    padding: 10px;
+}
+
+.fieldName {
+    display: inline-block;
+    width: 100px;
+}
+
+.field:last-of-type {
+    padding-bottom: 30px;
+}
+
+.errorField {
+    display: block;
+    color: red;
+}
+
+.btn {
+    display: block;
+    width: 100px;
+    height: 30px;
+}
