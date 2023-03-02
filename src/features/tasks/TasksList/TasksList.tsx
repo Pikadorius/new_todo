@@ -22,11 +22,11 @@ const TasksList = () => {
 
     return (
         <>
+            <h1>Tasks</h1>
             <AddItemForm callback={addTask}/>
             <div>
                 {tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>
-            {id &&<button onClick={() => dispatch(createTaskTC({id, title: '1123'}))}>Add task</button>}
         </>
     );
 };
