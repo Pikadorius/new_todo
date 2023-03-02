@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {useParams, useSearchParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {createTaskTC, fetchTasksTC} from "features/tasks/tasksSlice";
+import Task from "features/tasks/TasksList/Task/Task";
+import AddItemForm from "common/components/AddItemForm/AddItemForm";
 
 const TasksList = () => {
     const {id} = useParams<{ id: string }>()
@@ -14,10 +16,15 @@ const TasksList = () => {
         dispatch(fetchTasksTC(id))
     }, [])
 
+    const addTask = (title: string) => {
+        id && dispatch(createTaskTC({id, title}))
+    }
+
     return (
         <>
+            <AddItemForm callback={addTask}/>
             <div>
-                {tasks.map(t => <div key={t.id}>{t.title}</div>)}
+                {tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>
             {id &&<button onClick={() => dispatch(createTaskTC({id, title: '1123'}))}>Add task</button>}
         </>
