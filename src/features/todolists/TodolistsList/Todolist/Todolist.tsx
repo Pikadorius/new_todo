@@ -18,7 +18,7 @@ const Todolist: FC<TodolistDomainType> = ({id, title, status}) => {
 
     const chooseTodo = () => {
         navigate(`${PATH.TODOLISTS}/${id}`)
-        dispatch(setAppPage(`"${title}": tasks`))
+        dispatch(setAppPage(`${title}`))
     }
 
     return (
