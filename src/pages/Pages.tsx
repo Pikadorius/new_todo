@@ -4,12 +4,13 @@ import {PATH} from "common/constants/PATH";
 import TodolistsList from "features/todolists/TodolistsList/TodolistsList";
 import RequireAuth from "pages/RequireAuth";
 import TasksList from "features/tasks/TasksList/TasksList";
+import Login from "features/auth/Login/Login";
 
 const Pages = () => {
     return (
 
         <Routes>
-            <Route path={PATH.LOGIN} element={<div>LOGIN</div>}/>
+            <Route path={PATH.LOGIN} element={<Login/>}/>
             <Route element={<RequireAuth/>}>
                 <Route path={PATH.TASKS} element={<TasksList/>}/>
                 <Route path={PATH.TODOLISTS} element={<TodolistsList/>}/>

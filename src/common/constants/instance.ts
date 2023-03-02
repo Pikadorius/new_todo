@@ -7,3 +7,9 @@ export const instance = axios.create({
         'API-KEY': 'abc137fc-ad0c-49be-975b-e12bdb8a93ad'
     }
 })
+
+export type DefaultResponseType<T={}> = {
+    data: T,
+    resultCode: number,
+    messages: string[],
+}

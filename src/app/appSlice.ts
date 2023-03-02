@@ -5,7 +5,7 @@ export type StatusType = 'idle' | 'loading' | 'success' | 'failed'
 const initialState = {
     status: 'idle' as StatusType,
     error: null as null | string,
-    isInitialized: true
+    isInitialized: false
 }
 
 const appSlice = createSlice({

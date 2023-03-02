@@ -1,8 +1,26 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {authAPI} from "features/auth/authAPI";
+import {setAppInitialized} from "app/appSlice";
 
 const initialState = {
-    isLoggedIn: true
+    isLoggedIn: false
 }
+
+
+export const authMeTC = createAsyncThunk('authMe', async (_, {dispatch}) => {
+    try {
+        const res = await authAPI.me()
+        if (res.data.resultCode === 0) {
+            dispatch(setIsLoggedIn(true))
+        }
+    } catch (e) {
+
+    } finally {
+        dispatch(setAppInitialized(true))
+    }
+
+})
+
 
 const authSlice = createSlice({
     name: 'auth',
