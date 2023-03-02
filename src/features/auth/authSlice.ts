@@ -1,9 +1,10 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {authAPI, LoginRequestType} from "features/auth/authAPI";
+import {authAPI, LoginRequestType, UserRequestType} from "features/auth/authAPI";
 import {setAppInitialized, setAppStatus} from "app/appSlice";
 
 const initialState = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    user: {} as UserRequestType
 }
 
 
@@ -12,6 +13,7 @@ export const authMeTC = createAsyncThunk('authMe', async (_, {dispatch}) => {
         const res = await authAPI.me()
         if (res.data.resultCode === 0) {
             dispatch(setIsLoggedIn(true))
+            dispatch(setUser(res.data.data))
         }
     } catch (e) {
 
@@ -20,24 +22,24 @@ export const authMeTC = createAsyncThunk('authMe', async (_, {dispatch}) => {
     }
 })
 
-export const loginTC = createAsyncThunk('login', async (data: LoginRequestType, {dispatch})=>{
+export const loginTC = createAsyncThunk('login', async (data: LoginRequestType, {dispatch}) => {
     dispatch(setAppStatus('loading'))
     const res = await authAPI.login(data)
-    if (res.data.resultCode===0) {
+    if (res.data.resultCode === 0) {
         dispatch(setIsLoggedIn(true))
+        dispatch(authMeTC())
         dispatch(setAppStatus('success'))
-    }
-    else dispatch(setAppStatus('failed'))
+    } else dispatch(setAppStatus('failed'))
 })
 
-export const logoutTC = createAsyncThunk('logout', async (_,{dispatch})=>{
+export const logoutTC = createAsyncThunk('logout', async (_, {dispatch}) => {
     dispatch(setAppStatus('loading'))
     const res = await authAPI.logout()
-    if (res.data.resultCode===0) {
+    if (res.data.resultCode === 0) {
         dispatch(setIsLoggedIn(false))
+        dispatch(setUser({} as UserRequestType))
         dispatch(setAppStatus('success'))
-    }
-    else dispatch(setAppStatus('failed'))
+    } else dispatch(setAppStatus('failed'))
 })
 
 
@@ -48,9 +50,12 @@ const authSlice = createSlice({
         setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
             state.isLoggedIn = action.payload
         },
+        setUser: (state, action: PayloadAction<UserRequestType>) => {
+            state.user = action.payload
+        },
     }
 })
 
-export const {setIsLoggedIn} = authSlice.actions
+export const {setIsLoggedIn, setUser} = authSlice.actions
 
 export const authReducer = authSlice.reducer

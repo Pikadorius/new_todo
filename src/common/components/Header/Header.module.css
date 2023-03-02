@@ -9,7 +9,11 @@
     margin-bottom: 20px;
 }
 
-.logoutBtn {
+.logoutField {
     position: absolute;
     right: 50px
+}
+
+.logoutBtn {
+    margin-left: 20px;
 }
