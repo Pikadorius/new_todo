@@ -28,6 +28,16 @@ const Login = () => {
 
     return (
         <div>
+            <label>
+                <p>To log in get registered
+                    <a href={'https://social-network.samuraijs.com/'}
+                       target={'_blank'}> here
+                    </a>
+                </p>
+                <p>or use common test account credentials:</p>
+                <p>Email: free@samuraijs.com</p>
+                <p>Password: free</p>
+            </label>
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.field}>
                     <span className={s.fieldName}>Login</span>
