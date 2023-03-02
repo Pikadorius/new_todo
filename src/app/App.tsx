@@ -1,22 +1,15 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {useAppDispatch, useAppSelector} from "store/store";
-import {fetchTodosTC} from "features/todolists/todolistsSlice";
+import Pages from "pages/Pages";
+import {useAppDispatch} from "common/hooks/hooks";
 
 function App() {
 
     const dispatch = useAppDispatch()
-    const todolists = useAppSelector(state => state.todolists)
-
-    useEffect(() => {
-        dispatch(fetchTodosTC())
-    })
 
     return (
         <div className="App">
-            <ul>
-                {todolists.map(t=><li key={t.id}>{t.title}</li>)}
-            </ul>
+            <Pages/>
         </div>
     );
 }
