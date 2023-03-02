@@ -22,11 +22,14 @@ const Todolist: FC<TodolistDomainType> = ({id, title, status,addedDate}) => {
     }
 
     return (
-        <div className={s.container}>
-            <div onClick={chooseTodo}>
-                {title}
+        <div className={s.container} >
+            <div className={s.todoHeader} >
+                <span onClick={chooseTodo}>{title}</span>
+                <button onClick={deleteHandler} className={s.btn}>x</button>
             </div>
-            <button onClick={deleteHandler}>x</button>
+
+
+            <div className={s.info}>Click on title to see tasks</div>
         </div>
     );
 };
