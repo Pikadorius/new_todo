@@ -1,5 +1,12 @@
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+
+}
+
 .backBnt {
-    position: absolute;
-    top: 80px;
-    left: 50px;
+    position: relative;
+    top: 23px;
+    left: -300px;
 }

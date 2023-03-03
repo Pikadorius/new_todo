@@ -24,12 +24,12 @@ const TasksList = () => {
     }
 
     return (
-        <>
+        <div className={s.container}>
             <button className={s.backBnt} onClick={() => navigate(PATH.TODOLISTS)}>Go back</button>
             <div>
                 {tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>
-        </>
+        </div>
     );
 };
 

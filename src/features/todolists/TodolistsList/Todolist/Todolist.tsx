@@ -5,7 +5,8 @@ import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
 import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
 import {setAppPage, setModalTodo, setModalType} from "app/appSlice";
-import changeIcon from '../../../../assets/icons/change.svg'
+import changeIcon from 'assets/icons/change.svg'
+import deleteIcon from 'assets/icons/delete.svg'
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
@@ -34,7 +35,7 @@ const Todolist: FC<TodolistDomainType> = (props) => {
             <div className={s.todoHeader} >
                 <button onClick={updateHandler} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
                 <span onClick={chooseTodo}>{title}</span>
-                <button onClick={deleteHandler} className={s.btn}>x</button>
+                <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
 
 
