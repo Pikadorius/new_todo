@@ -9,14 +9,14 @@ import ModalWrapper from 'common/components/Modal/ModalWrapper';
 
 function App() {
 
-    const isInitialized = useAppSelector(state=> state.app.isInitialized)
-    const isAppLoading = useAppSelector(state => state.app.status)==='loading'
-    const isModalOpen = useAppSelector(state => state.app.modal)!=='idle'
+    const isInitialized = useAppSelector(state => state.app.isInitialized)
+    const isAppLoading = useAppSelector(state => state.app.status) === 'loading'
+    const isModalOpen = useAppSelector(state => state.app.modal) !== 'idle'
     const dispatch = useAppDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(authMeTC())
-    },[])
+    }, [])
 
     if (!isInitialized) {
         return <Loader/>

@@ -29,23 +29,34 @@ export const deleteTodoTC = createAsyncThunk('deleteTodo', async (todoId: string
     }
 )
 
+export const updateTodoTC = createAsyncThunk('updateTodo', async (data: { todoId: string, title: string }, {dispatch}) => {
+        dispatch(setAppStatus('loading'))
+        const res = await todolistsAPI.updateTodo(data.todoId, data.title)
+        dispatch(updateTodoTitle(data))
+        dispatch(setAppStatus('success'))
+    }
+)
+
 const todolistsSlice = createSlice({
     name: 'todolists',
     initialState,
     reducers: {
         setTodolists: (state, action: PayloadAction<TodolistResponseType[]>) => {
-            return action.payload.map(t => ({...t, filter: 'all', status: 'idle'}))
+            return action.payload.map(t => ({...t, status: 'idle'}))
         },
         addTodo: (state, action: PayloadAction<TodolistDomainType>) => {
             state.unshift(action.payload)
         },
         deleteTodo: (state, action: PayloadAction<string>) => {
-            const index = state.findIndex(t=>t.id===action.payload)
-            state.splice(index,1)
-        }
+            const index = state.findIndex(t => t.id === action.payload)
+            state.splice(index, 1)
+        },
+        updateTodoTitle: (state, action: PayloadAction<{ todoId: string, title: string }>) => {
+            return state.map(t => t.id === action.payload.todoId ? {...t, title: action.payload.title} : t)
+        },
     }
 })
 
-export const {setTodolists,addTodo,deleteTodo} = todolistsSlice.actions
+export const {setTodolists, addTodo, deleteTodo, updateTodoTitle} = todolistsSlice.actions
 
 export const todolistsReducer = todolistsSlice.reducer
