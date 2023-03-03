@@ -3,8 +3,9 @@ import {TodolistDomainType} from "features/todolists/todolistsTypes";
 import {useNavigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
-import s from './Todolist.module.css'
+import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
 import {setAppPage, setModalTodo, setModalType} from "app/appSlice";
+import changeIcon from '../../../../assets/icons/change.svg'
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
@@ -17,6 +18,11 @@ const Todolist: FC<TodolistDomainType> = (props) => {
         dispatch(setModalTodo(props))
     }
 
+    const updateHandler = () => {
+        dispatch(setModalType('updateTodo'))
+        dispatch(setModalTodo(props))
+    }
+
     const chooseTodo = () => {
         navigate(`${PATH.TODOLISTS}/${id}`)
         dispatch(setAppPage(`${title}`))
@@ -26,6 +32,7 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     return (
         <div className={s.container} >
             <div className={s.todoHeader} >
+                <button onClick={updateHandler} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
                 <span onClick={chooseTodo}>{title}</span>
                 <button onClick={deleteHandler} className={s.btn}>x</button>
             </div>

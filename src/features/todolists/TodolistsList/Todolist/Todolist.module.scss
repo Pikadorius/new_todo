@@ -1,3 +1,7 @@
+@import "src/common/styles/mixins.scss";
+
+@include btn;
+
 .container {
     width: 300px;
     display: flex;
@@ -17,6 +21,7 @@
     color: white;
     display: flex;
     justify-content: center;
+    align-items: center;
     column-gap: 20px;
     font-size: 20px;
     font-weight: 700;

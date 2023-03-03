@@ -3,6 +3,7 @@ import s from 'common/components/Header/Header.module.scss'
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {logoutTC} from 'features/auth/authSlice';
 import {setModalType} from 'app/appSlice';
+import addIcon from '../../../assets/icons/add.svg'
 
 
 const Header = () => {
@@ -25,8 +26,8 @@ const Header = () => {
     return (
         <div className={s.container}>
             <h1 className={s.title}>
-                {page}
-                {isLoggedIn && <button onClick={addItemHandler}>Add {page==='Todolists' ? 'todo' : 'task'}</button> }
+                <div>{page}</div>
+                {isLoggedIn && <button className={s.noBtn} onClick={addItemHandler}><img src={addIcon} alt={'add'}/></button> }
             </h1>
             <span className={s.logoutField}>{userName}
                 {isLoggedIn && <button className={`${s.logout} ${s.btn}`} onClick={logout}>Logout</button>}
