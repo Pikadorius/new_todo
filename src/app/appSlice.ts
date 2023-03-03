@@ -1,12 +1,18 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {TodolistDomainType} from 'features/todolists/todolistsTypes';
+import {TaskDomainType} from 'features/tasks/tasksTypes';
 
 export type StatusType = 'idle' | 'loading' | 'success' | 'failed'
+export type ModalType = 'createTodo' | 'deleteTodo' | 'createTask' | 'deleteTask' | 'idle'
 
 const initialState = {
     status: 'idle' as StatusType,
     error: null as null | string,
     isInitialized: false,
-    page: 'Todolists'
+    page: 'Todolists',
+    modal: 'idle' as ModalType,
+    modalTodo: {} as TodolistDomainType,
+    modalTask: {} as TaskDomainType
 }
 
 const appSlice = createSlice({
@@ -25,9 +31,26 @@ const appSlice = createSlice({
         setAppPage: (state, action: PayloadAction<string>) => {
             state.page = action.payload
         },
+        setModalType: (state, action: PayloadAction<ModalType>) => {
+            state.modal = action.payload
+        },
+        setModalTodo: (state, action: PayloadAction<TodolistDomainType>) => {
+            state.modalTodo = action.payload
+        },
+        setModalTask: (state, action: PayloadAction<TaskDomainType>) => {
+            state.modalTask = action.payload
+        },
     }
 })
 
-export const {setAppInitialized, setAppStatus, setAppError, setAppPage} = appSlice.actions
+export const {
+    setAppInitialized,
+    setAppStatus,
+    setAppError,
+    setAppPage,
+    setModalType,
+    setModalTodo,
+    setModalTask
+} = appSlice.actions
 
 export const appReducer = appSlice.reducer
