@@ -15,9 +15,6 @@ const TodolistsList = () => {
         dispatch(setAppPage('Todolists'))
     }, [])
 
-    const addTodo = (title: string) => {
-        dispatch(createTodoTC(title))
-    }
 
     return (
         <>

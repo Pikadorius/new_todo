@@ -9,7 +9,7 @@ const initialState = {
     status: 'idle' as StatusType,
     error: null as null | string,
     isInitialized: false,
-    page: 'Todolists',
+    page: '',
     modal: 'idle' as ModalType,
     modalTodo: {} as TodolistDomainType,
     modalTask: {} as TaskDomainType

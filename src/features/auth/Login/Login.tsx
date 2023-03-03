@@ -27,7 +27,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className={s.wrapper}>
             <label>
                 <p>To log in get registered
                     <a href={'https://social-network.samuraijs.com/'}
@@ -57,8 +57,7 @@ const Login = () => {
                 </button>
             </form>
         </div>
-    )
-        ;
+    );
 };
 
 export default Login;

@@ -15,28 +15,24 @@ const Header = () => {
         dispatch(logoutTC())
     }
 
-    const addTodoHandler = () => {
-        dispatch(setModalType('createTodo'))
+    const addItemHandler = () => {
+        page==='Todolists' ?
+            dispatch(setModalType('createTodo')) :
+            dispatch(setModalType('createTask' ))
     }
 
-    const addTaskHandler = () => {
-        dispatch(setModalType('createTask'))
-    }
 
     return (
-        <>
-            { isLoggedIn &&
-                <div className={s.container}>
-                    <h1 className={s.title}>
-                        {page}
-                        {page === 'Todolists' ? <button onClick={addTodoHandler}>Add todo</button> :
-                            <button onClick={addTaskHandler}>Add task</button>}
-                    </h1>
-                    {isLoggedIn && <span className={s.logoutField}>{userName}
-                        <button className={s.logoutBtn} onClick={logout}>Logout</button></span>}
-                </div>
-            }
-        </>
+        <div className={s.container}>
+            <h1 className={s.title}>
+                {page}
+                {isLoggedIn && <button onClick={addItemHandler}>Add {page==='Todolists' ? 'todo' : 'task'}</button> }
+            </h1>
+            <span className={s.logoutField}>{userName}
+                {isLoggedIn && <button className={s.logoutBtn} onClick={logout}>Logout</button>}
+                    </span>
+        </div>
+
     );
 };
 
