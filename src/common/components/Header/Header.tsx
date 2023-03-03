@@ -24,14 +24,19 @@ const Header = () => {
     }
 
     return (
-        <div className={s.container}>
-            <h1 className={s.title}>
-                {page}
-                {page === 'Todolists' ? <button onClick={addTodoHandler}>Add todo</button> : <button onClick={addTaskHandler}>Add task</button>}
-            </h1>
-            {isLoggedIn && <span className={s.logoutField}>{userName}
-                <button className={s.logoutBtn} onClick={logout}>Logout</button></span>}
-        </div>
+        <>
+            { isLoggedIn &&
+                <div className={s.container}>
+                    <h1 className={s.title}>
+                        {page}
+                        {page === 'Todolists' ? <button onClick={addTodoHandler}>Add todo</button> :
+                            <button onClick={addTaskHandler}>Add task</button>}
+                    </h1>
+                    {isLoggedIn && <span className={s.logoutField}>{userName}
+                        <button className={s.logoutBtn} onClick={logout}>Logout</button></span>}
+                </div>
+            }
+        </>
     );
 };
 
