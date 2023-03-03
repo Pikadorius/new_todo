@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {createTodoTC, fetchTodosTC} from "features/todolists/todolistsSlice";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Todolist from "features/todolists/TodolistsList/Todolist/Todolist";
-import AddItemForm from "common/components/AddItemForm/AddItemForm";
 import {setAppPage} from "app/appSlice";
 import s from './TodolistList.module.css'
 
@@ -13,7 +12,7 @@ const TodolistsList = () => {
 
     useEffect(() => {
         dispatch(fetchTodosTC())
-        dispatch(setAppPage('All todolists'))
+        dispatch(setAppPage('Todolists'))
     }, [])
 
     const addTodo = (title: string) => {
@@ -22,7 +21,6 @@ const TodolistsList = () => {
 
     return (
         <>
-            <AddItemForm callback={addTodo}/>
             <div className={s.todosSkeleton}>
                 {todolists.map(t => <Todolist {...t} key={t.id}/>)}
             </div>

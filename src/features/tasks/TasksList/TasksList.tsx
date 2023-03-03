@@ -26,7 +26,6 @@ const TasksList = () => {
     return (
         <>
             <button className={s.backBnt} onClick={() => navigate(PATH.TODOLISTS)}>Go back</button>
-            <AddItemForm callback={addTask}/>
             <div>
                 {tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>

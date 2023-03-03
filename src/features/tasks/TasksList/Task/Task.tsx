@@ -2,12 +2,14 @@ import React, {FC} from 'react';
 import {TaskDomainType} from "features/tasks/tasksTypes";
 import {useAppDispatch} from "common/hooks/hooks";
 import {deleteTaskTC} from "features/tasks/tasksSlice";
+import {setModalTask, setModalType} from 'app/appSlice';
 
 const Task:FC<TaskDomainType> = (props) => {
     const dispatch = useAppDispatch()
 
     const deleteHandler = () => {
-        dispatch(deleteTaskTC({todoId: props.todoListId, taskId: props.id}))
+        dispatch(setModalType('deleteTask'))
+        dispatch(setModalTask(props))
     }
     return (
         <div>

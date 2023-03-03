@@ -3,22 +3,24 @@ import {TodolistDomainType} from "features/todolists/todolistsTypes";
 import {useNavigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
-import {deleteTodoTC} from "features/todolists/todolistsSlice";
 import s from './Todolist.module.css'
-import {setAppPage} from "app/appSlice";
+import {setAppPage, setModalTodo, setModalType} from "app/appSlice";
 
 
-const Todolist: FC<TodolistDomainType> = ({id, title, status,addedDate}) => {
+const Todolist: FC<TodolistDomainType> = (props) => {
+    const {id, title, status,addedDate} = props
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
     const deleteHandler = () => {
-        dispatch(deleteTodoTC(id))
+        dispatch(setModalType('deleteTodo'))
+        dispatch(setModalTodo(props))
     }
 
     const chooseTodo = () => {
         navigate(`${PATH.TODOLISTS}/${id}`)
         dispatch(setAppPage(`${title}`))
+        dispatch(setModalTodo(props))
     }
 
     return (
