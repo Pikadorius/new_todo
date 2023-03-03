@@ -1,6 +1,6 @@
 import React from 'react';
 import Portal from 'common/components/Portal/Portal';
-import s from './Modal.module.css'
+import s from 'common/components/Modal/ModalWrapper.module.css'
 import ModalVariants from 'common/components/Modal/ModalVariants/ModalVariants';
 
 const ModalWrapper = () => {

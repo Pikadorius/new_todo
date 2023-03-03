@@ -1,3 +1,5 @@
+$hoverColor:rgba(18, 132, 18, 0.4);
+
 @mixin error {
   .error {
     color: red
@@ -10,7 +12,7 @@
     border: none;
     transition: 0.5s;
     &:hover {
-      background-color: rgba(18, 132, 18, 0.4);
+      background-color: $hoverColor;
       color: white;
       transition: 0.5s;
     }
