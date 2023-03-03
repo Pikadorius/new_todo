@@ -6,7 +6,7 @@ import {deleteTaskTC} from 'features/tasks/tasksSlice';
 import {TaskDomainType} from 'features/tasks/tasksTypes';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 import s from './ModalFooter.module.css'
-import common from '../../CommonModals.module.css'
+import common from 'common/components/Modal/CommonModals.module.scss'
 
 type ModalType = {
     type: 'todo' | 'task'

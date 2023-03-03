@@ -1,0 +1,7 @@
+@import "src/common/styles/mixins.scss";
+
+@include btn;
+
+.noBtn {
+  padding-left: 50px;
+}

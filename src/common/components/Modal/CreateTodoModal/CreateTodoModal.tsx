@@ -4,7 +4,7 @@ import {createTodoTC} from 'features/todolists/todolistsSlice';
 import {useAppDispatch} from 'common/hooks/hooks';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
 import s from './CreateTodoModal.module.scss'
-import common from 'common/components/Modal/CommonModals.module.css'
+import common from 'common/components/Modal/CommonModals.module.scss'
 import {setModalType} from 'app/appSlice';
 
 const CreateTodoModal = () => {
@@ -28,7 +28,7 @@ const CreateTodoModal = () => {
 
     return (
         <>
-            <ModalHeader title={'Create todolist?'}/>
+            <ModalHeader title={'Create todolist'}/>
             <div className={common.modalBody}>
                 <div>Write todolist title:</div>
                 <div>

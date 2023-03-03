@@ -5,7 +5,7 @@ import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFoo
 import s from 'common/components/AddItemForm/AddItemForm.module.scss';
 import {setModalType} from 'app/appSlice';
 import {createTaskTC} from 'features/tasks/tasksSlice';
-import common from 'common/components/Modal/CommonModals.module.css'
+import common from 'common/components/Modal/CommonModals.module.scss'
 
 const CreateTodoModal = () => {
     const dispatch = useAppDispatch()

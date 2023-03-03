@@ -3,7 +3,7 @@ import ModalHeader from 'common/components/Modal/components/ModalHeader/ModalHea
 import {updateTodoTC} from 'features/todolists/todolistsSlice';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
-import common from 'common/components/Modal/CommonModals.module.css'
+import common from 'common/components/Modal/CommonModals.module.scss'
 import {setModalType} from 'app/appSlice';
 import s from './UpdateTodoModal.module.scss'
 
