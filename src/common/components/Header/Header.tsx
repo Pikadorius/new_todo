@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Header.module.css'
+import s from 'common/components/Header/Header.module.scss'
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {logoutTC} from 'features/auth/authSlice';
 import {setModalType} from 'app/appSlice';
@@ -29,7 +29,7 @@ const Header = () => {
                 {isLoggedIn && <button onClick={addItemHandler}>Add {page==='Todolists' ? 'todo' : 'task'}</button> }
             </h1>
             <span className={s.logoutField}>{userName}
-                {isLoggedIn && <button className={s.logoutBtn} onClick={logout}>Logout</button>}
+                {isLoggedIn && <button className={`${s.logout} ${s.btn}`} onClick={logout}>Logout</button>}
                     </span>
         </div>
 

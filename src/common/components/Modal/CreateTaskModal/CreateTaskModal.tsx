@@ -2,7 +2,7 @@ import React, {createRef, KeyboardEvent, useState} from 'react';
 import ModalHeader from 'common/components/Modal/components/ModalHeader/ModalHeader';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
-import s from 'common/components/AddItemForm/AddItemForm.module.css';
+import s from 'common/components/AddItemForm/AddItemForm.module.scss';
 import {setModalType} from 'app/appSlice';
 import {createTaskTC} from 'features/tasks/tasksSlice';
 import common from 'common/components/Modal/CommonModals.module.css'

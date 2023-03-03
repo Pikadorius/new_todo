@@ -1,5 +1,5 @@
 import React, {createRef, FC, KeyboardEvent, useState} from 'react';
-import s from './AddItemForm.module.css'
+import s from 'common/components/AddItemForm/AddItemForm.module.scss'
 
 type PropsType = {
     value: string
