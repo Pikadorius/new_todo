@@ -2,10 +2,11 @@ import React, {createRef, FC, KeyboardEvent, useState} from 'react';
 import s from './AddItemForm.module.css'
 
 type PropsType = {
+    value: string
     callback: (value: string) => void
 }
 
-const AddItemForm: FC<PropsType> = ({callback}) => {
+const AddItemForm: FC<PropsType> = ({callback, value}) => {
     const inputRef = createRef<HTMLInputElement>()
     const [error, setError] = useState('')
 
