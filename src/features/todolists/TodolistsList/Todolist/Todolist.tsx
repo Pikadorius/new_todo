@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {TodolistDomainType} from "features/todolists/todolistsTypes";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
 import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
@@ -11,7 +11,6 @@ import deleteIcon from 'assets/icons/delete.svg'
 
 const Todolist: FC<TodolistDomainType> = (props) => {
     const {id, title, status,addedDate} = props
-    const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
     const deleteHandler = () => {
@@ -25,8 +24,6 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     }
 
     const chooseTodo = () => {
-        navigate(`${PATH.MAIN}/${id}`)
-        // dispatch(setAppPage(`${title}`))
         dispatch(setModalTodo(props))
     }
 
@@ -34,7 +31,7 @@ const Todolist: FC<TodolistDomainType> = (props) => {
         <div className={s.container} >
             <div className={s.todoHeader} >
                 <button onClick={updateHandler} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
-                <div onClick={chooseTodo}>{title}</div>
+                <NavLink  to={`${PATH.MAIN}/${id}`} onClick={chooseTodo} className={({isActive})=> isActive? `${s.navlink} ${s.active}` : s.navlink}>{title}</NavLink>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
 

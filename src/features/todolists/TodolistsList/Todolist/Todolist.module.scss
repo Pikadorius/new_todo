@@ -1,6 +1,7 @@
 @import "src/common/styles/mixins.scss";
 
 @include btn;
+@include a;
 
 .container {
     width: 70%;
