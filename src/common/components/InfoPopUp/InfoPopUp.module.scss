@@ -1,0 +1,32 @@
+@import "src/common/styles/mixins.scss";
+@include btn;
+
+.container {
+  font-size: 16px;
+  position: absolute;
+  border-radius: 20px;
+  bottom: 30px;
+  left: 40%;
+  width: 20%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  .infoField {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bntField {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
