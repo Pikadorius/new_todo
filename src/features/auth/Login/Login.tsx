@@ -23,7 +23,8 @@ const Login = () => {
     }, [])
 
     if (isLoggedIn) {
-        return <Navigate to={PATH.TODOLISTS}/>
+        dispatch(setAppPage('Todolist App'))
+        return <Navigate to={PATH.MAIN}/>
     }
 
     return (
