@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TaskDomainType, TaskType} from "features/tasks/tasksTypes";
+import {TaskDomainType, TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
 import {setAppStatus} from "app/appSlice";
 
@@ -32,6 +32,15 @@ export const deleteTaskTC = createAsyncThunk('deleteTask', async (data: { todoId
     }
 )
 
+export const updateTaskTC = createAsyncThunk('updateTask', async (data: { todoId:string, taskId: string, newTask: UpdateTaskType }, {dispatch}) => {
+        dispatch(setAppStatus('loading'))
+        const res = await tasksAPI.updateTask(data.todoId, data.taskId, data.newTask)
+        debugger
+        dispatch(updateTask(res.data.data.item))
+        dispatch(setAppStatus('success'))
+    }
+)
+
 const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
@@ -45,10 +54,13 @@ const tasksSlice = createSlice({
         deleteTask: (state, action: PayloadAction<string>) => {
             const index = state.findIndex(t=>t.id===action.payload)
             state.splice(index,1)
-        }
+        },
+        updateTask: (state, action: PayloadAction<TaskType>) => {
+            return state.map(t => t.id === action.payload.id ? {...t,...action.payload} : t)
+        },
     }
 })
 
-export const {setTasks, addTask,deleteTask} = tasksSlice.actions
+export const {setTasks, addTask,deleteTask,updateTask} = tasksSlice.actions
 
 export const tasksReducer = tasksSlice.reducer

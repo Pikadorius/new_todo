@@ -17,6 +17,15 @@ export type TaskType = {
     addedDate: string
 }
 
+export type UpdateTaskType = {
+    title: string,
+    description: string,
+    status: number,
+    priority: number,
+    startDate: string,
+    deadline: string
+}
+
 export type FilterType = 'all' | 'active' | 'completed'
 
 export type  TaskDomainType = TaskType & { filter: FilterType }
