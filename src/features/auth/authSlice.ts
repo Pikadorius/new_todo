@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {authAPI, LoginRequestType, UserRequestType} from "features/auth/authAPI";
 import {setAppInitialized, setAppStatus} from "app/appSlice";
+import {fetchTodosTC} from 'features/todolists/todolistsSlice';
 
 const initialState = {
     isLoggedIn: false,
@@ -29,6 +30,7 @@ export const loginTC = createAsyncThunk('login', async (data: LoginRequestType, 
         dispatch(setIsLoggedIn(true))
         dispatch(authMeTC())
         dispatch(setAppStatus('success'))
+        dispatch(fetchTodosTC())
     } else dispatch(setAppStatus('failed'))
 })
 
