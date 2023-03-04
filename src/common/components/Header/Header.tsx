@@ -16,9 +16,7 @@ const Header = () => {
         dispatch(logoutTC())
     }
 
-    const addItemHandler = () => {
-        page==='Todolists' ?
-            dispatch(setModalType('createTodo')) :
+    const addTask = () => {
             dispatch(setModalType('createTask' ))
     }
 
@@ -27,7 +25,7 @@ const Header = () => {
         <div className={s.container}>
             <h1 className={s.title}>
                 <div>{page}</div>
-                {isLoggedIn && <button className={s.noBtn} onClick={addItemHandler}><img src={addIcon} alt={'add'}/></button> }
+                {page!=='Todolist App' && isLoggedIn && <button className={s.noBtn} onClick={addTask}><img src={addIcon} alt={'add'}/></button> }
             </h1>
             <span className={s.logoutField}>{userName}
                 {isLoggedIn && <button className={`${s.logout} ${s.btn}`} onClick={logout}>Logout</button>}
