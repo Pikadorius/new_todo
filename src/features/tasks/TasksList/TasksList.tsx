@@ -1,31 +1,32 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
-import {createTaskTC, fetchTasksTC} from "features/tasks/tasksSlice";
+import {fetchTasksTC} from "features/tasks/tasksSlice";
 import Task from "features/tasks/TasksList/Task/Task";
-import AddItemForm from "common/components/AddItemForm/AddItemForm";
 import {PATH} from 'common/constants/PATH';
 import s from './TasksList.module.css'
+import {setAppPage} from 'app/appSlice';
 
 const TasksList = () => {
     const {id} = useParams<{ id: string }>()
-    console.log(id)
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!id) return
-        dispatch(fetchTasksTC(id))
-    }, [])
+        if (!id) navigate(PATH.MAIN)
+        else dispatch(fetchTasksTC(id))
+    }, [id])
 
-    const addTask = (title: string) => {
-        id && dispatch(createTaskTC({id, title}))
+    const backHandler = () => {
+        dispatch(setAppPage('Todolist App'))
+        navigate(PATH.MAIN)
     }
+
 
     return (
         <div className={s.container}>
-            <button className={s.backBnt} onClick={() => navigate(PATH.TODOLISTS)}>Go back</button>
+            <button className={s.backBnt} onClick={backHandler}>Go to main</button>
             <div>
                 {tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>

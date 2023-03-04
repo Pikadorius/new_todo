@@ -2,6 +2,10 @@
 .container {
     margin: 0 auto;
     width: 80%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
