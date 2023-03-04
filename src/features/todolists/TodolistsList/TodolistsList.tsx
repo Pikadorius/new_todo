@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
-import {createTodoTC, fetchTodosTC} from "features/todolists/todolistsSlice";
+import {fetchTodosTC} from "features/todolists/todolistsSlice";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Todolist from "features/todolists/TodolistsList/Todolist/Todolist";
-import {setAppPage} from "app/appSlice";
 import s from './TodolistList.module.css'
 
 const TodolistsList = () => {
@@ -12,7 +11,6 @@ const TodolistsList = () => {
 
     useEffect(() => {
         dispatch(fetchTodosTC())
-        dispatch(setAppPage('Todolists'))
     }, [])
 
 

@@ -4,7 +4,7 @@ import {updateTodoTC} from 'features/todolists/todolistsSlice';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
 import common from 'common/components/Modal/CommonModals.module.scss'
-import {setAppPage, setModalType} from 'app/appSlice';
+import {setModalType} from 'app/appSlice';
 import s from './UpdateTodoModal.module.scss'
 
 const UpdateTodoModal = () => {
@@ -25,7 +25,6 @@ const UpdateTodoModal = () => {
             dispatch(updateTodoTC({todoId: todo.id, title: inputRef.current.value})).then(() => {
                 dispatch(setModalType('idle'))
             })
-            dispatch(setAppPage(inputRef.current.value))
             inputRef.current.value = ''
             error && setError("")
         } else setError('Required field')

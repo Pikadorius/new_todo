@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import s from 'common/components/SideBar/SideBar.module.scss'
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import Todolist from 'features/todolists/TodolistsList/Todolist/Todolist';
-import {setAppPage, setModalType} from 'app/appSlice';
+import {setModalType} from 'app/appSlice';
 import addIcon from 'assets/icons/add.svg';
 import {fetchTodosTC} from 'features/todolists/todolistsSlice';
 

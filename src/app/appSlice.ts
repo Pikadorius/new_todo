@@ -9,7 +9,6 @@ const initialState = {
     status: 'idle' as StatusType,
     error: null as null | string,
     isInitialized: false,
-    page: 'Todolist App',
     modal: 'idle' as ModalType,
     modalTodo: {} as TodolistDomainType,
     modalTask: {} as TaskDomainType
@@ -28,9 +27,6 @@ const appSlice = createSlice({
         setAppStatus: (state, action: PayloadAction<StatusType>) => {
             state.status = action.payload
         },
-        setAppPage: (state, action: PayloadAction<string>) => {
-            state.page = action.payload
-        },
         setModalType: (state, action: PayloadAction<ModalType>) => {
             state.modal = action.payload
         },
@@ -47,7 +43,6 @@ export const {
     setAppInitialized,
     setAppStatus,
     setAppError,
-    setAppPage,
     setModalType,
     setModalTodo,
     setModalTask

@@ -5,7 +5,6 @@ import {fetchTasksTC} from "features/tasks/tasksSlice";
 import Task from "features/tasks/TasksList/Task/Task";
 import {PATH} from 'common/constants/PATH';
 import s from './TasksList.module.css'
-import {setAppPage} from 'app/appSlice';
 
 const TasksList = () => {
     const {id} = useParams<{ id: string }>()
@@ -14,12 +13,12 @@ const TasksList = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!id) navigate(PATH.MAIN)
-        else dispatch(fetchTasksTC(id))
+        if (!id) return
+        dispatch(fetchTasksTC(id))
     }, [id])
 
     const backHandler = () => {
-        dispatch(setAppPage('Todolist App'))
+        // dispatch(setAppPage('Todolist App'))
         navigate(PATH.MAIN)
     }
 

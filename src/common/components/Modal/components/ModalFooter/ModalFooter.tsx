@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useAppDispatch} from 'common/hooks/hooks';
-import {setAppPage, setModalType} from 'app/appSlice';
+import { setModalType} from 'app/appSlice';
 import {deleteTodoTC} from 'features/todolists/todolistsSlice';
 import {deleteTaskTC} from 'features/tasks/tasksSlice';
 import {TaskDomainType} from 'features/tasks/tasksTypes';
@@ -25,7 +25,6 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
         type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => {
             if (id===todo.id) {
                 navigate(PATH.MAIN)
-                dispatch(setAppPage('Todolist App'))
             }
             dispatch(setModalType('idle'))
         })

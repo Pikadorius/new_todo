@@ -1,17 +1,11 @@
 import React, {FC, useEffect} from 'react';
 import {TaskDomainType} from "features/tasks/tasksTypes";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
-import {setAppPage, setModalTask, setModalType} from 'app/appSlice';
+import { setModalTask, setModalType} from 'app/appSlice';
 import s from './Task.module.scss'
 
 const Task:FC<TaskDomainType> = (props) => {
     const dispatch = useAppDispatch()
-    const todo = useAppSelector(state => state.app.modalTodo)
-
-    useEffect(()=>{
-        dispatch(setAppPage(todo.title))
-    })
-
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTask'))

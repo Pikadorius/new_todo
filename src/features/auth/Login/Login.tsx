@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
-import {setAppPage} from 'app/appSlice';
 import {LoginRequestType} from 'features/auth/authAPI';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {loginTC} from 'features/auth/authSlice';
@@ -11,7 +10,7 @@ import s from './Login.module.css'
 const Login = () => {
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
-    const [showPass, setShowPass] = useState<'password' | 'text'>('password')
+    const [showPass, setShowPass] = useState(false)
 
     const {register, handleSubmit, formState: {errors}} = useForm<LoginRequestType>({
         mode: 'onBlur'
@@ -19,11 +18,9 @@ const Login = () => {
     const onSubmit: SubmitHandler<LoginRequestType> = data => dispatch(loginTC(data));
 
     useEffect(() => {
-        dispatch(setAppPage('Login'))
     }, [])
 
     if (isLoggedIn) {
-        dispatch(setAppPage('Todolist App'))
         return <Navigate to={PATH.MAIN}/>
     }
 
@@ -47,7 +44,7 @@ const Login = () => {
                 </div>
                 <div className={s.field}>
                     <span className={s.fieldName}>Password</span>
-                    < input type={showPass} {...register("password", {required: true})} />
+                    < input type={showPass ?'text' : 'password'} {...register("password", {required: true})} />
                     {errors.password && <span className={s.errorField}>This field is required</span>}
                 </div>
                 <div className={s.field}>

@@ -15,7 +15,7 @@ export function loadState() {
 }
 
 export async function saveState(state: RootState) {
-    let lsData = { ...state }
+    let lsData = {...state}
 
     try {
         const serializedState = JSON.stringify(lsData)

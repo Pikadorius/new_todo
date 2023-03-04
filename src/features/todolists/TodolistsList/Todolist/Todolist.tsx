@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
 import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
-import {setAppPage, setModalTodo, setModalType} from "app/appSlice";
+import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
 import deleteIcon from 'assets/icons/delete.svg'
 
@@ -26,7 +26,7 @@ const Todolist: FC<TodolistDomainType> = (props) => {
 
     const chooseTodo = () => {
         navigate(`${PATH.MAIN}/${id}`)
-        dispatch(setAppPage(`${title}`))
+        // dispatch(setAppPage(`${title}`))
         dispatch(setModalTodo(props))
     }
 
