@@ -39,8 +39,8 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     }
     return (
         <div className={common.modalFooter}>
-            <button onClick={closeHandler}>Cancel</button>
-            <button onClick={callback? callback : submit}>{title}</button>
+            <button className={common.btn} onClick={closeHandler}>Cancel</button>
+            <button className={common.btn} onClick={callback? callback : submit}>{title}</button>
         </div>
     );
 };

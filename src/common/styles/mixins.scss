@@ -27,6 +27,9 @@ $hoverColor: rgba(97,218,251,0.6);
     outline: none;
     border: none;
     transition: 0.5s;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
 
     &:hover {
       background-color: $hoverColor;
