@@ -1,4 +1,4 @@
-$hoverColor:rgba(18, 132, 18, 0.4);
+$hoverColor: rgba(18, 132, 18, 0.4);
 
 @mixin error {
   .error {
@@ -27,6 +27,7 @@ $hoverColor:rgba(18, 132, 18, 0.4);
     outline: none;
     border: none;
     transition: 0.5s;
+
     &:hover {
       background-color: $hoverColor;
       color: white;
@@ -39,4 +40,14 @@ $hoverColor:rgba(18, 132, 18, 0.4);
     height: 30px;
   }
 
+}
+
+@mixin a {
+  .link {
+    color: white;
+
+    &:hover {
+      color: #61dafb;
+    }
+  }
 }
