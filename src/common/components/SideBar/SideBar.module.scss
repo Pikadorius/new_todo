@@ -12,6 +12,9 @@
   background-color: #363a45;
   color: white;
   z-index: 1;
+  transition: 0.5s;
+
+
 
   .sidebarTitle {
     padding-top: 20px;
@@ -23,4 +26,8 @@
       display: block;
     }
   }
+}
+
+.closed {
+  left: -600px
 }

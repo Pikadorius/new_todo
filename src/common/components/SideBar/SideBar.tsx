@@ -1,31 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import s from 'common/components/SideBar/SideBar.module.scss'
-import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
+import {useAppDispatch} from 'common/hooks/hooks';
 import Todolist from 'features/todolists/TodolistsList/Todolist/Todolist';
 import {setModalType} from 'app/appSlice';
 import addIcon from 'assets/icons/add.svg';
-import {fetchTodosTC} from 'features/todolists/todolistsSlice';
+import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 
-const SideBar = () => {
+const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean }) => {
     const dispatch = useAppDispatch()
-
-
-    useEffect(() => {
-        dispatch(fetchTodosTC())
-        // dispatch(setAppPage('Todolist App'))
-    }, [])
     const addTodolist = () => {
         dispatch(setModalType('createTodo'))
     }
 
-    const todolists = useAppSelector(state => state.todolists)
     return (
-        <div className={s.sidebar}>
+        <div className={props.isShowed ? s.sidebar : `${s.sidebar} ${s.closed}`}>
             <h2 className={s.sidebarTitle}>
                 Todolists
-               <button className={s.noBtn} onClick={addTodolist}><img src={addIcon} alt={'add'}/></button>
+                <button className={s.noBtn} onClick={addTodolist}><img src={addIcon} alt={'add'}/></button>
             </h2>
-            {todolists.map(t => {
+            {props.todolists.map(t => {
                 return <Todolist key={t.id} {...t}/>
             })}
         </div>
