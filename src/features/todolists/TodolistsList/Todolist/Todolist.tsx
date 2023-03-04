@@ -25,7 +25,7 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     }
 
     const chooseTodo = () => {
-        navigate(`${PATH.TODOLISTS}/${id}`)
+        navigate(`${PATH.MAIN}/${id}`)
         dispatch(setAppPage(`${title}`))
         dispatch(setModalTodo(props))
     }
@@ -34,7 +34,7 @@ const Todolist: FC<TodolistDomainType> = (props) => {
         <div className={s.container} >
             <div className={s.todoHeader} >
                 <button onClick={updateHandler} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
-                <span onClick={chooseTodo}>{title}</span>
+                <div onClick={chooseTodo}>{title}</div>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
 
