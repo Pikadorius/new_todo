@@ -4,7 +4,8 @@ import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {fetchTasksTC} from "features/tasks/tasksSlice";
 import Task from "features/tasks/TasksList/Task/Task";
 import {PATH} from 'common/constants/PATH';
-import s from './TasksList.module.css'
+import s from 'features/tasks/TasksList/TasksList.module.scss'
+import back from '../../../assets/icons/goBack.svg'
 
 const TasksList = () => {
     const {id} = useParams<{ id: string }>()
@@ -25,7 +26,7 @@ const TasksList = () => {
 
     return (
         <div className={s.container}>
-            <button className={s.backBnt} onClick={backHandler}>Go to main</button>
+            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>To main</button>
             <div>
                 {tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>
