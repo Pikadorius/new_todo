@@ -29,8 +29,8 @@ export const loginTC = createAsyncThunk('login', async (data: LoginRequestType, 
     if (res.data.resultCode === 0) {
         dispatch(setIsLoggedIn(true))
         dispatch(authMeTC())
-        dispatch(setAppStatus('success'))
         dispatch(fetchTodosTC())
+        dispatch(setAppStatus('success'))
     } else dispatch(setAppStatus('failed'))
 })
 
