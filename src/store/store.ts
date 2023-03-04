@@ -14,12 +14,14 @@ const reducer = combineReducers({
 
 export const store = configureStore({
     reducer,
-    preloadedState: loadState(),
+    // preloadedState: loadState(),
 })
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
+/*
 store.subscribe(() => {
     saveState(store.getState())
 })
+*/
