@@ -5,7 +5,7 @@ import {PATH} from "common/constants/PATH";
 import {LoginRequestType} from 'features/auth/authAPI';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {loginTC} from 'features/auth/authSlice';
-import s from './Login.module.css'
+import s from 'features/auth/Login/Login.module.scss'
 
 const Login = () => {
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
@@ -27,10 +27,8 @@ const Login = () => {
     return (
         <div className={s.wrapper}>
             <label>
-                <p>To log in get registered
-                    <a href={'https://social-network.samuraijs.com/'}
-                       target={'_blank'}> here
-                    </a>
+                <p>To log in get registered <a className={s.link} href={'https://social-network.samuraijs.com/'}
+                       target={'_blank'}>here.</a>
                 </p>
                 <p>or use common test account credentials:</p>
                 <p>Email: free@samuraijs.com</p>

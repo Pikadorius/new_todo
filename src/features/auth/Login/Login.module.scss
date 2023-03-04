@@ -1,3 +1,6 @@
+@import 'src/common/styles/mixins.scss';
+@include a;
+
 .wrapper {
     margin-top: 5%;
     display: flex;
