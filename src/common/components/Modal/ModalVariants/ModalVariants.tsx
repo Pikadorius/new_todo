@@ -5,6 +5,7 @@ import DeleteTaskModal from 'common/components/Modal/DeleteTaskModal/DeleteTaskM
 import CreateTodoModal from 'common/components/Modal/CreateTodoModal/CreateTodoModal';
 import CreateTaskModal from 'common/components/Modal/CreateTaskModal/CreateTaskModal';
 import UpdateTodoModal from 'common/components/Modal/UpdateTodoModal/UpdateTodoModal';
+import UpdateTaskModal from 'common/components/Modal/UpdateTaskModal/UpdateTaskModal';
 
 const ModalVariants = () => {
     const modalType = useAppSelector(state => state.app.modal)
@@ -28,6 +29,9 @@ const ModalVariants = () => {
         }
         case 'updateTodo': {
             return <UpdateTodoModal/>
+        }
+        case 'updateTask': {
+            return <UpdateTaskModal/>
         }
         default:
             return <></>
