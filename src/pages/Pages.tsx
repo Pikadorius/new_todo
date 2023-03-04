@@ -4,13 +4,13 @@ import {PATH} from "common/constants/PATH";
 import RequireAuth from "pages/RequireAuth";
 import TasksList from "features/tasks/TasksList/TasksList";
 import Login from "features/auth/Login/Login";
-import SideBar from 'common/components/SideBar/SideBar';
 import Greetings from 'common/components/Greetings/Greetings';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import {fetchTodosTC} from 'features/todolists/todolistsSlice';
 import s from './Pages.module.scss'
 import eye from '../assets/icons/eye.svg'
 import eyeOff from '../assets/icons/eyeOff.svg'
+import SideBar from 'common/components/SideBar/SideBar';
 
 const Pages = () => {
     const [isShowed, setIsShowed] = useState(true)
@@ -20,15 +20,19 @@ const Pages = () => {
 
     const todolists = useAppSelector(state => state.todolists)
     useEffect(() => {
+        if (!isLoggedIn) return
+
         dispatch(fetchTodosTC())
+
     }, [])
 
     return (
         <div>
-            {isLoggedIn && <SideBar todolists={todolists} isShowed={isShowed}/>}
-            <button className={s.noBtn} style={{position: 'absolute', top: '80px', left: '20px', zIndex: '200'}} onClick={() => setIsShowed(!isShowed)}>
+            {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed}/>
+            <button className={s.noBtn} style={{position: 'absolute', top: '80px', left: '20px', zIndex: '200'}}
+                    onClick={() => setIsShowed(!isShowed)}>
                 <img src={isShowed ? eyeOff : eye} alt={'show/hide'}/>
-            </button>
+            </button></>}
             <Routes>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route element={<RequireAuth/>}>
