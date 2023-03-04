@@ -7,7 +7,7 @@ export type ModalType = 'createTodo' | 'deleteTodo' | 'createTask' | 'deleteTask
 
 const initialState = {
     status: 'idle' as StatusType,
-    error: null as null | string,
+    error: '',
     isInitialized: false,
     modal: 'idle' as ModalType,
     modalTodo: {} as TodolistDomainType,
