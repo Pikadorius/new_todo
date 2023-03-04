@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 import {useAppDispatch} from 'common/hooks/hooks';
-import {setModalType} from 'app/appSlice';
+import {setAppPage, setModalType} from 'app/appSlice';
 import {deleteTodoTC} from 'features/todolists/todolistsSlice';
 import {deleteTaskTC} from 'features/tasks/tasksSlice';
 import {TaskDomainType} from 'features/tasks/tasksTypes';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
-import s from './ModalFooter.module.css'
 import common from 'common/components/Modal/CommonModals.module.scss'
+import {useNavigate} from 'react-router-dom';
+import {PATH} from 'common/constants/PATH';
 
 type ModalType = {
     type: 'todo' | 'task'
@@ -17,8 +18,17 @@ type ModalType = {
 }
 const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+    const id = document.location.hash.slice(7)
+    console.log(id)
     const submit = () => {
-        type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => dispatch(setModalType('idle')))
+        type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => {
+            if (id===todo.id) {
+                navigate(PATH.MAIN)
+                dispatch(setAppPage('Todolist App'))
+            }
+            dispatch(setModalType('idle'))
+        })
             : task && dispatch(deleteTaskTC({
                 todoId: task.todoListId,
                 taskId: task.id
