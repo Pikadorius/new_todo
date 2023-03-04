@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TodolistDomainType, TodolistResponseType} from "features/todolists/todolistsTypes";
 import {todolistsAPI} from "features/todolists/todolistsAPI";
-import {setAppStatus} from "app/appSlice";
+import {setAppError, setAppStatus} from "app/appSlice";
 
 const initialState = [] as TodolistDomainType[]
 
@@ -16,24 +16,42 @@ export const fetchTodosTC = createAsyncThunk('fetchTodolists', async (_, {dispat
 export const createTodoTC = createAsyncThunk('createTodo', async (title: string, {dispatch}) => {
         dispatch(setAppStatus('loading'))
         const res = await todolistsAPI.createTodo(title)
-        dispatch(addTodo({...res.data.data.item, status: 'idle'}))
-        dispatch(setAppStatus('success'))
+        if (res.data.resultCode === 0) {
+            dispatch(addTodo({...res.data.data.item, status: 'idle'}))
+            dispatch(setAppStatus('success'))
+            dispatch(setAppError('Todolist created'))
+        } else {
+            dispatch(setAppStatus('failed'))
+            dispatch(setAppError(res.data.messages[0]))
+        }
     }
 )
 
 export const deleteTodoTC = createAsyncThunk('deleteTodo', async (todoId: string, {dispatch}) => {
         dispatch(setAppStatus('loading'))
         const res = await todolistsAPI.deleteTodo(todoId)
-        dispatch(deleteTodo(todoId))
-        dispatch(setAppStatus('success'))
+        if (res.data.resultCode === 0) {
+            dispatch(deleteTodo(todoId))
+            dispatch(setAppError('Todolist deleted'))
+            dispatch(setAppStatus('success'))
+        } else {
+            dispatch(setAppStatus('failed'))
+            dispatch(setAppError(res.data.messages[0]))
+        }
     }
 )
 
 export const updateTodoTC = createAsyncThunk('updateTodo', async (data: { todoId: string, title: string }, {dispatch}) => {
         dispatch(setAppStatus('loading'))
         const res = await todolistsAPI.updateTodo(data.todoId, data.title)
-        dispatch(updateTodoTitle(data))
-        dispatch(setAppStatus('success'))
+        if (res.data.resultCode === 0) {
+            dispatch(updateTodoTitle(data))
+            dispatch(setAppStatus('success'))
+            dispatch(setAppError('Todolist changed'))
+        } else {
+            dispatch(setAppStatus('failed'))
+            dispatch(setAppError(res.data.messages[0]))
+        }
     }
 )
 

@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TaskDomainType, TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
-import {setAppStatus} from "app/appSlice";
+import {setAppError, setAppStatus} from "app/appSlice";
 import {RootState} from 'store/store';
 
 const initialState = [] as TaskDomainType[]
@@ -18,31 +18,47 @@ export const fetchTasksTC = createAsyncThunk('fetchTasks', async (id: string, {d
 export const createTaskTC = createAsyncThunk('createTask', async (data: { id: string, title: string }, {dispatch}) => {
         dispatch(setAppStatus('loading'))
         const res = await tasksAPI.createTask(data.id, data.title)
-        debugger
-        dispatch(addTask({...res.data.data.item, filter: 'all'}))
-        dispatch(setAppStatus('success'))
+        if (res.data.resultCode === 0) {
+            dispatch(addTask({...res.data.data.item, filter: 'all'}))
+            dispatch(setAppStatus('success'))
+            dispatch(setAppError('Task created'))
+        }
+        else {
+            dispatch(setAppError(res.data.messages[0]))
+            dispatch(setAppStatus('failed'))
+        }
     }
 )
 
 export const deleteTaskTC = createAsyncThunk('deleteTask', async (data: { todoId: string, taskId: string }, {dispatch}) => {
         dispatch(setAppStatus('loading'))
         const res = await tasksAPI.deleteTask(data.todoId, data.taskId)
-        debugger
-        dispatch(deleteTask(data.taskId))
-        dispatch(setAppStatus('success'))
+        if (res.data.resultCode === 0) {
+            dispatch(deleteTask(data.taskId))
+            dispatch(setAppStatus('success'))
+            dispatch(setAppError('Task deleted'))
+        } else {
+            dispatch(setAppError(res.data.messages[0]))
+            dispatch(setAppStatus('failed'))
+        }
     }
 )
 
 export const updateTaskTC = createAsyncThunk(
     'updateTask',
-    async (data: { todoId: string, taskId: string, newTask: Partial<UpdateTaskType> }, {dispatch,getState}) => {
+    async (data: { todoId: string, taskId: string, newTask: Partial<UpdateTaskType> }, {dispatch, getState}) => {
         dispatch(setAppStatus('loading'))
         const state = getState() as RootState
-        const task = state.tasks.find(t=>t.id===data.taskId) as UpdateTaskType
+        const task = state.tasks.find(t => t.id === data.taskId) as UpdateTaskType
         const res = await tasksAPI.updateTask(data.todoId, data.taskId, {...task, ...data.newTask})
-        debugger
-        dispatch(updateTask(res.data.data.item))
-        dispatch(setAppStatus('success'))
+        if (res.data.resultCode === 0) {
+            dispatch(updateTask(res.data.data.item))
+            dispatch(setAppStatus('success'))
+            dispatch(setAppError('Task updated'))
+        } else {
+            dispatch(setAppError(res.data.messages[0]))
+            dispatch(setAppStatus('failed'))
+        }
     }
 )
 
