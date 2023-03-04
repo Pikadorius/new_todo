@@ -28,10 +28,19 @@ const TasksList = () => {
         <div className={s.container}>
             <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>To main</button>
             <div>
-                {tasks.map(t => <Task key={t.id} {...t}/>)}
+                {tasks.length===0 ? <EmptyBlock/> : tasks.map(t => <Task key={t.id} {...t}/>)}
             </div>
         </div>
     );
 };
 
 export default TasksList;
+
+const EmptyBlock = () => {
+    return (
+        <div className={s.emptyBlock}>
+            <h2>This todolist is empty!</h2>
+            <p>You can create task or choose another todolist</p>
+        </div>
+    )
+}
