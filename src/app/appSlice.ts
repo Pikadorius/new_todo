@@ -3,7 +3,7 @@ import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 import {TaskDomainType} from 'features/tasks/tasksTypes';
 
 export type StatusType = 'idle' | 'loading' | 'success' | 'failed'
-export type ModalType = 'createTodo' | 'deleteTodo' | 'createTask' | 'deleteTask' | 'idle' | 'updateTodo'
+export type ModalType = 'createTodo' | 'deleteTodo' | 'createTask' | 'deleteTask' | 'idle' | 'updateTodo' | 'updateTask'
 
 const initialState = {
     status: 'idle' as StatusType,
