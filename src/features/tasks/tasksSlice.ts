@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TaskDomainType, TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
 import {setAppStatus} from "app/appSlice";
+import {RootState} from 'store/store';
 
 const initialState = [] as TaskDomainType[]
 
@@ -32,9 +33,13 @@ export const deleteTaskTC = createAsyncThunk('deleteTask', async (data: { todoId
     }
 )
 
-export const updateTaskTC = createAsyncThunk('updateTask', async (data: { todoId:string, taskId: string, newTask: UpdateTaskType }, {dispatch}) => {
+export const updateTaskTC = createAsyncThunk(
+    'updateTask',
+    async (data: { todoId: string, taskId: string, newTask: Partial<UpdateTaskType> }, {dispatch,getState}) => {
         dispatch(setAppStatus('loading'))
-        const res = await tasksAPI.updateTask(data.todoId, data.taskId, data.newTask)
+        const state = getState() as RootState
+        const task = state.tasks.find(t=>t.id===data.taskId) as UpdateTaskType
+        const res = await tasksAPI.updateTask(data.todoId, data.taskId, {...task, ...data.newTask})
         debugger
         dispatch(updateTask(res.data.data.item))
         dispatch(setAppStatus('success'))
@@ -46,21 +51,21 @@ const tasksSlice = createSlice({
     initialState,
     reducers: {
         setTasks: (state, action: PayloadAction<TaskType[]>) => {
-            return action.payload.map(t=>({...t, filter: 'all'}))
+            return action.payload.map(t => ({...t, filter: 'all'}))
         },
         addTask: (state, action: PayloadAction<TaskDomainType>) => {
             state.unshift(action.payload)
         },
         deleteTask: (state, action: PayloadAction<string>) => {
-            const index = state.findIndex(t=>t.id===action.payload)
-            state.splice(index,1)
+            const index = state.findIndex(t => t.id === action.payload)
+            state.splice(index, 1)
         },
         updateTask: (state, action: PayloadAction<TaskType>) => {
-            return state.map(t => t.id === action.payload.id ? {...t,...action.payload} : t)
+            return state.map(t => t.id === action.payload.id ? {...t, ...action.payload} : t)
         },
     }
 })
 
-export const {setTasks, addTask,deleteTask,updateTask} = tasksSlice.actions
+export const {setTasks, addTask, deleteTask, updateTask} = tasksSlice.actions
 
 export const tasksReducer = tasksSlice.reducer
