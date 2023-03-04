@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './App.css';
+import 'app/App.scss';
 import Pages from "pages/Pages";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Loader from "common/components/Loader/Loader";
