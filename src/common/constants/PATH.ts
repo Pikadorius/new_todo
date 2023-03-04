@@ -1,5 +1,5 @@
 export const PATH = {
     LOGIN: '/login',
-    TODOLISTS: '/todolists',
-    TASKS: `/todolists/:id`
+    MAIN: '/main',
+    TASKS: `/main/:id`
 } as const
