@@ -1,9 +1,8 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {TaskDomainType, UpdateTaskType} from "features/tasks/tasksTypes";
-import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import {useAppDispatch} from "common/hooks/hooks";
 import { setModalTask, setModalType} from 'app/appSlice';
 import s from './Task.module.scss'
-import {updateTaskTC} from 'features/tasks/tasksSlice';
 
 const Task:FC<TaskDomainType> = (props) => {
     const dispatch = useAppDispatch()
@@ -13,16 +12,9 @@ const Task:FC<TaskDomainType> = (props) => {
         dispatch(setModalTask(props))
     }
 
-    const newTask:UpdateTaskType = {
-        ...props,
-        status: 1,
-        title: 'lol',
-        description: 'you must do it'
-    }
     const updateTask = () => {
         dispatch(setModalType('updateTask'))
         dispatch(setModalTask(props))
-        // dispatch(updateTaskTC({newTask, taskId: props.id, todoId: props.todoListId}))
     }
 
     return (
