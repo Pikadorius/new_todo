@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from 'common/components/Header/Header.module.scss'
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {logoutTC} from 'features/auth/authSlice';
 import {setModalType} from 'app/appSlice';
 import addIcon from '../../../assets/icons/add.svg'
-
+import {useLocation} from 'react-router-dom';
 
 const Header = () => {
-    const page = useAppSelector(state => state.app.page)
+    // const page = useAppSelector(state => state.app.page)
+    const id = useLocation().pathname.slice(6)
+
+    let page=''
+
+    const todo = useAppSelector(state => state.todolists.find(t=>t.id===id))
+    console.log(todo)
+
+    if (id && todo) {
+        page=todo.title
+    }
+    else {
+        page='Todolist App'
+    }
+
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const userName = useAppSelector(state => state.auth.user.login)
     const dispatch = useAppDispatch()
