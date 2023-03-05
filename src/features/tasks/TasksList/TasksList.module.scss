@@ -16,7 +16,7 @@
     width: 100%;
     display: flex;
     column-gap: 20px;
-    padding: 0 40px;
+    //padding: 0 40px;
 
     .activeTasks {
       width: 33%;
@@ -42,6 +42,7 @@
   }
 
   .emptyBlock {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +50,7 @@
 }
 
 .backBnt {
-  margin: 20px auto 0 20px;
+  margin: 10px auto 0 10px;
   transition: 1s;
 }
 
