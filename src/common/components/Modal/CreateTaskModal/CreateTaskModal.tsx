@@ -6,14 +6,16 @@ import s from 'common/components/AddItemForm/AddItemForm.module.scss';
 import {setModalType} from 'app/appSlice';
 import {createTaskTC} from 'features/tasks/tasksSlice';
 import common from 'common/components/Modal/CommonModals.module.scss'
+import {useLocation} from 'react-router-dom';
 
 const CreateTodoModal = () => {
     const dispatch = useAppDispatch()
-    const todolist = useAppSelector(state=>state.app.modalTodo)
+    const id = useLocation().pathname.slice(6)
+    const todolist = useAppSelector(state => state.todolists.find(t=>t.id===id))
     const inputRef = createRef<HTMLInputElement>()
     const [error, setError] = useState('')
     const addTask = () => {
-        if (inputRef.current && inputRef.current.value !== '') {
+        if (inputRef.current && inputRef.current.value !== '' && todolist) {
             dispatch(createTaskTC({id:todolist.id, title:inputRef.current.value})).then(()=>{
                 dispatch(setModalType('idle'))
             })

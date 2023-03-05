@@ -27,20 +27,23 @@ const Pages = () => {
     }, [])
 
     return (
-        <div>
+        <div className={s.container}>
             {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed}/>
-            <button className={s.noBtn} style={{position: 'absolute', top: '80px', left: '20px', zIndex: '200'}}
-                    onClick={() => setIsShowed(!isShowed)}>
-                <img src={isShowed ? eyeOff : eye} alt={'show/hide'}/>
-            </button></>}
-            <Routes>
-                <Route path={PATH.LOGIN} element={<Login/>}/>
-                <Route element={<RequireAuth/>}>
-                    <Route path={PATH.TASKS} element={<TasksList/>}/>
-                    <Route path={PATH.MAIN} element={<Greetings/>}/>
-                    <Route path={'/'} element={<Navigate to={PATH.MAIN}/>}/>
-                </Route>
-            </Routes>
+                <button className={s.noBtn} style={{position: 'absolute', top: '80px', left: '20px', zIndex: '200'}}
+                        onClick={() => setIsShowed(!isShowed)}>
+                    <img src={isShowed ? eyeOff : eye} alt={'show/hide'}/>
+                </button>
+            </>}
+            <div className={s.main}>
+                <Routes>
+                    <Route path={PATH.LOGIN} element={<Login/>}/>
+                    <Route element={<RequireAuth/>}>
+                        <Route path={PATH.TASKS} element={<TasksList/>}/>
+                        <Route path={PATH.MAIN} element={<Greetings/>}/>
+                        <Route path={'/'} element={<Navigate to={PATH.MAIN}/>}/>
+                    </Route>
+                </Routes>
+            </div>
         </div>
     );
 };
