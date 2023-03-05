@@ -7,6 +7,7 @@ export type ModalType = 'createTodo' | 'deleteTodo' | 'createTask' | 'deleteTask
 
 const initialState = {
     status: 'idle' as StatusType,
+    totalTasks: 0,
     error: '',
     isInitialized: false,
     modal: 'idle' as ModalType,
@@ -36,6 +37,9 @@ const appSlice = createSlice({
         setModalTask: (state, action: PayloadAction<TaskDomainType>) => {
             state.modalTask = action.payload
         },
+        setTotalTasks: (state, action: PayloadAction<number>) => {
+            state.totalTasks = action.payload
+        },
     }
 })
 
@@ -45,7 +49,8 @@ export const {
     setAppError,
     setModalType,
     setModalTodo,
-    setModalTask
+    setModalTask,
+    setTotalTasks
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer

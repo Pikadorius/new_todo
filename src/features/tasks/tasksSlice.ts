@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TaskDomainType, TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
-import {setAppError, setAppStatus} from "app/appSlice";
+import {setAppError, setAppStatus, setTotalTasks} from "app/appSlice";
 import {RootState} from 'store/store';
 
 const initialState = [] as TaskDomainType[]
@@ -12,6 +12,7 @@ export const fetchTasksTC = createAsyncThunk('fetchTasks', async (id: string, {d
     const res = await tasksAPI.fetchTasks(id)
 
     dispatch(setTasks(res.data.items))
+    dispatch(setTotalTasks(res.data.totalCount))
     dispatch(setAppStatus('success'))
 })
 
