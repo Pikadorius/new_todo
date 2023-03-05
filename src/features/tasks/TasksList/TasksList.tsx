@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {fetchTasksTC} from "features/tasks/tasksSlice";
@@ -13,23 +13,39 @@ const TasksList = () => {
     const tasks = useAppSelector(state => state.tasks)
     const navigate = useNavigate()
 
+    const active = useMemo(() => tasks.filter(t => t.status === 0), [tasks])
+    const inProgress = useMemo(() => tasks.filter(t => t.status === 1), [tasks])
+    const completed = useMemo(() => tasks.filter(t => t.status === 2), [tasks])
+
     useEffect(() => {
         if (!id) return
         dispatch(fetchTasksTC(id))
     }, [id])
 
     const backHandler = () => {
-        // dispatch(setAppPage('Todolist App'))
         navigate(PATH.MAIN)
     }
 
 
     return (
         <div className={s.container}>
-            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>To main</button>
-            <div>
-                {tasks.length===0 ? <EmptyBlock/> : tasks.map(t => <Task key={t.id} {...t}/>)}
-            </div>
+            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>To main
+            </button>
+            {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
+                <div className={s.activeTasks}>
+                    <h3>Active</h3>
+                    {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
+                </div>
+                <div className={s.inProgressTasks}>
+                    <h3>In progress</h3>
+                    {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
+                </div>
+                <div className={s.completedTasks}>
+                    <h3>Completed</h3>
+                    {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
+                </div>
+            </div>}
+
         </div>
     );
 };
