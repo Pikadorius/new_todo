@@ -7,4 +7,4 @@ export type TodolistResponseType = {
     order: number
 }
 
-export type TodolistDomainType = TodolistResponseType & { status: StatusType}
+export type TodolistDomainType = TodolistResponseType & { tasksCount: number}

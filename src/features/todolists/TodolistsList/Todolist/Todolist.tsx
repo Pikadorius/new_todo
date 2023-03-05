@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {TodolistDomainType} from "features/todolists/todolistsTypes";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
 import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
@@ -10,7 +10,7 @@ import deleteIcon from 'assets/icons/delete.svg'
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
-    const {id, title, status,addedDate} = props
+    const {id, title, tasksCount, order, addedDate} = props
     const dispatch = useAppDispatch()
 
     const deleteHandler = () => {
@@ -28,10 +28,11 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     }
 
     return (
-        <div className={s.container} >
-            <div className={s.todoHeader} >
+        <div className={s.container}>
+            <div className={s.todoHeader}>
                 <button onClick={updateHandler} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
-                <NavLink  to={`${PATH.MAIN}/${id}`} onClick={chooseTodo} className={({isActive})=> isActive? `${s.navlink} ${s.active}` : s.navlink}>{title}</NavLink>
+                <NavLink to={`${PATH.MAIN}/${id}`} onClick={chooseTodo}
+                         className={({isActive}) => isActive ? `${s.navlink} ${s.active}` : s.navlink}>{title}</NavLink>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
 
