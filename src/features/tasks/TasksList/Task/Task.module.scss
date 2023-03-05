@@ -1,9 +1,30 @@
+@import "src/common/styles/mixins.scss";
+@include btn;
+
 .container {
-  min-width: 300px;
+  width: 80%;
   border: 1px solid #61dafb;
   border-radius: 10px;
   padding: 20px;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
+
+  .taskHeader {
+    display: flex;
+    justify-content: space-between;
+
+    .taskTitle {
+      text-align: center;
+      word-break: break-word;
+    }
+  }
+}
+
+.inProgress {
+  border: 1px solid #fb9f33;
+}
+
+.completed {
+  border: 1px solid #3b8d09;
 }
