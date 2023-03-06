@@ -7,13 +7,9 @@ import addIcon from '../../../assets/icons/add.svg'
 import {useLocation} from 'react-router-dom';
 
 const Header = () => {
-    // const page = useAppSelector(state => state.app.page)
     const id = useLocation().pathname.slice(6)
-
     let page=''
-
     const todo = useAppSelector(state => state.todolists.find(t=>t.id===id))
-    console.log(todo)
 
     if (id && todo) {
         page=todo.title

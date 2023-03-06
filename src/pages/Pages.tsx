@@ -19,11 +19,10 @@ const Pages = () => {
 
 
     const todolists = useAppSelector(state => state.todolists)
+
     useEffect(() => {
         if (!isLoggedIn) return
-
         dispatch(fetchTodosTC())
-
     }, [])
 
     return (

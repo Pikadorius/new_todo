@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {TodolistDomainType} from "features/todolists/todolistsTypes";
 import {NavLink} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -7,16 +7,11 @@ import s from 'features/todolists/Todolist/Todolist.module.scss'
 import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
 import deleteIcon from 'assets/icons/delete.svg'
-import {fetchTodosTasksCountTC} from 'features/todolists/todolistsSlice';
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
-    const {id, title, tasksCount, order, addedDate} = props
+    const {id, title, tasksCount, tasks} = props
     const dispatch = useAppDispatch()
-
-    useEffect(()=>{
-        dispatch(fetchTodosTasksCountTC(id))
-    }, [])
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTodo'))

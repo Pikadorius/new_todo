@@ -1,42 +1,30 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {fetchTasksTC} from "features/tasks/tasksSlice";
 import Task from "features/tasks/TasksList/Task/Task";
 import {PATH} from 'common/constants/PATH';
 import s from 'features/tasks/TasksList/TasksList.module.scss'
-import back from '../../../assets/icons/goBack.svg'
-import {TaskType} from 'features/tasks/tasksTypes';
+import back from 'assets/icons/goBack.svg'
 
-type BoardType = {
-    id:number
-    title:string,
-    items: TaskType[]
-}
 
 const TasksList = () => {
+    console.log('tasks render')
     const {id} = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)
     const navigate = useNavigate()
 
     const active = useMemo(() => tasks.filter(t => t.status === 0), [tasks])
-    console.log(active)
     const inProgress = useMemo(() => tasks.filter(t => t.status === 1), [tasks])
     const completed = useMemo(() => tasks.filter(t => t.status === 2), [tasks])
 
-
-    const [boards, setBoards] = useState<BoardType[]>([
-        {id: 1, title: 'Active', items:active},
-        {id: 2, title: 'In progress', items: inProgress},
-        {id: 3, title: 'Completed', items: completed},
-    ])
-    console.log('Boards: ', boards)
 
     useEffect(() => {
         if (!id) return
         dispatch(fetchTasksTC(id))
     }, [id])
+
 
     const backHandler = () => {
         navigate(PATH.MAIN)
@@ -61,7 +49,6 @@ const TasksList = () => {
                     {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
                 </div>
             </div>}
-
         </div>
     );
 };

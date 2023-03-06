@@ -3,7 +3,7 @@ import { TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
 import {setAppError, setAppStatus} from "app/appSlice";
 import {RootState} from 'store/store';
-import {fetchTodosTasksCountTC} from 'features/todolists/todolistsSlice';
+import {fetchTodosTasksTC} from 'features/todolists/todolistsSlice';
 
 const initialState = [] as TaskType[]
 
@@ -21,7 +21,7 @@ export const createTaskTC = createAsyncThunk('createTask', async (data: { id: st
         const res = await tasksAPI.createTask(data.id, data.title, data.description, data.status)
         if (res.data.resultCode === 0) {
             dispatch(addTask(res.data.data.item))
-            dispatch(fetchTodosTasksCountTC(data.id))
+            dispatch(fetchTodosTasksTC(data.id))
             dispatch(setAppStatus('success'))
             dispatch(setAppError('Task created'))
         } else {
@@ -36,7 +36,7 @@ export const deleteTaskTC = createAsyncThunk('deleteTask', async (data: { todoId
         const res = await tasksAPI.deleteTask(data.todoId, data.taskId)
         if (res.data.resultCode === 0) {
             dispatch(deleteTask(data.taskId))
-            dispatch(fetchTodosTasksCountTC(data.todoId))
+            dispatch(fetchTodosTasksTC(data.todoId))
             dispatch(setAppStatus('success'))
             dispatch(setAppError('Task deleted'))
         } else {

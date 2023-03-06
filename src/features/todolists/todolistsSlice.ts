@@ -3,6 +3,7 @@ import {TodolistDomainType, TodolistResponseType} from "features/todolists/todol
 import {todolistsAPI} from "features/todolists/todolistsAPI";
 import {setAppError, setAppStatus} from "app/appSlice";
 import {tasksAPI} from 'features/tasks/tasksAPI';
+import {TaskType} from 'features/tasks/tasksTypes';
 
 const initialState = [] as TodolistDomainType[]
 
@@ -10,14 +11,16 @@ export const fetchTodosTC = createAsyncThunk('fetchTodolists', async (_, {dispat
     dispatch(setAppStatus('loading'))
     const res = await todolistsAPI.fetchTodos()
     dispatch(setTodolists(res.data))
+    if(res.data.length) {
+        res.data.forEach(t => dispatch(fetchTodosTasksTC(t.id)))
+    }
     dispatch(setAppStatus('success'))
-
 })
 
-export const fetchTodosTasksCountTC = createAsyncThunk('fetchTodolists', async (id: string, {dispatch}) => {
+export const fetchTodosTasksTC = createAsyncThunk('fetchTodolists', async (id: string, {dispatch}) => {
     dispatch(setAppStatus('loading'))
     const res = await tasksAPI.fetchTasks(id)
-    dispatch(setTodosTasksCount({id, tasksCount: res.data.totalCount}))
+    dispatch(setTodosTasks({id, tasksCount: res.data.totalCount, tasks: res.data.items}))
     dispatch(setAppStatus('success'))
 })
 
@@ -80,12 +83,12 @@ const todolistsSlice = createSlice({
         updateTodoTitle: (state, action: PayloadAction<{ todoId: string, title: string }>) => {
             return state.map(t => t.id === action.payload.todoId ? {...t, title: action.payload.title} : t)
         },
-        setTodosTasksCount: (state, action: PayloadAction<{ id: string, tasksCount: number }>) => {
-            return state.map(t => t.id === action.payload.id ? {...t, tasksCount: action.payload.tasksCount} : t)
+        setTodosTasks: (state, action: PayloadAction<{ id: string, tasksCount: number, tasks: TaskType[] }>) => {
+            return state.map(t => t.id === action.payload.id ? {...t, tasksCount: action.payload.tasksCount, tasks: action.payload.tasks} : t)
         }
     }
 })
 
-export const {setTodolists, addTodo, deleteTodo, updateTodoTitle, setTodosTasksCount} = todolistsSlice.actions
+export const {setTodolists, addTodo, deleteTodo, updateTodoTitle, setTodosTasks} = todolistsSlice.actions
 
 export const todolistsReducer = todolistsSlice.reducer
