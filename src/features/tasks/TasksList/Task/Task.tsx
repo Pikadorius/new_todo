@@ -33,7 +33,8 @@ const Task:FC<TaskType & Props> = (props) => {
                 <h3 className={s.taskTitle}>{props.title}</h3>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
-            {/*<p>{props.description}</p>*/}
+
+            {props.description && <p className={s.description}>{props.description}</p>}
         </div>
     );
 };

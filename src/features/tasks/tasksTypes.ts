@@ -1,13 +1,14 @@
 export enum TASK_STATUSES {
-    ACTIVE=0,
-    COMPLETED=1,
+    Active=0,
+    InProgress=1,
+    Completed =2
 }
 
 export type TaskType = {
     description: string
     title: string
     completed: boolean
-    status: number
+    status: TASK_STATUSES
     priority: number
     startDate: string
     deadline: string

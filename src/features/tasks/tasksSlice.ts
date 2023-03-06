@@ -16,9 +16,9 @@ export const fetchTasksTC = createAsyncThunk('fetchTasks', async (id: string, {d
     dispatch(setAppStatus('success'))
 })
 
-export const createTaskTC = createAsyncThunk('createTask', async (data: { id: string, title: string }, {dispatch}) => {
+export const createTaskTC = createAsyncThunk('createTask', async (data: { id: string, title: string, description: string, status: number}, {dispatch}) => {
         dispatch(setAppStatus('loading'))
-        const res = await tasksAPI.createTask(data.id, data.title)
+        const res = await tasksAPI.createTask(data.id, data.title, data.description, data.status)
         if (res.data.resultCode === 0) {
             dispatch(addTask(res.data.data.item))
             dispatch(fetchTodosTasksCountTC(data.id))

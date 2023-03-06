@@ -1,0 +1,32 @@
+@import 'src/common/styles/mixins.scss';
+@include a;
+
+.form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field {
+  //padding: 10px;
+}
+
+.fieldName {
+  display: block;
+}
+
+.field:last-of-type {
+  padding-bottom: 30px;
+}
+
+.errorField {
+  display: block;
+  color: red;
+}
+
+.btn {
+  display: block;
+  width: 100px;
+  height: 30px;
+}
