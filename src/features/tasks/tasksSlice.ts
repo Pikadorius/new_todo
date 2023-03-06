@@ -52,7 +52,7 @@ export const updateTaskTC = createAsyncThunk(
         dispatch(setAppStatus('loading'))
         const state = getState() as RootState
         const task = state.tasks.find(t => t.id === data.taskId) as UpdateTaskType
-        const res = await tasksAPI.updateTask(data.todoId, data.taskId, {...task, ...data.newTask, status: 2})
+        const res = await tasksAPI.updateTask(data.todoId, data.taskId, {...task, ...data.newTask})
         if (res.data.resultCode === 0) {
             dispatch(updateTask(res.data.data.item))
             dispatch(setAppStatus('success'))

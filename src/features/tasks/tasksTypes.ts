@@ -21,7 +21,7 @@ export type TaskType = {
 export type UpdateTaskType = {
     title: string,
     description: string,
-    status: number,
+    status: TASK_STATUSES,
     priority: number,
     startDate: string,
     deadline: string

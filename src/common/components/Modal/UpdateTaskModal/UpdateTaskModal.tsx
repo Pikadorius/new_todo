@@ -1,53 +1,58 @@
-import React, {createRef, KeyboardEvent, useEffect, useState} from 'react';
+import React from 'react';
 import ModalHeader from 'common/components/Modal/components/ModalHeader/ModalHeader';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
-import common from 'common/components/Modal/CommonModals.module.scss'
 import {setModalType} from 'app/appSlice';
-import s from './UpdateTaskModal.module.scss'
 import {updateTaskTC} from 'features/tasks/tasksSlice';
+import s from '../CreateTodoModal/CreateTodoModal.module.scss'
+import common from 'common/components/Modal/CommonModals.module.scss'
+import {SubmitHandler, useForm} from 'react-hook-form';
+import {UpdateTaskType} from 'features/tasks/tasksTypes';
 
 const UpdateTaskModal = () => {
     const dispatch = useAppDispatch()
     const task = useAppSelector(state => state.app.modalTask)
-    const inputRef = createRef<HTMLInputElement>()
 
-    useEffect(() => {
-        if (inputRef.current) {
-            inputRef.current.value = task.title
+
+    const {register, handleSubmit, formState: {errors}} = useForm<Partial<UpdateTaskType>>({
+        mode: 'onBlur',
+        defaultValues: {
+            title: task.title,
+            description: task.description,
+            status: task.status
         }
-    }, [])
-
-
-    const [error, setError] = useState('')
-    const updateTask = () => {
-        if (inputRef.current && inputRef.current.value !== '') {
-            dispatch(updateTaskTC({todoId: task.todoListId, taskId:task.id, newTask: {title: inputRef.current.value}})).then(() => {
-                dispatch(setModalType('idle'))
-            })
-            inputRef.current.value = ''
-            error && setError("")
-        } else setError('Required field')
-    }
-    const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            updateTask()
-        }
+    },);
+    const onSubmit: SubmitHandler<Partial<UpdateTaskType>> = data => {
+        console.log(data)
+        dispatch(updateTaskTC({todoId: task.todoListId, taskId: task.id, newTask: data})).then(() => {
+            dispatch(setModalType('idle'))
+        })
     }
 
     return (
         <>
-            <ModalHeader title={'Change task'}/>
+            <ModalHeader title={'Create task'}/>
             <div className={common.modalBody}>
-                <div>Write task new title:</div>
-                <div>
-                    <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler}/>
-                    {error && <div className={s.error}>{error}</div>}
-                </div>
+                <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+                    <div className={s.field}>
+                        <span className={s.fieldName}>New title:</span>
+                        <input type={'text'} {...register("title", {required: true})} />
+                        {errors.title && <span className={s.errorField}>This field is required</span>}
+                    </div>
+                    <div className={s.field}>
+                        <span className={s.fieldName}>New description:</span>
+                        <input type={'text'} {...register("description")}/>
+                    </div>
+                    <select {...register("status")} >
+                        <option value={0}>Active</option>
+                        <option value={1}>In progress</option>
+                        <option value={2}>Completed</option>
+                    </select>
+                </form>
             </div>
-            <ModalFooter type={'task'} title={'Save'} callback={updateTask}/>
+            <ModalFooter type={'todo'} title={'Save'} callback={handleSubmit(onSubmit)}/>
         </>
     );
 };
 
-export default UpdateTaskModal
+export default UpdateTaskModal;
