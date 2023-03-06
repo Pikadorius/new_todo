@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TodolistDomainType, TodolistResponseType} from "features/todolists/todolistsTypes";
 import {todolistsAPI} from "features/todolists/todolistsAPI";
 import {setAppError, setAppStatus} from "app/appSlice";
+import {tasksAPI} from 'features/tasks/tasksAPI';
 
 const initialState = [] as TodolistDomainType[]
 
@@ -11,6 +12,13 @@ export const fetchTodosTC = createAsyncThunk('fetchTodolists', async (_, {dispat
     dispatch(setTodolists(res.data))
     dispatch(setAppStatus('success'))
 
+})
+
+export const fetchTodosTasksCountTC = createAsyncThunk('fetchTodolists', async (id: string, {dispatch}) => {
+    dispatch(setAppStatus('loading'))
+    const res = await tasksAPI.fetchTasks(id)
+    dispatch(setTodosTasksCount({id, tasksCount: res.data.totalCount}))
+    dispatch(setAppStatus('success'))
 })
 
 export const createTodoTC = createAsyncThunk('createTodo', async (title: string, {dispatch}) => {
@@ -72,9 +80,12 @@ const todolistsSlice = createSlice({
         updateTodoTitle: (state, action: PayloadAction<{ todoId: string, title: string }>) => {
             return state.map(t => t.id === action.payload.todoId ? {...t, title: action.payload.title} : t)
         },
+        setTodosTasksCount: (state, action: PayloadAction<{ id: string, tasksCount: number }>) => {
+            return state.map(t => t.id === action.payload.id ? {...t, tasksCount: action.payload.tasksCount} : t)
+        }
     }
 })
 
-export const {setTodolists, addTodo, deleteTodo, updateTodoTitle} = todolistsSlice.actions
+export const {setTodolists, addTodo, deleteTodo, updateTodoTitle, setTodosTasksCount} = todolistsSlice.actions
 
 export const todolistsReducer = todolistsSlice.reducer

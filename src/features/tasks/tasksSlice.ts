@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TaskDomainType, TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
+import { TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
 import {setAppError, setAppStatus} from "app/appSlice";
 import {RootState} from 'store/store';
-import {setTodolists} from 'features/todolists/todolistsSlice';
+import {fetchTodosTasksCountTC} from 'features/todolists/todolistsSlice';
 
-const initialState = [] as TaskDomainType[]
+const initialState = [] as TaskType[]
 
 
 export const fetchTasksTC = createAsyncThunk('fetchTasks', async (id: string, {dispatch}) => {
@@ -20,11 +20,11 @@ export const createTaskTC = createAsyncThunk('createTask', async (data: { id: st
         dispatch(setAppStatus('loading'))
         const res = await tasksAPI.createTask(data.id, data.title)
         if (res.data.resultCode === 0) {
-            dispatch(addTask({...res.data.data.item, filter: 'all'}))
+            dispatch(addTask(res.data.data.item))
+            dispatch(fetchTodosTasksCountTC(data.id))
             dispatch(setAppStatus('success'))
             dispatch(setAppError('Task created'))
-        }
-        else {
+        } else {
             dispatch(setAppError(res.data.messages[0]))
             dispatch(setAppStatus('failed'))
         }
@@ -36,6 +36,7 @@ export const deleteTaskTC = createAsyncThunk('deleteTask', async (data: { todoId
         const res = await tasksAPI.deleteTask(data.todoId, data.taskId)
         if (res.data.resultCode === 0) {
             dispatch(deleteTask(data.taskId))
+            dispatch(fetchTodosTasksCountTC(data.todoId))
             dispatch(setAppStatus('success'))
             dispatch(setAppError('Task deleted'))
         } else {
@@ -51,7 +52,7 @@ export const updateTaskTC = createAsyncThunk(
         dispatch(setAppStatus('loading'))
         const state = getState() as RootState
         const task = state.tasks.find(t => t.id === data.taskId) as UpdateTaskType
-        const res = await tasksAPI.updateTask(data.todoId, data.taskId, {...task, ...data.newTask, status:2})
+        const res = await tasksAPI.updateTask(data.todoId, data.taskId, {...task, ...data.newTask, status: 2})
         if (res.data.resultCode === 0) {
             dispatch(updateTask(res.data.data.item))
             dispatch(setAppStatus('success'))
@@ -70,7 +71,7 @@ const tasksSlice = createSlice({
         setTasks: (state, action: PayloadAction<TaskType[]>) => {
             return action.payload.map(t => ({...t, filter: 'all'}))
         },
-        addTask: (state, action: PayloadAction<TaskDomainType>) => {
+        addTask: (state, action: PayloadAction<TaskType>) => {
             state.unshift(action.payload)
         },
         deleteTask: (state, action: PayloadAction<string>) => {
@@ -81,11 +82,6 @@ const tasksSlice = createSlice({
             return state.map(t => t.id === action.payload.id ? {...t, ...action.payload} : t)
         },
     },
-    extraReducers: builder => {
-        builder.addCase(setTodolists,(state,action)=>{
-
-        })
-    }
 })
 
 export const {setTasks, addTask, deleteTask, updateTask} = tasksSlice.actions
