@@ -7,7 +7,7 @@ import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
 import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
 import deleteIcon from 'assets/icons/delete.svg'
-import {fetchTodosTasksCountTC, fetchTodosTC} from 'features/todolists/todolistsSlice';
+import {fetchTodosTasksCountTC} from 'features/todolists/todolistsSlice';
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
