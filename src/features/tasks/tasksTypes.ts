@@ -25,7 +25,3 @@ export type UpdateTaskType = {
     startDate: string,
     deadline: string
 }
-
-export type FilterType = 'all' | 'active' | 'completed'
-
-export type  TaskDomainType = TaskType & { filter: FilterType }

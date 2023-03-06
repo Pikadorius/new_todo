@@ -1,5 +1,3 @@
-import {StatusType} from "app/appSlice";
-
 export type TodolistResponseType = {
     id: string,
     title: string,

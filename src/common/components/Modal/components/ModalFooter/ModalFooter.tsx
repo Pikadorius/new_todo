@@ -3,17 +3,17 @@ import {useAppDispatch} from 'common/hooks/hooks';
 import { setModalType} from 'app/appSlice';
 import {deleteTodoTC} from 'features/todolists/todolistsSlice';
 import {deleteTaskTC} from 'features/tasks/tasksSlice';
-import {TaskDomainType} from 'features/tasks/tasksTypes';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 import common from 'common/components/Modal/CommonModals.module.scss'
 import {useNavigate} from 'react-router-dom';
 import {PATH} from 'common/constants/PATH';
+import {TaskType} from 'features/tasks/tasksTypes';
 
 type ModalType = {
     type: 'todo' | 'task'
     title: string
     callback?: ()=>void
-    task?: TaskDomainType
+    task?: TaskType
     todo?: TodolistDomainType
 }
 const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {

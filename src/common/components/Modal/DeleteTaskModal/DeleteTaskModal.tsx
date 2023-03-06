@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import ModalHeader from 'common/components/Modal/components/ModalHeader/ModalHeader';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
-import {TaskDomainType} from 'features/tasks/tasksTypes';
 import common from 'common/components/Modal/CommonModals.module.scss'
+import {TaskType} from 'features/tasks/tasksTypes';
 
 
 type Props = {
-    item: TaskDomainType
+    item: TaskType
 }
 const DeleteTodoModal: FC<Props> = ({item}) => {
     return (

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
-import {TaskDomainType} from 'features/tasks/tasksTypes';
+import {TaskType} from 'features/tasks/tasksTypes';
 
 export type StatusType = 'idle' | 'loading' | 'success' | 'failed'
 export type ModalType = 'createTodo' | 'deleteTodo' | 'createTask' | 'deleteTask' | 'idle' | 'updateTodo' | 'updateTask'
@@ -11,7 +11,7 @@ const initialState = {
     isInitialized: false,
     modal: 'idle' as ModalType,
     modalTodo: {} as TodolistDomainType,
-    modalTask: {} as TaskDomainType
+    modalTask: {} as TaskType
 }
 
 const appSlice = createSlice({
@@ -33,7 +33,7 @@ const appSlice = createSlice({
         setModalTodo: (state, action: PayloadAction<TodolistDomainType>) => {
             state.modalTodo = action.payload
         },
-        setModalTask: (state, action: PayloadAction<TaskDomainType>) => {
+        setModalTask: (state, action: PayloadAction<TaskType>) => {
             state.modalTask = action.payload
         }
     }

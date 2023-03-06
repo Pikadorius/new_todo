@@ -1,17 +1,15 @@
 import React, {FC} from 'react';
-import {TaskDomainType} from "features/tasks/tasksTypes";
 import {useAppDispatch} from "common/hooks/hooks";
 import { setModalTask, setModalType} from 'app/appSlice';
 import s from './Task.module.scss'
 import changeIcon from 'assets/icons/change.svg';
-import {NavLink} from 'react-router-dom';
-import {PATH} from 'common/constants/PATH';
 import deleteIcon from 'assets/icons/delete.svg';
+import {TaskType} from 'features/tasks/tasksTypes';
 
 type Props = {
     taskStatus: 'active' | 'inProgress' | 'completed'
 }
-const Task:FC<TaskDomainType & Props> = (props) => {
+const Task:FC<TaskType & Props> = (props) => {
     const dispatch = useAppDispatch()
 
     const taskClass =
