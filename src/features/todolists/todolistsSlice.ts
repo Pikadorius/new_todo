@@ -25,7 +25,7 @@ export const createTodoTC = createAsyncThunk('createTodo', async (title: string,
         dispatch(setAppStatus('loading'))
         const res = await todolistsAPI.createTodo(title)
         if (res.data.resultCode === 0) {
-            dispatch(addTodo({...res.data.data.item, tasksCount: 0}))
+            dispatch(addTodo({...res.data.data.item, tasksCount: 0, tasks:[]}))
             dispatch(setAppStatus('success'))
             dispatch(setAppError('Todolist created'))
         } else {
@@ -68,7 +68,7 @@ const todolistsSlice = createSlice({
     initialState,
     reducers: {
         setTodolists: (state, action: PayloadAction<TodolistResponseType[]>) => {
-            return action.payload.map(t => ({...t, tasksCount: 0}))
+            return action.payload.map(t => ({...t, tasksCount: 0, tasks: [] }))
         },
         addTodo: (state, action: PayloadAction<TodolistDomainType>) => {
             state.unshift(action.payload)

@@ -1,3 +1,5 @@
+import {TaskType} from 'features/tasks/tasksTypes';
+
 export type TodolistResponseType = {
     id: string,
     title: string,
@@ -5,4 +7,4 @@ export type TodolistResponseType = {
     order: number
 }
 
-export type TodolistDomainType = TodolistResponseType & { tasksCount: number}
+export type TodolistDomainType = TodolistResponseType & {tasksCount: number, tasks: TaskType[]}
