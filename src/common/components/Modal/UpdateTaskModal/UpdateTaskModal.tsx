@@ -31,7 +31,7 @@ const UpdateTaskModal = () => {
 
     return (
         <>
-            <ModalHeader title={'Create task'}/>
+            <ModalHeader title={'Update task'}/>
             <div className={common.modalBody}>
                 <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                     <div className={s.field}>
