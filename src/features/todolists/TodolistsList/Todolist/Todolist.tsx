@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {TodolistDomainType} from "features/todolists/todolistsTypes";
 import {NavLink} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -7,11 +7,16 @@ import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
 import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
 import deleteIcon from 'assets/icons/delete.svg'
+import {fetchTasksTC} from 'features/tasks/tasksSlice';
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
     const {id, title, tasksCount, order, addedDate} = props
     const dispatch = useAppDispatch()
+
+    // useEffect(()=>{
+    //     dispatch(fetchTasksTC(id))
+    // }, [])
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTodo'))
@@ -35,8 +40,6 @@ const Todolist: FC<TodolistDomainType> = (props) => {
                          className={({isActive}) => isActive ? `${s.navlink} ${s.active}` : s.navlink}>{title}</NavLink>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
-
-
             <div className={s.info}>Click on title to see tasks</div>
         </div>
     );

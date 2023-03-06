@@ -12,7 +12,6 @@ const TasksList = () => {
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)
     const navigate = useNavigate()
-    const tasksCount = useAppSelector(state => state.app.totalTasks)
 
     const active = useMemo(() => tasks.filter(t => t.status === 0), [tasks])
     const inProgress = useMemo(() => tasks.filter(t => t.status === 1), [tasks])
@@ -33,7 +32,6 @@ const TasksList = () => {
             <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>To main
             </button>
             {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
-                <div>Total tasks count: {tasksCount}</div>
                 <div className={s.activeTasks}>
                     <h3>Active</h3>
                     {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}

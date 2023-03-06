@@ -1,8 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TaskDomainType, TaskType, UpdateTaskType} from "features/tasks/tasksTypes";
 import {tasksAPI} from "features/tasks/tasksAPI";
-import {setAppError, setAppStatus, setTotalTasks} from "app/appSlice";
+import {setAppError, setAppStatus} from "app/appSlice";
 import {RootState} from 'store/store';
+import {setTodolists} from 'features/todolists/todolistsSlice';
 
 const initialState = [] as TaskDomainType[]
 
@@ -12,7 +13,6 @@ export const fetchTasksTC = createAsyncThunk('fetchTasks', async (id: string, {d
     const res = await tasksAPI.fetchTasks(id)
 
     dispatch(setTasks(res.data.items))
-    dispatch(setTotalTasks(res.data.totalCount))
     dispatch(setAppStatus('success'))
 })
 
@@ -80,6 +80,11 @@ const tasksSlice = createSlice({
         updateTask: (state, action: PayloadAction<TaskType>) => {
             return state.map(t => t.id === action.payload.id ? {...t, ...action.payload} : t)
         },
+    },
+    extraReducers: builder => {
+        builder.addCase(setTodolists,(state,action)=>{
+
+        })
     }
 })
 
