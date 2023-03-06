@@ -3,7 +3,7 @@ import {TodolistDomainType} from "features/todolists/todolistsTypes";
 import {NavLink} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import {useAppDispatch} from "common/hooks/hooks";
-import s from 'features/todolists/TodolistsList/Todolist/Todolist.module.scss'
+import s from 'features/todolists/Todolist/Todolist.module.scss'
 import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
 import deleteIcon from 'assets/icons/delete.svg'

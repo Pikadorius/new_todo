@@ -1,8 +1,0 @@
-.todosSkeleton {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width:80%;
-    flex-wrap: wrap;
-}

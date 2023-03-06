@@ -25,8 +25,8 @@ const InfoPopUp = () => {
             <div className={s.container}>
                 <div className={s.infoField}>{appInfo}</div>
                 <div className={s.bntField}>
-                <button onClick={closeHandler} className={s.noBtn}><img src={closeIcon} alt={'Close'}/></button>
-            </div>
+                    <button onClick={closeHandler} className={s.noBtn}><img src={closeIcon} alt={'Close'}/></button>
+                </div>
             </div>
         </Portal>
     );
