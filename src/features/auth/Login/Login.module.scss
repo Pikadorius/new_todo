@@ -23,6 +23,18 @@
 
 .field {
     padding: 10px;
+    position: relative;
+    i {
+        position: absolute;
+        top: 20%;
+        right: -10%;
+
+        &:hover {
+            opacity: 0.5;
+            cursor: pointer;
+        }
+    }
+
 }
 
 .fieldName {

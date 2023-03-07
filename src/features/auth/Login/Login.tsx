@@ -1,4 +1,4 @@
-import React, {useEffect, useState,MouseEvent} from 'react';
+import React, {useState} from 'react';
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -6,11 +6,17 @@ import {LoginRequestType} from 'features/auth/authAPI';
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {loginTC} from 'features/auth/authSlice';
 import s from 'features/auth/Login/Login.module.scss'
+import {isLoggedSelector} from 'features/auth/authSelectors';
+import eye from '../../../assets/icons/eye.svg'
+import eyeOff from '../../../assets/icons/eyeOff.svg'
 
 const Login = () => {
-    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
     const [showPass, setShowPass] = useState(false)
+    const passwordVisibility = () => {
+        setShowPass(!showPass)
+    }
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm<LoginRequestType>({
         mode: 'onBlur',
@@ -24,13 +30,10 @@ const Login = () => {
 
     const onReset = () => {
         reset(formValues => ({
-            email:'',
+            email: '',
             password: ''
         }))
     }
-
-    useEffect(() => {
-    }, [])
 
     if (isLoggedIn) {
         return <Navigate to={PATH.MAIN}/>
@@ -39,8 +42,10 @@ const Login = () => {
     return (
         <div className={s.wrapper}>
             <label>
-                <p>To log in get registered <a className={s.link} href={'https://social-network.samuraijs.com/'}
-                       target={'_blank'}>here.</a>
+                <p>To log in get registered <a className={s.link}
+                                               href={'https://social-network.samuraijs.com/'}
+                                               target={'_blank'}
+                                               rel={'noreferrer'}>here.</a>
                 </p>
                 <p>or use common test account credentials:</p>
                 <p>Email: free@samuraijs.com</p>
@@ -54,7 +59,9 @@ const Login = () => {
                 </div>
                 <div className={s.field}>
                     <span className={s.fieldName}>Password</span>
-                    < input type={showPass ?'text' : 'password'} {...register("password", {required: true})} />
+                    <input type={showPass ? 'text' : 'password'} {...register("password", {required: true})} />
+
+                    <i onClick={passwordVisibility}><img src={showPass ? eyeOff : eye} alt={'show/hide'}/></i>
                     {errors.password && <span className={s.errorField}>This field is required</span>}
                 </div>
                 <div className={s.field}>
