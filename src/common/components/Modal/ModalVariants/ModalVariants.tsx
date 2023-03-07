@@ -6,11 +6,12 @@ import CreateTodoModal from 'common/components/Modal/CreateTodoModal/CreateTodoM
 import CreateTaskModal from 'common/components/Modal/CreateTaskModal/CreateTaskModal';
 import UpdateTodoModal from 'common/components/Modal/UpdateTodoModal/UpdateTodoModal';
 import UpdateTaskModal from 'common/components/Modal/UpdateTaskModal/UpdateTaskModal';
+import {modalTaskSelector, modalTodoSelector, modalTypeSelector} from 'app/appSelectors';
 
 const ModalVariants = () => {
-    const modalType = useAppSelector(state => state.app.modal)
-    const modalTodo = useAppSelector(state => state.app.modalTodo)
-    const modalTask = useAppSelector(state => state.app.modalTask)
+    const modalType = useAppSelector(modalTypeSelector)
+    const modalTodo = useAppSelector(modalTodoSelector)
+    const modalTask = useAppSelector(modalTaskSelector)
 
     switch (modalType) {
         case 'deleteTodo': {

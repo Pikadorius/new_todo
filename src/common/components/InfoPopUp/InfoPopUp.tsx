@@ -4,9 +4,10 @@ import s from './InfoPopUp.module.scss'
 import Portal from 'common/components/Portal/Portal';
 import {setAppError} from 'app/appSlice';
 import closeIcon from 'assets/icons/close.svg';
+import {appErrorSelector} from 'app/appSelectors';
 
 const InfoPopUp = () => {
-    const appInfo = useAppSelector(state => state.app.error)
+    const appInfo = useAppSelector(appErrorSelector)
     const dispatch = useAppDispatch()
 
     const closeHandler = () => {

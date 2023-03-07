@@ -7,13 +7,14 @@ import {authMeTC} from "features/auth/authSlice";
 import Header from "common/components/Header/Header";
 import ModalWrapper from 'common/components/Modal/ModalWrapper';
 import InfoPopUp from 'common/components/InfoPopUp/InfoPopUp';
+import {appErrorSelector, appStatusSelector, isInitializedSelector, modalTypeSelector} from 'app/appSelectors';
 
 function App() {
 
-    const isInitialized = useAppSelector(state => state.app.isInitialized)
-    const isAppLoading = useAppSelector(state => state.app.status) === 'loading'
-    const isModalOpen = useAppSelector(state => state.app.modal) !== 'idle'
-    const isInfoPopUpOpen = useAppSelector(state => state.app.error) !== ''
+    const isInitialized = useAppSelector(isInitializedSelector)
+    const isAppLoading = useAppSelector(appStatusSelector) === 'loading'
+    const isModalOpen = useAppSelector(modalTypeSelector) !== 'idle'
+    const isInfoPopUpOpen = useAppSelector(appErrorSelector) !== ''
     const dispatch = useAppDispatch()
 
     useEffect(() => {

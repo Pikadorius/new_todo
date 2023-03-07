@@ -1,16 +1,17 @@
 import React from 'react';
 import s from './Greetings.module.scss'
 import {useAppSelector} from 'common/hooks/hooks';
+import {loggedUserSelector} from 'features/auth/authSelectors';
 
 const Greetings = () => {
-    const userName = useAppSelector(state => state.auth.user.login)
+    const userName = useAppSelector(loggedUserSelector).login
 
     return (
         <div className={s.container}>
             <div className={s.wrapper}>
                 <div className={s.title}>
                     <h2>Hello, {userName}!</h2>
-                    <h3>Welcome to my <a target={'_blank'} className={s.link} href={'https://github.com/Pikadorius/new_todo'} title={'Here you can see code'}>Todolist App</a></h3>
+                    <h3>Welcome to my <a  rel={'noreferrer'} target={'_blank'} className={s.link} href={'https://github.com/Pikadorius/new_todo'} title={'Here you can see code'}>Todolist App</a></h3>
                 </div>
                 <div className={s.technologies}>
                     <h4>Used technologies and features:</h4>

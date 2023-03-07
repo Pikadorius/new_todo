@@ -20,7 +20,6 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const id = document.location.hash.slice(7)
-    console.log(id)
     const submit = () => {
         type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => {
             if (id===todo.id) {
