@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,MouseEvent} from 'react';
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -12,10 +12,22 @@ const Login = () => {
     const dispatch = useAppDispatch()
     const [showPass, setShowPass] = useState(false)
 
-    const {register, handleSubmit, formState: {errors}} = useForm<LoginRequestType>({
-        mode: 'onBlur'
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<LoginRequestType>({
+        mode: 'onBlur',
+        defaultValues: {
+            email: 'free@samuraijs.com',
+            password: 'free',
+            rememberMe: true
+        }
     });
     const onSubmit: SubmitHandler<LoginRequestType> = data => dispatch(loginTC(data));
+
+    const onReset = () => {
+        reset(formValues => ({
+            email:'',
+            password: ''
+        }))
+    }
 
     useEffect(() => {
     }, [])
@@ -47,6 +59,9 @@ const Login = () => {
                 </div>
                 <div className={s.field}>
                     <input type={'checkbox'} {...register("rememberMe")}/> Remember me
+                </div>
+                <div className={s.field}>
+                    <button onClick={onReset}>Reset fields</button>
                 </div>
                 <button type="submit" className={s.btn}>
                     Send
