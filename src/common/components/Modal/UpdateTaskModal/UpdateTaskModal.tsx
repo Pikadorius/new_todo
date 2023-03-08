@@ -41,7 +41,7 @@ const UpdateTaskModal = () => {
                     </div>
                     <div className={s.field}>
                         <span className={s.fieldName}>New description:</span>
-                        <input type={'text'} {...register("description")}/>
+                        <textarea rows={3} {...register("description")}/>
                     </div>
                     <select {...register("status")} >
                         <option value={0}>Active</option>
