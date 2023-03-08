@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {TodolistDomainType} from "features/todolists/todolistsTypes";
 import {NavLink} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -12,6 +12,7 @@ import deleteIcon from 'assets/icons/delete.svg'
 const Todolist: FC<TodolistDomainType> = (props) => {
     const {id, title, tasksCount, tasks} = props
     const dispatch = useAppDispatch()
+    const [todoClass, setTodoClass]=useState(s.container)
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTodo'))
@@ -27,12 +28,21 @@ const Todolist: FC<TodolistDomainType> = (props) => {
         dispatch(setModalTodo(props))
     }
 
+    const activeHandler = (props: {isActive: boolean}) => {
+        if (props.isActive) {
+            setTodoClass( `${s.activeContainer} ${s.container}`)
+        }
+        else setTodoClass(s.container)
+
+        return props.isActive ? `${s.navlink} ${s.active}` : s.navlink
+    }
+
     return (
-        <div className={s.container}>
+        <div className={todoClass}>
             <div className={s.todoHeader}>
                 <button onClick={updateHandler} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
-                <NavLink to={`${PATH.MAIN}/${id}`} onClick={chooseTodo}
-                         className={({isActive}) => isActive ? `${s.navlink} ${s.active}` : s.navlink}>{title}</NavLink>
+                    <NavLink to={`${PATH.MAIN}/${id}`} onClick={chooseTodo}
+                         className={activeHandler}>{title}</NavLink>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
             <div className={s.tasksCountInfo}>Tasks count: {tasksCount}</div>
