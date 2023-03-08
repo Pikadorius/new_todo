@@ -13,17 +13,18 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     const {id, title, tasksCount, tasks} = props
 
     const dispatch = useAppDispatch()
-    const todo = useAppSelector(state => state.app.modalTodo)
 
     const [todoClass, setTodoClass]=useState(s.container)
-    let  isActive = useLocation().pathname ===`${PATH.MAIN}/${id}`;
+
+    const currentPath = useLocation().pathname
+    let  isActive = currentPath ===`${PATH.MAIN}/${id}`;
 
     useEffect(()=>{
         if (isActive) {
             setTodoClass( `${s.activeContainer} ${s.container}`)
         }
         else setTodoClass(s.container)
-    }, [todo])
+    }, [currentPath])
 
 
 
