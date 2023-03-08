@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
 import {TodolistDomainType} from "features/todolists/todolistsTypes";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
-import {useAppDispatch} from "common/hooks/hooks";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import s from 'features/todolists/Todolist/Todolist.module.scss'
 import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
@@ -11,8 +11,21 @@ import deleteIcon from 'assets/icons/delete.svg'
 
 const Todolist: FC<TodolistDomainType> = (props) => {
     const {id, title, tasksCount, tasks} = props
+
     const dispatch = useAppDispatch()
+    const todo = useAppSelector(state => state.app.modalTodo)
+
     const [todoClass, setTodoClass]=useState(s.container)
+    let  isActive = useLocation().pathname ===`${PATH.MAIN}/${id}`;
+
+    useEffect(()=>{
+        if (isActive) {
+            setTodoClass( `${s.activeContainer} ${s.container}`)
+        }
+        else setTodoClass(s.container)
+    }, [todo])
+
+
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTodo'))
@@ -29,11 +42,6 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     }
 
     const activeHandler = (props: {isActive: boolean}) => {
-        if (props.isActive) {
-            setTodoClass( `${s.activeContainer} ${s.container}`)
-        }
-        else setTodoClass(s.container)
-
         return props.isActive ? `${s.navlink} ${s.active}` : s.navlink
     }
 
