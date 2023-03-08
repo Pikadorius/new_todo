@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
 import {setModalType} from 'app/appSlice';
 import {updateTaskTC} from 'features/tasks/tasksSlice';
-import s from '../CreateTodoModal/CreateTodoModal.module.scss'
+import s from './UpdateTaskModal.module.scss'
 import common from 'common/components/Modal/CommonModals.module.scss'
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {UpdateTaskType} from 'features/tasks/tasksTypes';
