@@ -37,15 +37,15 @@ const TasksList = () => {
             </button>
             {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
                 <div className={s.activeTasks}>
-                    <h3>Active</h3>
+                    <h3 style={{color: '#61dafb'}}>Active</h3>
                     {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
                 </div>
                 <div className={s.inProgressTasks}>
-                    <h3>In progress</h3>
+                    <h3 style={{color: '#fb9f33'}}>In progress</h3>
                     {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
                 </div>
                 <div className={s.completedTasks}>
-                    <h3>Completed</h3>
+                    <h3 style={{color: '#3b8d09'}}>Completed</h3>
                     {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
                 </div>
             </div>}

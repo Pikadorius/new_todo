@@ -27,7 +27,6 @@ const Todolist: FC<TodolistDomainType> = (props) => {
     }, [currentPath])
 
 
-
     const deleteHandler = () => {
         dispatch(setModalType('deleteTodo'))
         dispatch(setModalTodo(props))
