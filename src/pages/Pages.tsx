@@ -8,8 +8,7 @@ import Greetings from 'common/components/Greetings/Greetings';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import {fetchTodosTC} from 'features/todolists/todolistsSlice';
 import s from './Pages.module.scss'
-import eye from '../assets/icons/eye.svg'
-import eyeOff from '../assets/icons/eyeOff.svg'
+import burger from '../assets/icons/burger.svg'
 import SideBar from 'common/components/SideBar/SideBar';
 
 const Pages = () => {
@@ -28,9 +27,9 @@ const Pages = () => {
     return (
         <div className={s.container}>
             {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed}/>
-                <button className={s.noBtn} style={{position: 'absolute', top: '80px', left: '20px', zIndex: '200'}}
+                <button className={s.noBtn} style={{position: 'absolute', top: '18px', left: '20px', zIndex: '200'}}
                         onClick={() => setIsShowed(!isShowed)}>
-                    <img src={isShowed ? eyeOff : eye} alt={'show/hide'}/>
+                    <img src={burger} alt={'show/hide'}/>
                 </button>
             </>}
             <div className={s.main}>
