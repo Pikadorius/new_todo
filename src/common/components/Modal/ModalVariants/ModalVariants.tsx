@@ -15,9 +15,7 @@ const ModalVariants = () => {
 
     switch (modalType) {
         case 'deleteTodo': {
-            return (
-                <DeleteTodoModal item={modalTodo}/>
-            )
+            return <DeleteTodoModal item={modalTodo}/>
         }
         case 'deleteTask': {
             return <DeleteTaskModal item={modalTask}/>

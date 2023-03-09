@@ -15,7 +15,7 @@ const UpdateTaskModal = () => {
 
 
     const {register, handleSubmit, formState: {errors}} = useForm<Partial<UpdateTaskType>>({
-        mode: 'onBlur',
+        mode: 'onTouched',
         defaultValues: {
             title: task.title,
             description: task.description,
@@ -23,7 +23,6 @@ const UpdateTaskModal = () => {
         }
     },);
     const onSubmit: SubmitHandler<Partial<UpdateTaskType>> = data => {
-        console.log(data)
         dispatch(updateTaskTC({todoId: task.todoListId, taskId: task.id, newTask: data})).then(() => {
             dispatch(setModalType('idle'))
         })

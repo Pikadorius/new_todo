@@ -9,7 +9,6 @@ import back from 'assets/icons/goBack.svg'
 
 
 const TasksList = () => {
-    console.log('tasks render')
     const {id} = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)

@@ -16,7 +16,7 @@ const CreateTodoModal = () => {
     const todolist = useAppSelector(state => state.todolists.find(t => t.id === id))
 
     const {register, handleSubmit, formState: {errors}} = useForm<Partial<UpdateTaskType>>({
-        mode: 'onBlur'
+        mode: 'onTouched'
     });
     const onSubmit: SubmitHandler<Partial<UpdateTaskType>> = data => {
         if (todolist && data.title)

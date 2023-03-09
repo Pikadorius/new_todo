@@ -27,7 +27,6 @@ const Task: FC<TaskType & Props> = (props) => {
     }
 
     const dragStartHandler = (e: DragEvent<HTMLDivElement>) => {
-        console.log(props)
     }
     const dragLeaveHandler = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault()
@@ -42,7 +41,7 @@ const Task: FC<TaskType & Props> = (props) => {
     }
 
     const dropHandler = (e: DragEvent<HTMLDivElement>) => {
-        console.log(props)
+
     }
 
     return (
