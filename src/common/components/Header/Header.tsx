@@ -10,21 +10,19 @@ import {useTranslation} from 'react-i18next';
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
-    let page=''
-    const todo = useAppSelector(state => state.todolists.find(t=>t.id===id))
+    let page = ''
+    const todo = useAppSelector(state => state.todolists.find(t => t.id === id))
 
-    const { t, i18n } = useTranslation();
-    console.log(t)
+    const {t, i18n} = useTranslation('translation');
 
-    const changeLanguage = (language:string) => {
+    const changeLanguage = (language: string) => {
         i18n.changeLanguage(language);
     };
 
     if (id && todo) {
-        page=todo.title
-    }
-    else {
-        page='Todolist App'
+        page = todo.title
+    } else {
+        page = 'Todolist App'
     }
 
     const isLoggedIn = useAppSelector(isLoggedSelector)
@@ -36,21 +34,23 @@ const Header = () => {
     }
 
     const addTask = () => {
-            dispatch(setModalType('createTask' ))
+        dispatch(setModalType('createTask'))
     }
-
 
     return (
         <div className={s.container}>
             <h1 className={s.title}>
                 <div>{page}</div>
-                <button onClick={() => changeLanguage("en")}>EN</button>
-                <button onClick={() => changeLanguage("ru")}>RU</button>
-                {page!=='Todolist App' && isLoggedIn && <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon} alt={'add'}/></button> }
+                <button onClick={() => changeLanguage("en")}>en</button>
+                <button onClick={() => changeLanguage("ru")}>ru</button>
+                {(page !== 'Todolist App' && page !== 'Следи за делами') && isLoggedIn &&
+                    <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
+                                                                                              alt={'add'}/></button>}
             </h1>
             <span className={s.logoutField}>{userName}
-                {isLoggedIn && <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t("logout")}</button>}
-                    </span>
+                {isLoggedIn &&
+                    <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`logout`)}</button>}
+            </span>
         </div>
 
     );

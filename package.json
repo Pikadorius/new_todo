@@ -2,7 +2,7 @@
   "name": "new_todo",
   "homepage": "https://pikadorius.github.io/new_todo",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.14.1",

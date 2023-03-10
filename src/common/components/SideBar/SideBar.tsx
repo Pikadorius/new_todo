@@ -5,9 +5,12 @@ import Todolist from 'features/todolists/Todolist/Todolist';
 import {setModalType} from 'app/appSlice';
 import addIcon from 'assets/icons/add.svg';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
+import {useTranslation} from 'react-i18next';
 
 const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean }) => {
     const dispatch = useAppDispatch()
+
+    const {t} = useTranslation('translation');
     const addTodolist = () => {
         dispatch(setModalType('createTodo'))
     }
@@ -15,7 +18,7 @@ const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean }) 
     return (
         <div className={props.isShowed ? s.sidebar : `${s.sidebar} ${s.closed}`}>
             <h2 className={s.sidebarTitle}>
-                Todolists
+                {t('todolists')}
                 <button className={s.noBtn} onClick={addTodolist}><img src={addIcon} alt={'add'}/></button>
             </h2>
             {props.todolists.map(t => {

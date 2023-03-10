@@ -1,27 +1,42 @@
-import i18n from 'i18next'
-import Backend from 'i18next-http-backend'
-import LanguageDetector from 'i18next-browser-languagedetector'
-import { initReactI18next } from 'react-i18next'
+import i18n from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import XHR from 'i18next-http-backend';
+import { initReactI18next } from 'react-i18next';
 
 i18n
-    // Подключение бэкенда i18next
-    .use(Backend)
-    // Автоматическое определение языка
-    .use(LanguageDetector)
-    // модуль инициализации
-    .use (initReactI18next)
+//     .use(XHR)
+//     .use(LanguageDetector)
+    .use(initReactI18next)
     .init({
-        // Стандартный язык
-        fallbackLng: 'en',
-        debug: true,
-        // Распознавание и кэширование языковых кук
-        detection: {
-            order: ['queryString', 'cookie'],
-            cache: ['cookie']
-        },
-        interpolation: {
-            escapeValue: false
+        // fallbackLng: 'en',
+        // debug: true,
+        // interpolation: {
+        //     escapeValue: false,
+        // },
+        // load: 'languageOnly',
+        // backend: {
+        //     loadPath: '/public/locales/{{lng}}/{{ns}}.json'
+        // }
+        /*interpolation: {
+            escapeValue: false,
+        },*/
+        lng: 'en',
+        resources: {
+            en: {
+                translation: {
+                    "logout":"Logout",
+                    "todolist_app": "Todolist app",
+                    "todolists": "Todolists"
+                }
+            },
+            ru: {
+                translation: {
+                    "logout":"Выйти",
+                    "todolist_app": "Следи за делами",
+                    "todolists": "Список дел"
+                }
+            }
         }
-    })
+    });
 
 export default i18n;

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Suspense, useEffect, useLayoutEffect} from 'react';
 import 'app/App.scss';
 import Pages from "pages/Pages";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
@@ -17,7 +17,8 @@ function App() {
     const isInfoPopUpOpen = useAppSelector(appErrorSelector) !== ''
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
+
+    useLayoutEffect(() => {
         dispatch(authMeTC())
     }, [])
 
@@ -26,13 +27,13 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <Header/>
-            <Pages/>
-            {isAppLoading && <Loader/>}
-            {isModalOpen && <ModalWrapper/>}
-            {isInfoPopUpOpen && <InfoPopUp/>}
-        </div>
+            <div className="App">
+                <Header/>
+                <Pages/>
+                {isAppLoading && <Loader/>}
+                {isModalOpen && <ModalWrapper/>}
+                {isInfoPopUpOpen && <InfoPopUp/>}
+            </div>
     );
 }
 
