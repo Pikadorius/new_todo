@@ -9,7 +9,6 @@ const initialState = {
     user: {} as UserRequestType
 }
 
-
 export const authMeTC = createAsyncThunk('authMe', async (_, {dispatch}) => {
     try {
         const res = await authAPI.me()
