@@ -53,8 +53,8 @@ const Login = () => {
                     </a>
                 </p>
                 <p>{t("login.info")}</p>
-                <p>{t("login.default_email")}</p>
-                <p style={{marginBottom: '10px'}}>{t("login.default_pass")}</p>
+                <p><b>{t("login.default_email")}:</b> <span className={s.default}>free@samuraijs.com</span></p>
+                <p style={{marginBottom: '10px'}}><b>{t("login.default_pass")}:</b> <span className={s.default}>free</span></p>
             </label>
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.field}>
