@@ -13,7 +13,7 @@ const Header = () => {
     let page = ''
     const todo = useAppSelector(state => state.todolists.find(t => t.id === id))
 
-    const {t, i18n} = useTranslation('translation');
+    const {t, i18n} = useTranslation();
 
     const changeLanguage = (language: string) => {
         i18n.changeLanguage(language);
@@ -49,7 +49,7 @@ const Header = () => {
             </h1>
             <span className={s.logoutField}>{userName}
                 {isLoggedIn &&
-                    <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`logout`)}</button>}
+                    <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
             </span>
         </div>
 

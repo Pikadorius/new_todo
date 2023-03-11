@@ -7,10 +7,13 @@ import s from 'features/todolists/Todolist/Todolist.module.scss'
 import {setModalTodo, setModalType} from "app/appSlice";
 import changeIcon from 'assets/icons/change.svg'
 import deleteIcon from 'assets/icons/delete.svg'
+import {useTranslation} from 'react-i18next';
 
 
 const Todolist: FC<TodolistDomainType> = (props) => {
     const {id, title, tasksCount, tasks} = props
+
+    const {t} = useTranslation()
 
     const dispatch = useAppDispatch()
 
@@ -53,8 +56,8 @@ const Todolist: FC<TodolistDomainType> = (props) => {
                          className={activeHandler}>{title}</NavLink>
                 <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
             </div>
-            <div className={s.tasksCountInfo}>Tasks count: {tasksCount}</div>
-            <div className={s.info}>Click on title to see tasks</div>
+            <div className={s.tasksCountInfo}>{t('todolists.tasks_count')}: {tasksCount}</div>
+            <div className={s.info}>{t('todolists.todo_info')}</div>
         </div>
     );
 };

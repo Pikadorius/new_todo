@@ -6,6 +6,7 @@ import Task from "features/tasks/TasksList/Task/Task";
 import {PATH} from 'common/constants/PATH';
 import s from 'features/tasks/TasksList/TasksList.module.scss'
 import back from 'assets/icons/goBack.svg'
+import {useTranslation} from 'react-i18next';
 
 
 const TasksList = () => {
@@ -13,6 +14,7 @@ const TasksList = () => {
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)
     const navigate = useNavigate()
+    const {t} = useTranslation()
 
     const active = useMemo(() => tasks.filter(t => t.status === 0), [tasks])
     const inProgress = useMemo(() => tasks.filter(t => t.status === 1), [tasks])
@@ -32,19 +34,19 @@ const TasksList = () => {
 
     return (
         <div className={s.container}>
-            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>To main
+            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>{t("tasks.main")}
             </button>
             {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
                 <div className={s.activeTasks}>
-                    <h3 style={{color: '#61dafb'}}>Active</h3>
+                    <h3 style={{color: '#61dafb'}}>{t("tasks.active")}</h3>
                     {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
                 </div>
                 <div className={s.inProgressTasks}>
-                    <h3 style={{color: '#fb9f33'}}>In progress</h3>
+                    <h3 style={{color: '#fb9f33'}}>{t("tasks.in_progress")}</h3>
                     {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
                 </div>
                 <div className={s.completedTasks}>
-                    <h3 style={{color: '#3b8d09'}}>Completed</h3>
+                    <h3 style={{color: '#3b8d09'}}>{t("tasks.completed")}</h3>
                     {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
                 </div>
             </div>}

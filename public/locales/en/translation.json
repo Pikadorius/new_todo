@@ -1,5 +1,27 @@
 {
-  "translation" : {
+  "header": {
     "logout": "Logout"
+  },
+  "todolists": {
+    "title": "Todolists",
+    "tasks_count": "Tasks count",
+    "todo_info": "Click on title to see tasks"
+  },
+  "greetings" : {
+    "hello" : "Hello",
+    "welcome": "Welcome to my ",
+    "technologies": "Used technologies and features:",
+    "localization" : "Localization (i18next)",
+    "routes" : "Protected routes",
+    "hooks": "Hooks",
+    "reusable" : "Reusable components",
+    "lc" : "Local storeage",
+    "custom": "No libraries of React UI components \n (only custom components)"
+  },
+  "tasks" : {
+    "main": "To main",
+    "active": "Active",
+    "in_progress": "In progress",
+    "completed": "Completed"
   }
 }
