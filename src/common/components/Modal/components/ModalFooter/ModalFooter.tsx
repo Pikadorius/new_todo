@@ -8,6 +8,7 @@ import common from 'common/components/Modal/CommonModals.module.scss'
 import {useNavigate} from 'react-router-dom';
 import {PATH} from 'common/constants/PATH';
 import {TaskType} from 'features/tasks/tasksTypes';
+import {useTranslation} from 'react-i18next';
 
 type ModalType = {
     type: 'todo' | 'task'
@@ -19,6 +20,7 @@ type ModalType = {
 const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const {t} = useTranslation()
     const id = document.location.hash.slice(7)
     const submit = () => {
         type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => {
@@ -38,7 +40,7 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     }
     return (
         <div className={common.modalFooter}>
-            <button className={common.btn} onClick={closeHandler}>Cancel</button>
+            <button className={common.btn} onClick={closeHandler}>{t("modal.cancel")}</button>
             <button className={common.btn} onClick={callback? callback : submit}>{title}</button>
         </div>
     );

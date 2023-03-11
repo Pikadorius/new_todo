@@ -9,10 +9,12 @@ import s from 'features/auth/Login/Login.module.scss'
 import {isLoggedSelector} from 'features/auth/authSelectors';
 import eye from '../../../assets/icons/eye.svg'
 import eyeOff from '../../../assets/icons/eyeOff.svg'
+import {useTranslation} from 'react-i18next';
 
 const Login = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
+    const {t} = useTranslation()
     const [showPass, setShowPass] = useState(false)
     const passwordVisibility = () => {
         setShowPass(!showPass)
@@ -42,36 +44,39 @@ const Login = () => {
     return (
         <div className={s.wrapper}>
             <label>
-                <p>To log in get registered <a className={s.link}
-                                               href={'https://social-network.samuraijs.com/'}
-                                               target={'_blank'}
-                                               rel={'noreferrer'}>here.</a>
+                <p>{t("login.register")}
+                    <a className={s.link}
+                       href={'https://social-network.samuraijs.com/'}
+                       target={'_blank'}
+                       rel={'noreferrer'}>
+                        {t("login.link")}
+                    </a>
                 </p>
-                <p>or use common test account credentials:</p>
-                <p>Email: free@samuraijs.com</p>
-                <p>Password: free</p>
+                <p>{t("login.info")}</p>
+                <p>{t("login.default_email")}</p>
+                <p style={{marginBottom: '10px'}}>{t("login.default_pass")}</p>
             </label>
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.field}>
-                    <span className={s.fieldName}>Login</span>
+                    <span className={s.fieldName}>{t("login.login")}</span>
                     <input {...register('email', {required: true})} />
-                    {errors.email && <span className={s.errorField}>This field is required</span>}
+                    {errors.email && <span className={s.errorField}>{t("login.required")}</span>}
                 </div>
                 <div className={s.field}>
-                    <span className={s.fieldName}>Password</span>
+                    <span className={s.fieldName}>{t("login.password")}</span>
                     <input type={showPass ? 'text' : 'password'} {...register("password", {required: true})} />
 
                     <i onClick={passwordVisibility}><img src={showPass ? eyeOff : eye} alt={'show/hide'}/></i>
-                    {errors.password && <span className={s.errorField}>This field is required</span>}
+                    {errors.password && <span className={s.errorField}>{t("login.required")}</span>}
                 </div>
                 <div className={s.field}>
-                    <input type={'checkbox'} {...register("rememberMe")}/> Remember me
+                    <input type={'checkbox'} {...register("rememberMe")}/> {t("login.remember")}
                 </div>
                 <div className={s.field}>
-                    <button onClick={onReset}>Reset fields</button>
+                    <button onClick={onReset}>{t("login.reset")}</button>
                 </div>
                 <button type="submit" className={s.btn}>
-                    Send
+                    {t("login.send")}
                 </button>
             </form>
         </div>

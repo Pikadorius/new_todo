@@ -8,10 +8,12 @@ import s from './UpdateTaskModal.module.scss'
 import common from 'common/components/Modal/CommonModals.module.scss'
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {UpdateTaskType} from 'features/tasks/tasksTypes';
+import {useTranslation} from 'react-i18next';
 
 const UpdateTaskModal = () => {
     const dispatch = useAppDispatch()
     const task = useAppSelector(state => state.app.modalTask)
+    const {t} = useTranslation()
 
 
     const {register, handleSubmit, formState: {errors}} = useForm<Partial<UpdateTaskType>>({
@@ -30,26 +32,29 @@ const UpdateTaskModal = () => {
 
     return (
         <>
-            <ModalHeader title={'Update task'}/>
+            <ModalHeader title={t("modal.update_task.header")}/>
             <div className={common.modalBody}>
                 <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                     <div className={s.field}>
-                        <span className={s.fieldName}>New title:</span>
+                        <span className={s.fieldName}>{t("modal.update_task.title")}</span>
                         <input autoFocus type={'text'} {...register("title", {required: true})} />
                         {errors.title && <span className={s.errorField}>This field is required</span>}
                     </div>
                     <div className={s.field}>
-                        <span className={s.fieldName}>New description:</span>
+                        <span className={s.fieldName}>{t("modal.update_task.description")}</span>
                         <textarea rows={3} {...register("description")}/>
                     </div>
-                    <select {...register("status")} >
-                        <option value={0}>Active</option>
-                        <option value={1}>In progress</option>
-                        <option value={2}>Completed</option>
-                    </select>
+                    <div className={s.field}>
+                        <span className={s.fieldName}>{t("modal.update_task.status")}</span>
+                        <select {...register("status")} >
+                            <option value={0}>{t("modal.active")}</option>
+                            <option value={1}>{t("modal.in_progress")}</option>
+                            <option value={2}>{t("modal.completed")}</option>
+                        </select>
+                    </div>
                 </form>
             </div>
-            <ModalFooter type={'todo'} title={'Save'} callback={handleSubmit(onSubmit)}/>
+            <ModalFooter type={'todo'} title={t("modal.update_btn")} callback={handleSubmit(onSubmit)}/>
         </>
     );
 };

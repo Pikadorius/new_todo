@@ -6,11 +6,13 @@ import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFoo
 import common from 'common/components/Modal/CommonModals.module.scss'
 import {setModalType} from 'app/appSlice';
 import s from './UpdateTodoModal.module.scss'
+import {useTranslation} from 'react-i18next';
 
 const UpdateTodoModal = () => {
     const dispatch = useAppDispatch()
     const todo = useAppSelector(state => state.app.modalTodo)
     const inputRef = createRef<HTMLInputElement>()
+    const {t} = useTranslation()
 
     useEffect(() => {
         if (inputRef.current) {
@@ -19,7 +21,7 @@ const UpdateTodoModal = () => {
     }, [])
 
 
-    const [error, setError] = useState('')
+    const [error, setError] = useState<string | null>(null)
     const updateTodo = () => {
         if (inputRef.current && inputRef.current.value !== '') {
             dispatch(updateTodoTC({todoId: todo.id, title: inputRef.current.value})).then(() => {
@@ -27,7 +29,7 @@ const UpdateTodoModal = () => {
             })
             inputRef.current.value = ''
             error && setError("")
-        } else setError('Required field')
+        } else setError(t("modal.required"))
     }
     const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
@@ -37,15 +39,15 @@ const UpdateTodoModal = () => {
 
     return (
         <>
-            <ModalHeader title={'Change todolist title'}/>
+            <ModalHeader title={t("modal.update_todo.header")}/>
             <div className={common.modalBody}>
-                <div>Write todolist new title:</div>
+                <div>{t("modal.update_todo.body")}</div>
                 <div>
                     <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler}/>
                     {error && <div className={s.error}>{error}</div>}
                 </div>
             </div>
-            <ModalFooter type={'todo'} title={'Save'} callback={updateTodo}/>
+            <ModalFooter type={'todo'} title={t("modal.update_btn")} callback={updateTodo}/>
         </>
     );
 };

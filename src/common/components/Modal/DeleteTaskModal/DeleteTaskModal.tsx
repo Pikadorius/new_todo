@@ -3,17 +3,19 @@ import ModalHeader from 'common/components/Modal/components/ModalHeader/ModalHea
 import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFooter';
 import common from 'common/components/Modal/CommonModals.module.scss'
 import {TaskType} from 'features/tasks/tasksTypes';
+import {useTranslation} from 'react-i18next';
 
 
 type Props = {
     item: TaskType
 }
 const DeleteTodoModal: FC<Props> = ({item}) => {
+    const {t} = useTranslation()
     return (
         <>
-            <ModalHeader title={'Delete task'}/>
-            <div className={common.modalBody}>Do you really want to delete {item.title}?</div>
-            <ModalFooter type={'task'} task={item} title={'Delete'}/>
+            <ModalHeader title={t("modal.delete_task.header")}/>
+            <div className={common.modalBody}>{t("modal.delete_body")} {item.title}?</div>
+            <ModalFooter type={'task'} task={item} title={t("modal.delete_btn")}/>
         </>
     );
 };

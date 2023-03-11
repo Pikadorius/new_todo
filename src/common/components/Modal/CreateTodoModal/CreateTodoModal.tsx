@@ -6,11 +6,13 @@ import ModalFooter from 'common/components/Modal/components/ModalFooter/ModalFoo
 import s from './CreateTodoModal.module.scss'
 import common from 'common/components/Modal/CommonModals.module.scss'
 import {setModalType} from 'app/appSlice';
+import {useTranslation} from 'react-i18next';
 
 const CreateTodoModal = () => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const inputRef = createRef<HTMLInputElement>()
-    const [error, setError] = useState('')
+    const [error, setError] = useState<string | null>(null)
     const addTodo = () => {
         if (inputRef.current && inputRef.current.value !== '') {
             dispatch(createTodoTC(inputRef.current.value)).then(()=>{
@@ -18,7 +20,7 @@ const CreateTodoModal = () => {
             })
             inputRef.current.value = ''
             error && setError("")
-        } else setError('Required field')
+        } else setError(t("modal.required"))
     }
     const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
@@ -28,15 +30,15 @@ const CreateTodoModal = () => {
 
     return (
         <>
-            <ModalHeader title={'Create todolist'}/>
+            <ModalHeader title={t("modal.create_todo.header")}/>
             <div className={common.modalBody}>
-                <div>Write todolist title:</div>
+                <div>{t("modal.create_todo.body")}</div>
                 <div>
                     <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler}/>
                     {error && <div className={s.error}>{error}</div>}
                 </div>
             </div>
-            <ModalFooter type={'todo'} title={'Create'} callback={addTodo}/>
+            <ModalFooter type={'todo'} title={t("modal.create_btn")} callback={addTodo}/>
         </>
     );
 };
