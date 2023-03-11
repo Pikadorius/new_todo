@@ -38,17 +38,17 @@ const CreateTodoModal = () => {
             <div className={common.modalBody}>
                 <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                     <div className={s.field}>
-                        <span className={s.fieldName}>{t("modal.create_task.title")}</span>
-                        < input autoFocus type={'text'} {...register("title", {required: true})} />
+                        <div className={s.fieldName}>{t("modal.create_task.title")}</div>
+                        < input autoFocus type={'text'} {...register("title", {required: true})} className={s.input}/>
                         {errors.title && <span className={s.errorField}>{t("modal.required")}</span>}
                     </div>
                     <div className={s.field}>
-                        <span className={s.fieldName}>{t("modal.create_task.description")}</span>
-                        <textarea rows={3} {...register("description")}/>
+                        <div className={s.fieldName}>{t("modal.create_task.description")}</div>
+                        <textarea rows={3} {...register("description")} className={s.textarea}/>
                     </div>
                     <div className={s.field}>
-                        <span className={s.fieldName}>{t("modal.create_task.status")}</span>
-                        <select {...register("status")} >
+                        <div className={s.fieldName}>{t("modal.create_task.status")}</div>
+                        <select {...register("status")} className={s.select}>
                             <option value='0'>{t("modal.active")}</option>
                             <option value="1">{t("modal.in_progress")}</option>
                             <option value="2">{t("modal.completed")}</option>
