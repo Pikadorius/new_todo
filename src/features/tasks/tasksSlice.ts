@@ -4,7 +4,9 @@ import {tasksAPI} from "features/tasks/tasksAPI";
 import {setAppError, setAppStatus} from "app/appSlice";
 import {RootState} from 'store/store';
 import {fetchTodosTasksTC} from 'features/todolists/todolistsSlice';
+import i18next from 'i18next';
 
+const {t} = i18next
 const initialState = [] as TaskType[]
 
 
@@ -23,7 +25,7 @@ export const createTaskTC = createAsyncThunk('createTask', async (data: { id: st
             dispatch(addTask(res.data.data.item))
             dispatch(fetchTodosTasksTC(data.id))
             dispatch(setAppStatus('success'))
-            dispatch(setAppError('Task created'))
+            dispatch(setAppError(t("popUp.create_task")))
         } else {
             dispatch(setAppError(res.data.messages[0]))
             dispatch(setAppStatus('failed'))
@@ -38,7 +40,7 @@ export const deleteTaskTC = createAsyncThunk('deleteTask', async (data: { todoId
             dispatch(deleteTask(data.taskId))
             dispatch(fetchTodosTasksTC(data.todoId))
             dispatch(setAppStatus('success'))
-            dispatch(setAppError('Task deleted'))
+            dispatch(setAppError(t("popUp.delete_task")))
         } else {
             dispatch(setAppError(res.data.messages[0]))
             dispatch(setAppStatus('failed'))
@@ -56,7 +58,7 @@ export const updateTaskTC = createAsyncThunk(
         if (res.data.resultCode === 0) {
             dispatch(updateTask(res.data.data.item))
             dispatch(setAppStatus('success'))
-            dispatch(setAppError('Task updated'))
+            dispatch(setAppError(t("popUp.update_task")))
         } else {
             dispatch(setAppError(res.data.messages[0]))
             dispatch(setAppStatus('failed'))

@@ -73,5 +73,15 @@
       "description": "New description",
       "status": "New status:"
     }
+  },
+  "popUp": {
+    "login_success" : "Logged in",
+    "logout_success" : "Logged out",
+    "create_todo": "Todolist created",
+    "delete_todo" : "Todolist deleted",
+    "update_todo" : "Todolist changed",
+    "create_task": "Task created",
+    "delete_task" : "Task deleted",
+    "update_task" : "Task changed"
   }
 }

@@ -73,5 +73,15 @@
       "description": "Новое описание:",
       "status": "Новый статус:"
     }
+  },
+  "popUp": {
+    "login_success" : "Успешный вход",
+    "logout_success" : "Успешный выход",
+    "create_todo": "Список создан",
+    "delete_todo" : "Список удален",
+    "update_todo" : "Список изменен",
+    "create_task": "Задача создана",
+    "delete_task" : "Задача удалена",
+    "update_task" : "Задача изменена"
   }
 }
