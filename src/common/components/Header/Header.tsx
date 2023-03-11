@@ -47,18 +47,19 @@ const Header = () => {
                     <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
                                                                                               alt={'add'}/></button>}
             </h1>
-            <div className={s.langBtns}>
-                <button className={s.noBtn} onClick={() => changeLanguage("en")}><img className={s.flagBtn}
-                                                                                      src={engFlag}
-                                                                                      alt={'add'}/></button>
-                <button className={s.noBtn} onClick={() => changeLanguage("ru")}><img className={s.flagBtn}
-                                                                                      src={ruFlag}
-                                                                                      alt={'add'}/></button>
-            </div>
-            <span className={s.logoutField}>{userName}
+            <div className={s.logoutField}>
+                <div className={s.langBtns}>
+                    <button className={s.noBtn} onClick={() => changeLanguage("en")}><img className={s.flagBtn}
+                                                                                          src={engFlag}
+                                                                                          alt={'add'}/></button>
+                    <button className={s.noBtn} onClick={() => changeLanguage("ru")}><img className={s.flagBtn}
+                                                                                          src={ruFlag}
+                                                                                          alt={'add'}/></button>
+                </div>
+                {userName}
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
-            </span>
+            </div>
         </div>
 
     );

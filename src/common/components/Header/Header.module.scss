@@ -21,17 +21,6 @@
     padding-left: 10px;
     display: block;
   }
-
-  .langBtns {
-    display: flex;
-    justify-content: flex-end;
-
-    .flagBtn {
-      width: 24px;
-      height: 15px;
-    }
-  }
-
 }
 
 
@@ -39,8 +28,21 @@
 
 
 .logoutField {
+  display: flex;
   position: absolute;
   right: 50px;
+
+  .langBtns {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+
+
+    .flagBtn {
+      width: 24px;
+      height: 15px;
+    }
+  }
 
   .logout {
     margin-left: 20px;
