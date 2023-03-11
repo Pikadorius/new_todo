@@ -42,7 +42,7 @@ const UpdateTaskModal = () => {
                     </div>
                     <div className={s.field}>
                         <div className={s.fieldName}>{t("modal.update_task.description")}</div>
-                        <textarea rows={3} {...register("description")} className={s.textarea}/>
+                        <textarea {...register("description")} className={s.textarea}/>
                     </div>
                     <div className={s.field}>
                         <div className={s.fieldName}>{t("modal.update_task.status")}</div>

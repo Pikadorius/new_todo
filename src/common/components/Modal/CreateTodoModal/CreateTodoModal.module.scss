@@ -1,3 +1,19 @@
 @import "src/common/styles/mixins.scss";
 
-@include error
+@include error;
+
+.errorField {
+  position: absolute;
+  top: 52px;
+  color: red;
+}
+
+.input {
+  margin: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}

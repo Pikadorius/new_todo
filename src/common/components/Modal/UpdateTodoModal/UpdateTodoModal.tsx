@@ -43,7 +43,7 @@ const UpdateTodoModal = () => {
             <div className={common.modalBody}>
                 <div>{t("modal.update_todo.body")}</div>
                 <div>
-                    <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler}/>
+                    <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler} className={s.input}/>
                     {error && <div className={s.error}>{error}</div>}
                 </div>
             </div>
