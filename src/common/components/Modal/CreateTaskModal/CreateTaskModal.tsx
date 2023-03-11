@@ -44,7 +44,7 @@ const CreateTodoModal = () => {
                     </div>
                     <div className={s.field}>
                         <div className={s.fieldName}>{t("modal.create_task.description")}</div>
-                        <textarea rows={3} {...register("description")} className={s.textarea}/>
+                        <textarea rows={3} {...register("description")}  className={s.textarea}/>
                     </div>
                     <div className={s.field}>
                         <div className={s.fieldName}>{t("modal.create_task.status")}</div>
