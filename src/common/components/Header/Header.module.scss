@@ -19,12 +19,10 @@
 
   .noBtn {
     padding-left: 10px;
-    display: block;
+    display: flex;
+    align-items: center;
   }
 }
-
-
-
 
 
 .logoutField {

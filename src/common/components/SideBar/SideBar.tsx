@@ -18,7 +18,7 @@ const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean }) 
     return (
         <div className={props.isShowed ? s.sidebar : `${s.sidebar} ${s.closed}`}>
             <h2 className={s.sidebarTitle}>
-                {t('todolists.title')}
+                <div>{t('todolists.title')}</div>
                 <button className={s.noBtn} onClick={addTodolist}><img src={addIcon} alt={'add'}/></button>
             </h2>
             {props.todolists.map(t => {

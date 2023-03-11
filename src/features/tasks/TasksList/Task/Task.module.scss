@@ -5,7 +5,7 @@
   background-color: #363a45;
   width: 80%;
   border: 1px solid #61dafb;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   margin: 10px auto;
   display: flex;
@@ -17,14 +17,17 @@
     justify-content: space-between;
 
     .taskTitle {
+      font-size: 16px;
       text-align: center;
       word-break: break-word;
+      padding: 0 10px;
     }
   }
 
   .description {
     padding-top: 10px;
     text-align: center;
+    font-size: 14px;
   }
 
 }

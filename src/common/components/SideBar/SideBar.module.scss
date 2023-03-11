@@ -17,13 +17,15 @@
 
 
   .sidebarTitle {
+    font-size: 20px;
     padding-top: 20px;
     display: flex;
     justify-content: center;
 
     .noBtn {
       padding-left: 10px;
-      display: block;
+      display: flex;
+      align-items: center;
     }
   }
 }

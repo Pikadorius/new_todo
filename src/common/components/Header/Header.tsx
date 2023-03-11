@@ -12,7 +12,7 @@ import ruFlag from 'assets/icons/lang/ru.png'
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
-    let page = ''
+    let page: string
     const todo = useAppSelector(state => state.todolists.find(t => t.id === id))
 
     const {t, i18n} = useTranslation();
@@ -41,12 +41,12 @@ const Header = () => {
 
     return (
         <div className={s.container}>
-            <h1 className={s.title}>
+            <h2 className={s.title}>
                 <div>{page}</div>
                 {(page !== 'Todolist App' && page !== 'Следи за делами') && isLoggedIn &&
                     <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
                                                                                               alt={'add'}/></button>}
-            </h1>
+            </h2>
             <div className={s.logoutField}>
                 <div className={s.langBtns}>
                     <button className={s.noBtn} onClick={() => changeLanguage("en")}><img className={s.flagBtn}
