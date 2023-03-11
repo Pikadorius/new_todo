@@ -1,7 +1,7 @@
 @import "src/common/styles/mixins.scss";
 
-
 @include btn;
+
 .container {
   z-index: 5;
   width: 100%;
@@ -15,14 +15,28 @@
   .title {
     display: flex;
     justify-content: flex-end;
+  }
 
-    .noBtn {
-      padding-left: 10px;
-      display: block;
+  .noBtn {
+    padding-left: 10px;
+    display: block;
+  }
+
+  .langBtns {
+    display: flex;
+    justify-content: flex-end;
+
+    .flagBtn {
+      width: 24px;
+      height: 15px;
     }
   }
 
 }
+
+
+
+
 
 .logoutField {
   position: absolute;

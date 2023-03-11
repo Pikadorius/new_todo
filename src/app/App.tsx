@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect, useLayoutEffect} from 'react';
+import React, { useLayoutEffect} from 'react';
 import 'app/App.scss';
 import Pages from "pages/Pages";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";

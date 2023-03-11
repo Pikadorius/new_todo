@@ -7,6 +7,8 @@ import addIcon from 'assets/icons/add.svg'
 import {useLocation} from 'react-router-dom';
 import {isLoggedSelector, loggedUserSelector} from 'features/auth/authSelectors';
 import {useTranslation} from 'react-i18next';
+import engFlag from 'assets/icons/lang/eng.png'
+import ruFlag from 'assets/icons/lang/ru.png'
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
@@ -41,12 +43,18 @@ const Header = () => {
         <div className={s.container}>
             <h1 className={s.title}>
                 <div>{page}</div>
-                <button onClick={() => changeLanguage("en")}>en</button>
-                <button onClick={() => changeLanguage("ru")}>ru</button>
                 {(page !== 'Todolist App' && page !== 'Следи за делами') && isLoggedIn &&
                     <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
                                                                                               alt={'add'}/></button>}
             </h1>
+            <div className={s.langBtns}>
+                <button className={s.noBtn} onClick={() => changeLanguage("en")}><img className={s.flagBtn}
+                                                                                      src={engFlag}
+                                                                                      alt={'add'}/></button>
+                <button className={s.noBtn} onClick={() => changeLanguage("ru")}><img className={s.flagBtn}
+                                                                                      src={ruFlag}
+                                                                                      alt={'add'}/></button>
+            </div>
             <span className={s.logoutField}>{userName}
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
