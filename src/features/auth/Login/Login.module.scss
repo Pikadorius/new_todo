@@ -30,9 +30,10 @@
     padding: 10px;
     position: relative;
     i {
+        scale: 0.7;
         position: absolute;
-        top: 20%;
-        right: -10%;
+        top: 18%;
+        right: 3%;
 
         &:hover {
             opacity: 0.5;
@@ -54,6 +55,9 @@
 .errorField {
     display: block;
     color: red;
+    position: absolute;
+    top: 32px;
+    left: 115px;
 }
 
 .btn {
