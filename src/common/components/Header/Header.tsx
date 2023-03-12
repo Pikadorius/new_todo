@@ -42,7 +42,7 @@ const Header = () => {
     return (
         <div className={s.container}>
             <h2 className={s.title}>
-                <div>{page}</div>
+                <div className={s.page} title={page}>{page}</div>
                 {(page !== 'Todolist App' && page !== 'Следи за делами') && isLoggedIn &&
                     <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
                                                                                               alt={'add'}/></button>}

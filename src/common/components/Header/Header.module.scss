@@ -15,6 +15,13 @@
   .title {
     display: flex;
     justify-content: flex-end;
+    max-width: 40%;
+
+    .page {
+      white-space: nowrap; /* Текст не переносится */
+      overflow: hidden; /* Обрезаем всё за пределами блока */
+      text-overflow: ellipsis;
+    }
   }
 
   .noBtn {
