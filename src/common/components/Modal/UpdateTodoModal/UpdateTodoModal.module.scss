@@ -1,19 +1,36 @@
 @import "src/common/styles/mixins.scss";
 
 @include error;
+@include inputs;
 
 .errorField {
   position: absolute;
-  top: 52px;
+  top: 65px;
   color: red;
 }
 
 .input {
   margin: 5px;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px 20px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
+}
+
+.container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  margin-bottom: 5%;
+
+  .field {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .fieldName {
+      font-weight: 600;
+      margin-bottom: 5px;
+      align-self: flex-start;
+    }
+  }
 }

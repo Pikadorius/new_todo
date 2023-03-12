@@ -32,10 +32,13 @@ const CreateTodoModal = () => {
         <>
             <ModalHeader title={t("modal.create_todo.header")}/>
             <div className={common.modalBody}>
-                <div>{t("modal.create_todo.body")}</div>
-                <div>
-                    <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler} className={s.input}/>
-                    {error && <div className={s.error}>{error}</div>}
+                <div className={s.container}>
+                    <div className={s.field}>
+                        <div className={s.fieldName}>{t("modal.update_todo.body")}</div>
+                        <input autoFocus type={'text'} ref={inputRef} onKeyDown={onEnterHandler}
+                               className={s.input}/>
+                        {error && <div className={s.errorField}>{error}</div>}
+                    </div>
                 </div>
             </div>
             <ModalFooter type={'todo'} title={t("modal.create_btn")} callback={addTodo}/>

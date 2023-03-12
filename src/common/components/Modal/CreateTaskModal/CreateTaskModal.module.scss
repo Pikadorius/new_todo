@@ -1,5 +1,6 @@
 @import 'src/common/styles/mixins.scss';
 @include a;
+@include inputs;
 
 .form {
   width: 70%;
@@ -21,25 +22,11 @@
     margin-bottom: 5px;
     align-self: flex-start;
   }
-
-  .input, .select, .textarea {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 10px 20px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-  }
-
-  .textarea {
-    resize: none;
-    height: 100px;
-  }
 }
 
 .errorField {
   position: absolute;
-  top: 52px;
+  top: 65px;
   color: red;
 }
 
