@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  position: absolute;
+  z-index: 500;
+
+  .tooltip {
+    font-size: 18px;
+    position: absolute;
+    width: 180px;
+    padding: 10px;
+    margin-left: 10px;
+    //margin-left: calc(100%);
+    justify-content: center;
+    color: #FFFFFF;
+    background-color: #363a45;
+    border-radius: 10px ;
+    text-align: center;
+    white-space: pre-line;
+    font-weight: 700 ;
+    pointer-events: none;
+  }
+}

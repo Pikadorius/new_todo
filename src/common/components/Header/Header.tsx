@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import s from 'common/components/Header/Header.module.scss'
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {logoutTC} from 'features/auth/authSlice';
@@ -9,11 +9,27 @@ import {isLoggedSelector, loggedUserSelector} from 'features/auth/authSelectors'
 import {useTranslation} from 'react-i18next';
 import engFlag from 'assets/icons/lang/eng.png'
 import ruFlag from 'assets/icons/lang/ru.png'
+import Tooltip from 'common/components/Tooltip/Tooltip';
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
-    let page: string
     const todo = useAppSelector(state => state.todolists.find(t => t.id === id))
+    const isLoggedIn = useAppSelector(isLoggedSelector)
+    const userName = useAppSelector(loggedUserSelector).login
+    const dispatch = useAppDispatch()
+
+    const refSetTimeout = useRef<NodeJS.Timeout>();
+    const [tooltip, showTooltip] = useState(false)
+    const onMouseEnterHandler = () => {
+        refSetTimeout.current = setTimeout(() => {
+            showTooltip(true);
+        }, 500);
+    };
+
+    const onMouseLeaveHandler = () => {
+        clearTimeout(refSetTimeout.current);
+        showTooltip(false);
+    };
 
     const {t, i18n} = useTranslation();
 
@@ -21,15 +37,13 @@ const Header = () => {
         i18n.changeLanguage(language);
     };
 
+    let page: string
+
     if (id && todo) {
         page = todo.title
     } else {
         page = 'Todolist App'
     }
-
-    const isLoggedIn = useAppSelector(isLoggedSelector)
-    const userName = useAppSelector(loggedUserSelector).login
-    const dispatch = useAppDispatch()
 
     const logout = () => {
         dispatch(logoutTC())
@@ -42,7 +56,10 @@ const Header = () => {
     return (
         <div className={s.container}>
             <h2 className={s.title}>
-                <div className={s.page} title={page}>{page}</div>
+                <div className={s.page} onMouseEnter={onMouseEnterHandler}
+                     onMouseLeave={onMouseLeaveHandler}>{page}</div>
+                {page !== 'Todolist App' && tooltip && <Tooltip text={page}><></>
+                </Tooltip>}
                 {(page !== 'Todolist App' && page !== 'Следи за делами') && isLoggedIn &&
                     <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
                                                                                               alt={'add'}/></button>}
