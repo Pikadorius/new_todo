@@ -7,8 +7,6 @@ import addIcon from 'assets/icons/add.svg'
 import {useLocation} from 'react-router-dom';
 import {isLoggedSelector, loggedUserSelector} from 'features/auth/authSelectors';
 import {useTranslation} from 'react-i18next';
-import engFlag from 'assets/icons/lang/eng.png'
-import ruFlag from 'assets/icons/lang/ru.png'
 import Tooltip from 'common/components/Tooltip/Tooltip';
 import LanguageSelect from "common/components/LanguageSelect/LanguageSelect";
 
@@ -16,6 +14,7 @@ const Header = () => {
     const id = useLocation().pathname.slice(6)
     const todo = useAppSelector(state => state.todolists.find(t => t.id === id))
     const isLoggedIn = useAppSelector(isLoggedSelector)
+    const {t} = useTranslation()
     const userName = useAppSelector(loggedUserSelector).login
     const dispatch = useAppDispatch()
 
@@ -32,11 +31,6 @@ const Header = () => {
         showTooltip(false);
     };
 
-    const {t, i18n} = useTranslation();
-
-    const changeLanguage = (language: string) => {
-        i18n.changeLanguage(language);
-    };
 
     let page: string
 
