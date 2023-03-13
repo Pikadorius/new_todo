@@ -22,7 +22,9 @@
     "main": "To main",
     "active": "Active",
     "in_progress": "In progress",
-    "completed": "Completed"
+    "completed": "Completed",
+    "empty" : "This todolist is empty!",
+    "fill_todo" : "You can create task or choose another todolist"
   },
   "login": {
     "register": "To log in get registered ",
@@ -46,12 +48,13 @@
     "create_btn": "Create",
     "update_btn": "Save",
     "cancel": "Cancel",
-    "delete_body": "Do you really want to delete ",
     "delete_todo": {
-      "header": "Delete todolist"
+      "header": "Delete todolist",
+      "delete_body": "Do you really want to delete todolist"
     },
     "delete_task": {
-      "header": "Delete task"
+      "header": "Delete task",
+      "delete_body": "Do you really want to delete task"
     },
     "create_todo": {
       "header": "Create new todolist",
@@ -83,5 +86,6 @@
     "create_task": "Task created",
     "delete_task" : "Task deleted",
     "update_task" : "Task changed"
-  }
+  },
+  "language": "Change language"
 }
