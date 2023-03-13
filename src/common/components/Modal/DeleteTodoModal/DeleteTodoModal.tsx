@@ -14,7 +14,7 @@ const DeleteTodoModal: FC<Props> = ({item}) => {
     return (
         <>
             <ModalHeader title={t('modal.delete_todo.header')}/>
-            <div className={common.modalBody}>{t('modal.delete_body')} {item.title}?</div>
+            <div className={common.modalBody}>{t('modal.delete_todo.delete_body')} "{item.title}"?</div>
             <ModalFooter type={'todo'} todo={item} title={t('modal.delete_btn')}/>
         </>
     );

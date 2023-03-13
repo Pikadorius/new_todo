@@ -46,12 +46,13 @@
     "create_btn": "Create",
     "update_btn": "Save",
     "cancel": "Cancel",
-    "delete_body": "Do you really want to delete ",
     "delete_todo": {
-      "header": "Delete todolist"
+      "header": "Delete todolist",
+      "delete_body": "Do you really want to delete todolist"
     },
     "delete_task": {
-      "header": "Delete task"
+      "header": "Delete task",
+      "delete_body": "Do you really want to delete task"
     },
     "create_todo": {
       "header": "Create new todolist",
