@@ -15,7 +15,7 @@
     "routes": "Protected routes",
     "hooks": "Hooks",
     "reusable": "Reusable components",
-    "lc": "Local storeage",
+    "lc": "Local storage",
     "custom": "No libraries of React UI components \n (only custom components)",
     "code": "Watch code"
   },
