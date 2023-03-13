@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,KeyboardEvent} from 'react';
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -73,7 +73,7 @@ const Login = () => {
                     <input type={'checkbox'} {...register("rememberMe")}/> {t("login.remember")}
                 </div>
                 <div className={s.field}>
-                    <button onClick={onReset}>{t("login.reset")}</button>
+                    <button type="reset" onClick={onReset}>{t("login.reset")}</button>
                 </div>
                 <button type="submit" className={s.btn}>
                     {t("login.send")}
