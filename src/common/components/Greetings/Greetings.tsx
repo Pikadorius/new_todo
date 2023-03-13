@@ -13,15 +13,15 @@ const Greetings = () => {
             <div className={s.wrapper}>
                 <div className={s.title}>
                     <h2>{t('greetings.hello')}, {userName}!</h2>
-                    <h3>{t('greetings.welcome')} <a  rel={'noreferrer'} target={'_blank'} className={s.link} href={'https://github.com/Pikadorius/new_todo'} title={'Here you can see code'}>Todolist App</a></h3>
+                    <h3>{t('greetings.welcome')} <a  rel={'noreferrer'} target={'_blank'} className={s.link} href={'https://github.com/Pikadorius/new_todo'} title={t("greetings.link") || "Watch code here"}>Todolist App</a></h3>
                 </div>
                 <div className={s.technologies}>
                     <h4>{t('greetings.technologies')}</h4>
                     <ul>
                         <li>Typescript</li>
                         <li>Redux Toolkit</li>
-                        <li>React router dom</li>
-                        <li>React hook form</li>
+                        <li>React Router Dom</li>
+                        <li>React Hook Form</li>
                         <li>SCSS</li>
                         <li>{t('greetings.localization')}</li>
                         <li>{t('greetings.routes')}</li>

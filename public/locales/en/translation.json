@@ -15,8 +15,9 @@
     "routes": "Protected routes",
     "hooks": "Hooks",
     "reusable": "Reusable components",
-    "lc": "Local storeage",
-    "custom": "No libraries of React UI components \n (only custom components)"
+    "lc": "Local storage",
+    "custom": "No libraries of React UI components \n (only custom components)",
+    "link" : "Here you can see code"
   },
   "tasks": {
     "main": "To main",
@@ -87,5 +88,5 @@
     "delete_task" : "Task deleted",
     "update_task" : "Task changed"
   },
-  "language": "Change language"
+  "language": "Change language",
 }
