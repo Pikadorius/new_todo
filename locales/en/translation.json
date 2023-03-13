@@ -17,7 +17,7 @@
     "reusable": "Reusable components",
     "lc": "Local storage",
     "custom": "No libraries of React UI components \n (only custom components)",
-    "link" : "Here you can see code"
+    "code": "Watch code"
   },
   "tasks": {
     "main": "To main",
@@ -88,5 +88,5 @@
     "delete_task" : "Task deleted",
     "update_task" : "Task changed"
   },
-  "language": "Change language",
+  "language": "Change language"
 }
