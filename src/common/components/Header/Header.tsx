@@ -10,6 +10,7 @@ import {useTranslation} from 'react-i18next';
 import engFlag from 'assets/icons/lang/eng.png'
 import ruFlag from 'assets/icons/lang/ru.png'
 import Tooltip from 'common/components/Tooltip/Tooltip';
+import LanguageSelect from "common/components/LanguageSelect/LanguageSelect";
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
@@ -65,14 +66,7 @@ const Header = () => {
                                                                                               alt={'add'}/></button>}
             </h2>
             <div className={s.logoutField}>
-                <div className={s.langBtns}>
-                    <button className={s.noBtn} onClick={() => changeLanguage("en")}><img className={s.flagBtn}
-                                                                                          src={engFlag}
-                                                                                          alt={'add'}/></button>
-                    <button className={s.noBtn} onClick={() => changeLanguage("ru")}><img className={s.flagBtn}
-                                                                                          src={ruFlag}
-                                                                                          alt={'add'}/></button>
-                </div>
+                    <LanguageSelect/>
                 {userName}
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
