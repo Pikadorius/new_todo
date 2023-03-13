@@ -57,10 +57,11 @@ const TasksList = () => {
 export default TasksList;
 
 const EmptyBlock = () => {
+    const {t}=useTranslation()
     return (
         <div className={s.emptyBlock}>
-            <h2>This todolist is empty!</h2>
-            <p>You can create task or choose another todolist</p>
+            <h2>{t("tasks.empty")}</h2>
+            <p>{t("tasks.fill_todo")}</p>
         </div>
     )
 }

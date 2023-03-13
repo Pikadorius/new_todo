@@ -22,7 +22,9 @@
     "main": "To main",
     "active": "Active",
     "in_progress": "In progress",
-    "completed": "Completed"
+    "completed": "Completed",
+    "empty" : "This todolist is empty!",
+    "fill_todo" : "You can create task or choose another todolist"
   },
   "login": {
     "register": "To log in get registered ",
