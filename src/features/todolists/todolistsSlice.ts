@@ -29,9 +29,15 @@ export const fetchTodosTC = createAsyncThunk('fetchTodolists', async (_, {dispat
 
 export const fetchTodosTasksTC = createAsyncThunk('fetchTodolists', async (id: string, {dispatch}) => {
     dispatch(setAppStatus('loading'))
-    const res = await tasksAPI.fetchTasks(id)
-    dispatch(setTodosTasks({id, tasksCount: res.data.totalCount, tasks: res.data.items}))
-    dispatch(setAppStatus('success'))
+    try {
+        const res = await tasksAPI.fetchTasks(id)
+        dispatch(setTodosTasks({id, tasksCount: res.data.totalCount, tasks: res.data.items}))
+        dispatch(setAppStatus('success'))
+    } catch (e: any) {
+        errorHandler(e, dispatch)
+    } finally {
+        dispatch(setAppStatus('idle'))
+    }
 })
 
 export const createTodoTC = createAsyncThunk('createTodo', async (title: string, {dispatch}) => {
