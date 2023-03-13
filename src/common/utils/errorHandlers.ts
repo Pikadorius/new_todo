@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios'
 
 import { setAppError, setAppStatus } from 'app/appSlice'
-import {AppDispatch} from "store/store";
+import {Dispatch} from "@reduxjs/toolkit";
 
-export const errorHandler = (e: Error | AxiosError<{ error: string }>, dispatch: AppDispatch) => {
+export const errorHandler = (e: Error | AxiosError<{ error: string }>, dispatch: Dispatch) => {
     const err = e as Error | AxiosError<{ error: string }>
 
     if (axios.isAxiosError(err)) {
