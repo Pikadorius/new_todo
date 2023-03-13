@@ -84,5 +84,6 @@
     "create_task": "Task created",
     "delete_task" : "Task deleted",
     "update_task" : "Task changed"
-  }
+  },
+  "language": "Change language"
 }
