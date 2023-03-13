@@ -16,7 +16,8 @@
     "hooks": "Hooks",
     "reusable": "Reusable components",
     "lc": "Local storeage",
-    "custom": "No libraries of React UI components \n (only custom components)"
+    "custom": "No libraries of React UI components \n (only custom components)",
+    "code": "Watch code"
   },
   "tasks": {
     "main": "To main",
