@@ -9,8 +9,7 @@
   width: 19%;
   height: 100vh;
   overflow-x: auto;
-  background-color: #363a45;
-  color: white;
+  background-color: $primaryDark;
   z-index: 2;
   transition: 0.5s;
 
@@ -32,4 +31,8 @@
 
 .closed {
   left: -600px
+}
+
+.light {
+  background-color: $primaryLight;
 }
