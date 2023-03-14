@@ -6,13 +6,17 @@ import Task from "features/tasks/TasksList/Task/Task";
 import {PATH} from 'common/constants/PATH';
 import s from 'features/tasks/TasksList/TasksList.module.scss'
 import back from 'assets/icons/goBack.svg'
+import backBlack from 'assets/icons/goBackBlack.svg'
 import {useTranslation} from 'react-i18next';
+import {themeSelector} from 'features/theme/themeSelectors';
+import 'common/styles/mixins.scss'
 
 
 const TasksList = () => {
     const {id} = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)
+    const theme = useAppSelector(themeSelector)
     const navigate = useNavigate()
     const {t} = useTranslation()
 
@@ -34,19 +38,19 @@ const TasksList = () => {
 
     return (
         <div className={s.container}>
-            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={back} alt={'go back'}/>{t("tasks.main")}
+            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={theme==='dark' ? back : backBlack} alt={'go back'}/>{t("tasks.main")}
             </button>
             {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
                 <div className={s.activeTasks}>
-                    <h3 style={{color: '#61dafb'}}>{t("tasks.active")}</h3>
+                    <h3 className={s.activeTitle}>{t("tasks.active")}</h3>
                     {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
                 </div>
                 <div className={s.inProgressTasks}>
-                    <h3 style={{color: '#fb9f33'}}>{t("tasks.in_progress")}</h3>
+                    <h3 className={theme==='dark' ? s.inProgressTitle : s.lightInProgress}>{t("tasks.in_progress")}</h3>
                     {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
                 </div>
                 <div className={s.completedTasks}>
-                    <h3 style={{color: '#3b8d09'}}>{t("tasks.completed")}</h3>
+                    <h3 className={s.completedTitle}>{t("tasks.completed")}</h3>
                     {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
                 </div>
             </div>}

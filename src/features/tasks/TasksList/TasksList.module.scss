@@ -18,6 +18,9 @@
     display: flex;
     column-gap: 20px;
 
+    .activeTitle {
+      color: red;
+    }
     .activeTasks {
       width: 33%;
       display: flex;
@@ -25,14 +28,24 @@
       align-items: center;
     }
 
+    .inProgressTitle {
+      color: $darkAccentText
+    }
+
+    .lightInProgress {
+      color: $lightAccentText
+    }
+
     .inProgressTasks {
       width: 33%;
       display: flex;
       flex-direction: column;
       align-items: center;
-
     }
 
+    .completedTitle {
+      color: green;
+    }
     .completedTasks {
       width: 33%;
       display: flex;
@@ -57,5 +70,8 @@
 .backBnt:hover {
   transition: 1s;
   transform: translate(-10px, 0);
+}
+
+.light {
 
 }
