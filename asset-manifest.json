@@ -1,26 +1,32 @@
 {
   "files": {
-    "main.css": "/new_todo/static/css/main.a8733885.css",
-    "main.js": "/new_todo/static/js/main.e66219df.js",
+    "main.css": "/new_todo/static/css/main.41dff0df.css",
+    "main.js": "/new_todo/static/js/main.b4b68f7f.js",
     "static/js/787.03e439a5.chunk.js": "/new_todo/static/js/787.03e439a5.chunk.js",
+    "static/media/day.svg": "/new_todo/static/media/day.648475bcf951d0089c820989eb52ad44.svg",
     "static/media/eyeOff.svg": "/new_todo/static/media/eyeOff.a110926a17b0d98e3ee062f4be9d0b22.svg",
+    "static/media/deleteBlack.svg": "/new_todo/static/media/deleteBlack.acd7d8d1e0177d85a5a6c13fdd1f1199.svg",
     "static/media/delete.svg": "/new_todo/static/media/delete.a845611ecae61be6a31ce656971a2c14.svg",
     "static/media/eye.svg": "/new_todo/static/media/eye.1fee6827691d88e0a79553df4220786f.svg",
+    "static/media/changeBlack.svg": "/new_todo/static/media/changeBlack.fae321bd886cd5b4d69133a6fad6468c.svg",
     "index.html": "/new_todo/index.html",
-    "static/media/loading.svg": "/new_todo/static/media/loading.f082812734bae0489d72b95f952cd2e9.svg",
+    "static/media/loading.svg": "/new_todo/static/media/loading.c02cc5793e7b0e0762287a53bc6626e7.svg",
     "static/media/change.svg": "/new_todo/static/media/change.16157b825a639a81a2751a7063d4f27a.svg",
+    "static/media/night.svg": "/new_todo/static/media/night.58e63c5609b2eb1af7e514881542878f.svg",
     "static/media/ulImg.svg": "/new_todo/static/media/ulImg.a5c9aa0b28ed8a20aa18.svg",
+    "static/media/addBlack.svg": "/new_todo/static/media/addBlack.cd18920fe4d1c3a1230d733adfef2509.svg",
     "static/media/close.svg": "/new_todo/static/media/close.22f4d75d5dc9850d3e32adf362adcbc5.svg",
     "static/media/burger.svg": "/new_todo/static/media/burger.bbeabad6e22fa804369d686aba1e7ea2.svg",
     "static/media/add.svg": "/new_todo/static/media/add.f9c5a77d4ba08cace35a2b33b76cefa7.svg",
     "static/media/getFetch.cjs": "/new_todo/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "static/media/goBackBlack.svg": "/new_todo/static/media/goBackBlack.54dd324d522c5cf506da582942481f98.svg",
     "static/media/goBack.svg": "/new_todo/static/media/goBack.c910d2b9d16e890e7784e0fd3bb2d59f.svg",
-    "main.a8733885.css.map": "/new_todo/static/css/main.a8733885.css.map",
-    "main.e66219df.js.map": "/new_todo/static/js/main.e66219df.js.map",
+    "main.41dff0df.css.map": "/new_todo/static/css/main.41dff0df.css.map",
+    "main.b4b68f7f.js.map": "/new_todo/static/js/main.b4b68f7f.js.map",
     "787.03e439a5.chunk.js.map": "/new_todo/static/js/787.03e439a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8733885.css",
-    "static/js/main.e66219df.js"
+    "static/css/main.41dff0df.css",
+    "static/js/main.b4b68f7f.js"
   ]
 }
