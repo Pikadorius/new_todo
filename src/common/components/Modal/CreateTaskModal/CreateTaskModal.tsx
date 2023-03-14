@@ -39,7 +39,7 @@ const CreateTodoModal = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                     <div className={s.field}>
                         <div className={s.fieldName}>{t("modal.create_task.title")}</div>
-                        < input autoFocus type={'text'} {...register("title", {required: true})} className={s.input}/>
+                        < input autoFocus type={'text'} {...register("title", {required: true, min:1})} className={s.input}/>
                         {errors.title && <span className={s.errorField}>{t("modal.required")}</span>}
                     </div>
                     <div className={s.field}>

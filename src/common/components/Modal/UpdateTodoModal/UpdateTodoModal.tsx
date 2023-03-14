@@ -23,7 +23,7 @@ const UpdateTodoModal = () => {
 
     const [error, setError] = useState<string | null>(null)
     const updateTodo = () => {
-        if (inputRef.current && inputRef.current.value !== '') {
+        if (inputRef.current && inputRef.current.value.trim() !== '') {
             dispatch(updateTodoTC({todoId: todo.id, title: inputRef.current.value})).then(() => {
                 dispatch(setModalType('idle'))
             })

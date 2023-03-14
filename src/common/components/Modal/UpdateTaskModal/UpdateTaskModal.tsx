@@ -37,7 +37,7 @@ const UpdateTaskModal = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                     <div className={s.field}>
                         <div className={s.fieldName}>{t("modal.update_task.title")}</div>
-                        <input autoFocus type={'text'} {...register("title", {required: true})} className={s.input} placeholder={errors.title?.message}/>
+                        <input autoFocus type={'text'} {...register("title", {required: true, min: 1})} className={s.input} placeholder={errors.title?.message}/>
                         {errors.title && <span className={s.errorField}>{t("modal.required")}</span>}
                     </div>
                     <div className={s.field}>

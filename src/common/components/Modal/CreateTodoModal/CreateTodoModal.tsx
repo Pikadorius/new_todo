@@ -14,7 +14,7 @@ const CreateTodoModal = () => {
     const inputRef = createRef<HTMLInputElement>()
     const [error, setError] = useState<string | null>(null)
     const addTodo = () => {
-        if (inputRef.current && inputRef.current.value !== '') {
+        if (inputRef.current && inputRef.current.value.trim() !== '') {
             dispatch(createTodoTC(inputRef.current.value)).then(()=>{
                 dispatch(setModalType('idle'))
             })
