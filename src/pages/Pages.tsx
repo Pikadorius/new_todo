@@ -9,11 +9,14 @@ import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import {fetchTodosTC} from 'features/todolists/todolistsSlice';
 import s from './Pages.module.scss'
 import burger from '../assets/icons/burger.svg'
+import burgerOrange from '../assets/icons/burgerOrange.svg'
 import SideBar from 'common/components/SideBar/SideBar';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 const Pages = () => {
     const [isShowed, setIsShowed] = useState(true)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+    const theme = useAppSelector(themeSelector)
     const dispatch = useAppDispatch()
 
 
@@ -29,7 +32,7 @@ const Pages = () => {
             {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed}/>
                 <button className={s.noBtn} style={{position: 'absolute', top: '18px', left: '20px', zIndex: '200'}}
                         onClick={() => setIsShowed(!isShowed)}>
-                    <img src={burger} alt={'show/hide'}/>
+                    <img src={theme === 'dark' ? burger : burgerOrange} alt={'show/hide'}/>
                 </button>
             </>}
             <div className={s.main}>
