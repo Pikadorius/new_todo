@@ -3,7 +3,9 @@ import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {setModalTask, setModalType} from 'app/appSlice';
 import s from './Task.module.scss'
 import changeIcon from 'assets/icons/change.svg';
+import changeIconBlack from 'assets/icons/changeBlack.svg'
 import deleteIcon from 'assets/icons/delete.svg';
+import deleteIconBlack from 'assets/icons/deleteBlack.svg';
 import {TaskType} from 'features/tasks/tasksTypes';
 import {themeSelector} from 'features/theme/themeSelectors';
 
@@ -56,9 +58,9 @@ const Task: FC<TaskType & Props> = (props) => {
              onDrop={dropHandler}
         >
             <div className={s.taskHeader}>
-                <button onClick={updateTask} className={s.noBtn}><img src={changeIcon} alt={'Change'}/></button>
+                <button onClick={updateTask} className={s.noBtn}><img src={theme==='dark' ? changeIcon : changeIconBlack} alt={'Change'}/></button>
                 <h3 className={s.taskTitle}>{props.title}</h3>
-                <button onClick={deleteHandler} className={s.noBtn}><img src={deleteIcon} alt={'Change'}/></button>
+                <button onClick={deleteHandler} className={s.noBtn}><img src={theme==='dark' ? deleteIcon : deleteIconBlack} alt={'Change'}/></button>
             </div>
 
             {props.description && <p className={s.description}>{props.description}</p>}
