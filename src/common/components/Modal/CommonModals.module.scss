@@ -6,8 +6,8 @@
     padding: 20px;
     height: 80px;
     width: 100%;
-    background-color: #282c34;
-    color: #61dafb;
+    background-color: $darkHeader;
+    color: $darkAccentText;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +32,7 @@
     padding: 20px;
     height: 80px;
     width: 100%;
-    background-color: #282c34;
+    background-color: $primaryDark;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -40,4 +40,14 @@
     font-weight: 600;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+}
+
+.light {
+    background-color: $lightHeader;
+    color: $lightAccentText;
+    .btn {
+        &:hover {
+            background-color: $lightAccentText;
+        }
+    }
 }

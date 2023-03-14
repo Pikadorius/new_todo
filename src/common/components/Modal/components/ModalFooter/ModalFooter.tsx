@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {useAppDispatch} from 'common/hooks/hooks';
+import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import { setModalType} from 'app/appSlice';
 import {deleteTodoTC} from 'features/todolists/todolistsSlice';
 import {deleteTaskTC} from 'features/tasks/tasksSlice';
@@ -9,6 +9,7 @@ import {useNavigate} from 'react-router-dom';
 import {PATH} from 'common/constants/PATH';
 import {TaskType} from 'features/tasks/tasksTypes';
 import {useTranslation} from 'react-i18next';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 type ModalType = {
     type: 'todo' | 'task'
@@ -22,6 +23,7 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     const navigate = useNavigate()
     const {t} = useTranslation()
     const id = document.location.hash.slice(7)
+    const theme = useAppSelector(themeSelector)
     const submit = () => {
         type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => {
             if (id===todo.id) {
@@ -39,7 +41,7 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
         dispatch(setModalType('idle'))
     }
     return (
-        <div className={common.modalFooter}>
+        <div className={theme==='dark' ? common.modalFooter : `${common.modalFooter} ${common.light}`}>
             <button className={common.btn} onClick={closeHandler}>{t("modal.cancel")}</button>
             <button className={common.btn} onClick={callback? callback : submit}>{title}</button>
         </div>
