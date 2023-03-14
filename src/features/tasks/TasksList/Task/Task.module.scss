@@ -4,7 +4,6 @@
 .container {
   background-color: $primaryDark;
   width: 80%;
-  border: 1px solid red;
   border-radius: 5px;
   padding: 20px;
   margin: 10px auto;
@@ -32,15 +31,15 @@
 
 }
 .active {
-  border: 1px solid red!important;
+  border: 2px solid #d38612!important;
 }
 
 .inProgress {
-  border: 1px solid $darkAccentText ;
+  border: 2px solid $darkAccentText ;
 }
 
 .completed {
-  border: 1px solid green!important;
+  border: 2px solid green!important;
 }
 
 .ligth {

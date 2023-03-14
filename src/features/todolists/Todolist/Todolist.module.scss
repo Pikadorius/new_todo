@@ -51,7 +51,7 @@
 
 
 .activeContainer {
-    border: 1px solid $darkAccentText;
+    border: 2px solid $darkAccentText;
     transition: 0.5s;
     transform: scale(1.1);
 }
@@ -72,7 +72,7 @@
 }
 
 .ligthActiveContainer {
-    border: 1px solid  $lightAccentText;
+    border: 2px solid  $lightAccentText;
     transition: 0.5s;
     transform: scale(1.1);
 }
