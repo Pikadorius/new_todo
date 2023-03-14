@@ -1,6 +1,9 @@
 import React from 'react'
 import {setTheme} from 'features/theme/themeSlice';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
+import s from './ThemeSelect.module.scss'
+import day from 'assets/icons/day.svg'
+import night from 'assets/icons/night.svg'
 
 const Theme = () => {
     const theme = useAppSelector((state) => state.theme)
@@ -17,7 +20,11 @@ const Theme = () => {
     }
 
     return (
-        <div onClick={handleChange} style={{cursor: "pointer"}}>{theme === 'dark' ? 'dark' : 'light'}</div>
+        <>
+            <img onClick={handleChange} className={s.theme}
+                 src={theme === 'dark' ? day : night}
+                 alt={theme === 'dark' ? "Make light" : "Make dark"}/>
+        </>
     )
 }
 
