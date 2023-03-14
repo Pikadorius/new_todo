@@ -15,7 +15,7 @@
   }
 
   .technologies {
-    padding-top:20px;
+    padding-top: 20px;
     margin: 0 auto;
     display: flex;
     width: 60%;
@@ -26,5 +26,11 @@
     h4 {
       padding-bottom: 10px;
     }
+  }
+}
+
+.light {
+  &:hover {
+    color: $lightAccentText
   }
 }
