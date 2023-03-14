@@ -10,11 +10,13 @@ import {isLoggedSelector} from 'features/auth/authSelectors';
 import eye from '../../../assets/icons/eye.svg'
 import eyeOff from '../../../assets/icons/eyeOff.svg'
 import {useTranslation} from 'react-i18next';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 const Login = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
     const {t} = useTranslation()
+    const theme = useAppSelector(themeSelector)
     const [showPass, setShowPass] = useState(false)
     const passwordVisibility = () => {
         setShowPass(!showPass)
@@ -42,7 +44,7 @@ const Login = () => {
     }
 
     return (
-        <div className={s.wrapper}>
+        <div className={theme==='dark' ? s.wrapper : `${s.wrapper} ${s.ligth}`}>
             <label>
                 <p>{t("login.register")}
                     <a className={s.link}
@@ -73,7 +75,7 @@ const Login = () => {
                     <input type={'checkbox'} {...register("rememberMe")}/> {t("login.remember")}
                 </div>
                 <div className={s.field}>
-                    <button type="reset" onClick={onReset}>{t("login.reset")}</button>
+                    <button className={s.btn} type="reset" onClick={onReset}>{t("login.reset")}</button>
                 </div>
                 <button type="submit" className={s.btn}>
                     {t("login.send")}
