@@ -9,6 +9,7 @@ import {isLoggedSelector, loggedUserSelector} from 'features/auth/authSelectors'
 import {useTranslation} from 'react-i18next';
 import Tooltip from 'common/components/Tooltip/Tooltip';
 import LanguageSelect from "common/components/LanguageSelect/LanguageSelect";
+import Theme from 'common/components/ThemeSelect/ThemeSelect';
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
@@ -60,7 +61,8 @@ const Header = () => {
                                                                                               alt={'add'}/></button>}
             </h2>
             <div className={s.logoutField}>
-                    <LanguageSelect/>
+                <Theme/>
+                <LanguageSelect/>
                 {userName}
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
