@@ -1,5 +1,22 @@
 $hoverColor: rgba(97, 218, 251, 0.6);
 
+$darkHeader: #282c34;
+$lightHeader: #45494e;
+
+$darkAccentText: #61dafb;
+$lightAccentText: #e37e13;
+
+
+$darkMainText: white;
+$lightMainText: #383838;
+
+$primaryDark: #363a45;
+$primaryLight: #9b9b9b;
+
+$secondaryDark: #444b58;
+$secondaryLight: #ffffff;
+
+
 @mixin error {
   .error {
     color: red
@@ -32,9 +49,9 @@ $hoverColor: rgba(97, 218, 251, 0.6);
     height: 30px;
 
     &:hover {
-      background-color: $hoverColor;
-      color: white;
+      background-color: $darkAccentText;
       transition: 0.5s;
+      color: white;
     }
   }
   .logout {
@@ -47,15 +64,15 @@ $hoverColor: rgba(97, 218, 251, 0.6);
 
 @mixin a {
   .link {
-    color: white;
+    color: inherit;
 
     &:hover {
-      color: #61dafb;
+      color: $darkAccentText;
     }
   }
 
   .navlink {
-    color: white;
+    color: inherit;
     text-decoration: none;
     transition: 0.5s;
     transform: scale(1);
@@ -70,7 +87,7 @@ $hoverColor: rgba(97, 218, 251, 0.6);
     }
   }
   .active {
-    color: #61dafb;
+    color: $darkAccentText;
     transform: scale(1.2);
     transition: 0.5s;
   }
