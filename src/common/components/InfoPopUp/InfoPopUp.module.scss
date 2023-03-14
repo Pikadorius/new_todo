@@ -9,8 +9,8 @@
   padding: 10px;
   left: 40%;
   width: 20%;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: white;
+  background-color: $darkHeader;
+  color: $darkAccentText;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,4 +30,9 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.light {
+  background-color: $lightHeader;
+  color: $lightAccentText
 }

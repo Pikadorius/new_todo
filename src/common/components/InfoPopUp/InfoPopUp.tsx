@@ -5,10 +5,12 @@ import Portal from 'common/components/Portal/Portal';
 import {setAppError} from 'app/appSlice';
 import closeIcon from 'assets/icons/close.svg';
 import {appErrorSelector} from 'app/appSelectors';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 const InfoPopUp = () => {
     const appInfo = useAppSelector(appErrorSelector)
     const dispatch = useAppDispatch()
+    const theme = useAppSelector(themeSelector)
 
     const closeHandler = () => {
         dispatch(setAppError(''))
@@ -23,7 +25,7 @@ const InfoPopUp = () => {
 
     return (
         <Portal>
-            <div className={s.container}>
+            <div className={theme === 'dark' ? s.container : `${s.container} ${s.light}`}>
                 <div className={s.infoField}>{appInfo}</div>
                 <div className={s.bntField}>
                     <button onClick={closeHandler} className={s.noBtn}><img src={closeIcon} alt={'Close'}/></button>
