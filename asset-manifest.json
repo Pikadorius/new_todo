@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/new_todo/static/css/main.41dff0df.css",
-    "main.js": "/new_todo/static/js/main.b4b68f7f.js",
+    "main.css": "/new_todo/static/css/main.c1a25983.css",
+    "main.js": "/new_todo/static/js/main.9bbcaa89.js",
     "static/js/787.03e439a5.chunk.js": "/new_todo/static/js/787.03e439a5.chunk.js",
     "static/media/day.svg": "/new_todo/static/media/day.648475bcf951d0089c820989eb52ad44.svg",
     "static/media/eyeOff.svg": "/new_todo/static/media/eyeOff.a110926a17b0d98e3ee062f4be9d0b22.svg",
@@ -14,19 +14,22 @@
     "static/media/change.svg": "/new_todo/static/media/change.16157b825a639a81a2751a7063d4f27a.svg",
     "static/media/night.svg": "/new_todo/static/media/night.58e63c5609b2eb1af7e514881542878f.svg",
     "static/media/ulImg.svg": "/new_todo/static/media/ulImg.a5c9aa0b28ed8a20aa18.svg",
+    "static/media/addMain.svg": "/new_todo/static/media/addMain.c56605f3ede5ed1f35a89420909ab450.svg",
+    "static/media/addOrange.svg": "/new_todo/static/media/addOrange.eb1dba0d0ffc5f944b995a0eaeac9d21.svg",
     "static/media/addBlack.svg": "/new_todo/static/media/addBlack.cd18920fe4d1c3a1230d733adfef2509.svg",
     "static/media/close.svg": "/new_todo/static/media/close.22f4d75d5dc9850d3e32adf362adcbc5.svg",
-    "static/media/burger.svg": "/new_todo/static/media/burger.bbeabad6e22fa804369d686aba1e7ea2.svg",
+    "static/media/burger.svg": "/new_todo/static/media/burger.df7ce7a6a700cdcde8da1122f63dea0d.svg",
+    "static/media/burgerOrange.svg": "/new_todo/static/media/burgerOrange.d87875734e585efc321984f7e83d6269.svg",
     "static/media/add.svg": "/new_todo/static/media/add.f9c5a77d4ba08cace35a2b33b76cefa7.svg",
     "static/media/getFetch.cjs": "/new_todo/static/media/getFetch.40f37ddea2378391108f.cjs",
     "static/media/goBackBlack.svg": "/new_todo/static/media/goBackBlack.54dd324d522c5cf506da582942481f98.svg",
     "static/media/goBack.svg": "/new_todo/static/media/goBack.c910d2b9d16e890e7784e0fd3bb2d59f.svg",
-    "main.41dff0df.css.map": "/new_todo/static/css/main.41dff0df.css.map",
-    "main.b4b68f7f.js.map": "/new_todo/static/js/main.b4b68f7f.js.map",
+    "main.c1a25983.css.map": "/new_todo/static/css/main.c1a25983.css.map",
+    "main.9bbcaa89.js.map": "/new_todo/static/js/main.9bbcaa89.js.map",
     "787.03e439a5.chunk.js.map": "/new_todo/static/js/787.03e439a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.41dff0df.css",
-    "static/js/main.b4b68f7f.js"
+    "static/css/main.c1a25983.css",
+    "static/js/main.9bbcaa89.js"
   ]
 }
