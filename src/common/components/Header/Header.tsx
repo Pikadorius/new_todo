@@ -4,19 +4,24 @@ import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {logoutTC} from 'features/auth/authSlice';
 import {setModalType} from 'app/appSlice';
 import addIcon from 'assets/icons/add.svg'
+import addIconBlack from 'assets/icons/addBlack.svg'
 import {useLocation} from 'react-router-dom';
 import {isLoggedSelector, loggedUserSelector} from 'features/auth/authSelectors';
 import {useTranslation} from 'react-i18next';
 import Tooltip from 'common/components/Tooltip/Tooltip';
 import LanguageSelect from "common/components/LanguageSelect/LanguageSelect";
 import Theme from 'common/components/ThemeSelect/ThemeSelect';
+import {themeReducer} from 'features/theme/themeSlice';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 const Header = () => {
     const id = useLocation().pathname.slice(6)
     const todo = useAppSelector(state => state.todolists.find(t => t.id === id))
     const isLoggedIn = useAppSelector(isLoggedSelector)
-    const {t} = useTranslation()
     const userName = useAppSelector(loggedUserSelector).login
+    const theme = useAppSelector(themeSelector)
+
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
 
     const refSetTimeout = useRef<NodeJS.Timeout>();
@@ -50,7 +55,7 @@ const Header = () => {
     }
 
     return (
-        <div className={s.container}>
+        <div className={theme==='dark' ? s.container : `${s.container} ${s.light}`}>
             <h2 className={s.title}>
                 <div className={s.page} onMouseEnter={onMouseEnterHandler}
                      onMouseLeave={onMouseLeaveHandler}>{page}</div>
