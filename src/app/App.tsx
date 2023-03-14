@@ -1,5 +1,5 @@
 import React, { useLayoutEffect} from 'react';
-import 'app/App.scss';
+import s from './App.module.scss'
 import Pages from "pages/Pages";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import Loader from "common/components/Loader/Loader";
@@ -8,9 +8,11 @@ import Header from "common/components/Header/Header";
 import ModalWrapper from 'common/components/Modal/ModalWrapper';
 import InfoPopUp from 'common/components/InfoPopUp/InfoPopUp';
 import {appErrorSelector, appStatusSelector, isInitializedSelector, modalTypeSelector} from 'app/appSelectors';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 function App() {
 
+    const theme = useAppSelector(themeSelector)
     const isInitialized = useAppSelector(isInitializedSelector)
     const isAppLoading = useAppSelector(appStatusSelector) === 'loading'
     const isModalOpen = useAppSelector(modalTypeSelector) !== 'idle'
@@ -27,7 +29,7 @@ function App() {
     }
 
     return (
-            <div className="App">
+            <div className={theme==='dark' ? s.App : `${s.App} ${s.light}`}>
                 <Header/>
                 <Pages/>
                 {isAppLoading && <Loader/>}

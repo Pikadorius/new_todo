@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "src/common/styles/mixins";
 
 .App {
   font-family: 'Poppins', sans-serif;
   width: 100vw;
   height: 100vh;
-  background-color: #444b58;
-  color: white;
+  background-color: $secondaryDark;
+  color: $darkMainText;
   z-index: -2;
-  -webkit-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.76);
-  -moz-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.76);
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.76);
+}
+
+.light {
+  color: $lightMainText;
+  background-color: $secondaryLight;
 }
 
 h1, h2, h3, h4, h5, ul, ol, p {
