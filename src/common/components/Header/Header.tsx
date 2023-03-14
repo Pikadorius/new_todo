@@ -3,15 +3,14 @@ import s from 'common/components/Header/Header.module.scss'
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {logoutTC} from 'features/auth/authSlice';
 import {setModalType} from 'app/appSlice';
-import addIcon from 'assets/icons/add.svg'
-import addIconBlack from 'assets/icons/addBlack.svg'
+import addMain from 'assets/icons/addMain.svg'
+import addOrange from 'assets/icons/addOrange.svg'
 import {useLocation} from 'react-router-dom';
 import {isLoggedSelector, loggedUserSelector} from 'features/auth/authSelectors';
 import {useTranslation} from 'react-i18next';
 import Tooltip from 'common/components/Tooltip/Tooltip';
 import LanguageSelect from "common/components/LanguageSelect/LanguageSelect";
 import Theme from 'common/components/ThemeSelect/ThemeSelect';
-import {themeReducer} from 'features/theme/themeSlice';
 import {themeSelector} from 'features/theme/themeSelectors';
 
 const Header = () => {
@@ -62,7 +61,7 @@ const Header = () => {
                 {page !== 'Todolist App' && tooltip && <Tooltip text={page}><></>
                 </Tooltip>}
                 {(page !== 'Todolist App' && page !== 'Следи за делами') && isLoggedIn &&
-                    <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={addIcon}
+                    <button className={s.noBtn} title={'Add new task'} onClick={addTask}><img src={theme==='dark' ? addMain : addOrange}
                                                                                               alt={'add'}/></button>}
             </h2>
             <div className={s.logoutField}>
