@@ -8,12 +8,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid $darkMainText;
     border-radius: 5px;
     margin: 20px auto;
     padding: 10px;
     justify-content: center;
-    background-color: #444b58;
+    background-color: $secondaryDark;
     -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
@@ -21,7 +21,6 @@
 
     .todoHeader {
         width: 100%;
-        color: white;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -39,7 +38,7 @@
 
     .info {
         padding-top: 10px;
-        color: #61dafb;
+        color: $darkAccentText;
         font-size: 12px;
         text-align: center;
     }
@@ -52,7 +51,28 @@
 
 
 .activeContainer {
-    border: 1px solid #61dafb;
+    border: 1px solid $darkAccentText;
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
+
+.light {
+    background-color: $secondaryLight;
+    border-color: $lightMainText;
+    .navlink {
+        color: $lightMainText;
+    }
+    .active {
+        color: $lightAccentText;
+    }
+    .info {
+        color: $lightAccentText
+    }
+}
+
+.ligthActiveContainer {
+    border: 1px solid  $lightAccentText;
     transition: 0.5s;
     transform: scale(1.1);
 }
