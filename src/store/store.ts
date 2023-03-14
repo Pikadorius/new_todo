@@ -4,12 +4,14 @@ import {tasksReducer} from "features/tasks/tasksSlice";
 import {appReducer} from "app/appSlice";
 import {authReducer} from "features/auth/authSlice";
 import {loadState, saveState} from 'common/utils/localStorage';
+import {themeReducer} from 'features/theme/themeSlice';
 
 const reducer = combineReducers({
     app: appReducer,
     auth: authReducer,
     todolists: todolistsReducer,
     tasks: tasksReducer,
+    theme: themeReducer
 })
 
 export const store = configureStore({
