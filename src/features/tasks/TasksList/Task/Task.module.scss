@@ -2,9 +2,9 @@
 @include btn;
 
 .container {
-  background-color: #363a45;
+  background-color: $primaryDark;
   width: 80%;
-  border: 1px solid #61dafb;
+  border: 1px solid red;
   border-radius: 5px;
   padding: 20px;
   margin: 10px auto;
@@ -31,11 +31,19 @@
   }
 
 }
+.active {
+  border: 1px solid red!important;
+}
 
 .inProgress {
-  border: 1px solid #fb9f33;
+  border: 1px solid $darkAccentText ;
 }
 
 .completed {
-  border: 1px solid #3b8d09;
+  border: 1px solid green!important;
+}
+
+.ligth {
+  background-color: $primaryLight!important;
+  border-color: $lightAccentText;
 }

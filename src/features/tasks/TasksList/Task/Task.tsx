@@ -1,20 +1,22 @@
 import React, {DragEvent, FC} from 'react';
-import {useAppDispatch} from "common/hooks/hooks";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {setModalTask, setModalType} from 'app/appSlice';
 import s from './Task.module.scss'
 import changeIcon from 'assets/icons/change.svg';
 import deleteIcon from 'assets/icons/delete.svg';
 import {TaskType} from 'features/tasks/tasksTypes';
+import {themeSelector} from 'features/theme/themeSelectors';
 
 type Props = {
     taskStatus: 'active' | 'inProgress' | 'completed'
 }
 const Task: FC<TaskType & Props> = (props) => {
     const dispatch = useAppDispatch()
+    const theme = useAppSelector(themeSelector)
 
     const taskClass =
         props.taskStatus === 'inProgress' ?
-            `${s.inProgress} ${s.container}` : props.taskStatus === 'completed' ? `${s.container} ${s.completed}` : s.container
+            `${s.inProgress} ${s.container}` : props.taskStatus === 'completed' ? `${s.container} ${s.completed}` : `${s.container} ${s.active}`
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTask'))
@@ -45,7 +47,7 @@ const Task: FC<TaskType & Props> = (props) => {
     }
 
     return (
-        <div className={taskClass}
+        <div className={theme==='dark'? taskClass : `${taskClass} ${s.ligth}`}
              draggable={true}
              onDragStart={dragStartHandler}
              onDragLeave={dragLeaveHandler}
