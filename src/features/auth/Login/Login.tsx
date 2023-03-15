@@ -84,7 +84,7 @@ const Login = () => {
                 </div>
                 <div className={s.field}>
                     <span className={s.fieldName}>{t("login.password")}</span>
-                    <input type={showPass ? 'text' : 'password'} {...register("password", {required: true})} />
+                    <input type={showPass ? 'text' : 'password'} {...register("password", {required: true})} className={s.passwordInput}/>
 
                     <i onClick={passwordVisibility}><img src={showPass ? eyeOff : eye} alt={'show/hide'}/></i>
                     {errors.password && <span className={s.errorField}>{t("login.required")}</span>}

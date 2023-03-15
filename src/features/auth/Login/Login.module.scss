@@ -43,11 +43,15 @@
   padding: 10px;
   position: relative;
 
+  .passwordInput {
+    position: relative;
+  }
+
   i {
     scale: 0.7;
     position: absolute;
-    top: 18%;
-    right: 3%;
+    top: 45%;
+    right: 5%;
 
     &:hover {
       opacity: 0.5;
@@ -58,7 +62,7 @@
 }
 
 .fieldName {
-  display: inline-block;
+  display: block;
   width: 100px;
 }
 
