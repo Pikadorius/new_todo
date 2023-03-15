@@ -5,7 +5,8 @@
 .container {
 }
 .main {
-  height: 100vh;
+  padding-top: 60px;
+  height: calc(100vh - 60px);
   position: fixed;
   width: 100%;
   overflow-x: auto;
