@@ -9,13 +9,17 @@
   background-color: $darkHeader;
   color: $darkAccentText;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+
+  .plug {
+    width: 35%;
+  }
 
   .title {
     display: flex;
     justify-content: flex-end;
-    max-width: 40%;
+    max-width: 30%;
 
     .page {
       white-space: nowrap; /* Текст не переносится */
@@ -45,9 +49,13 @@
 .logoutField {
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 50px;
+  justify-content: flex-end;
+  margin-left: 2%;
+  width: 30%;
 
+  .userName {
+
+  }
 
   .logout {
     margin-left: 20px;
@@ -55,5 +63,24 @@
 }
 
 
+@media screen and (max-width: 850px) {
+  .noBtn {
+    padding-left: 2px ;
+  }
+
+  .logoutField {
+    transform: scale(0.8);
+    .logout {
+      margin-left: 5px;
+    }
+  }
+  .title {
+    transform: scale(0.8);
+  }
+
+  .userName {
+    display: none;
+  }
+}
 
 

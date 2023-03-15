@@ -8,3 +8,9 @@
     transform: scale(1.3);
   }
 }
+
+@media screen and (max-width: 600px) {
+  .theme {
+    margin-right: 5px;
+  }
+}

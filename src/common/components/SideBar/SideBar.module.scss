@@ -36,3 +36,9 @@
 .light {
   background-color: $primaryLight;
 }
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: 100%
+  }
+}

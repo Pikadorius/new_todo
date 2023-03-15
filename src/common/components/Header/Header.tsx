@@ -55,6 +55,7 @@ const Header = () => {
 
     return (
         <div className={theme==='dark' ? s.container : `${s.container} ${s.light}`}>
+            <div className={s.plug}></div>
             <h2 className={s.title}>
                 <div className={s.page} onMouseEnter={onMouseEnterHandler}
                      onMouseLeave={onMouseLeaveHandler}>{page}</div>
@@ -67,7 +68,7 @@ const Header = () => {
             <div className={s.logoutField}>
                 <Theme/>
                 <LanguageSelect/>
-                {userName}
+                <div className={s.userName}>{userName}</div>
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
             </div>

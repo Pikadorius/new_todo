@@ -72,6 +72,12 @@
   transform: translate(-10px, 0);
 }
 
-.light {
 
+@media screen and (max-width: 600px) {
+  .tasks {
+    flex-direction: column;
+  }
+  .activeTasks, .inProgressTasks, .completedTasks {
+    width: 100%!important;
+  }
 }
