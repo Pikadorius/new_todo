@@ -58,20 +58,17 @@
   }
 
   .logout {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 }
 
 
 @media screen and (max-width: 850px) {
-  .noBtn {
-    padding-left: 10px ;
-  }
 
   .logoutField {
     transform: scale(0.8);
     .logout {
-      margin-left: 10px;
+      //margin-left: 10px;
     }
   }
   .title {
