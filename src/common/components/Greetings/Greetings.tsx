@@ -31,6 +31,7 @@ const Greetings = () => {
                         <li>{t('greetings.reusable')}</li>
                         <li>{t('greetings.lc')}</li>
                         <li>{t('greetings.custom')}</li>
+                        <li>{t('greetings.adaptive')}</li>
                     </ul>
                 </div>
 
