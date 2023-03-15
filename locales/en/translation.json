@@ -28,6 +28,7 @@
     "fill_todo" : "You can create task or choose another todolist"
   },
   "login": {
+    "iphone" :  "It may not work on iPhones, click here to get info about solution.",
     "register": "To log in get registered ",
     "link": "here,",
     "info": "or use common test account credentials:",
