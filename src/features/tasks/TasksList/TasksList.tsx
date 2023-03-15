@@ -60,9 +60,9 @@ const TasksList = () => {
             </button>
             {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
                 <div className={s.buttonGroup}>
-                    <button className={showTasks==='active' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setActive}>{t('tasks.active')}</button>
-                    <button  className={showTasks==='inProgress' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setInProgress}>{t('tasks.in_progress')}</button>
-                    <button  className={showTasks==='completed' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setCompleted}>{t('tasks.completed')}</button>
+                    <button className={showTasks==='active' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setActive}>{t('tasks.active')}: {active.length}</button>
+                    <button  className={showTasks==='inProgress' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setInProgress}>{t('tasks.in_progress')}: {inProgress.length}</button>
+                    <button  className={showTasks==='completed' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setCompleted}>{t('tasks.completed')}: {completed.length}</button>
                 </div>
                 {showTasks!=='inProgress' && showTasks!=='completed' && <><div className={s.activeTasks}>
                     <h3 className={s.activeTitle}>{t("tasks.active")}</h3>
