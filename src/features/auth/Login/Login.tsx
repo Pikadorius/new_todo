@@ -45,7 +45,7 @@ const Login = () => {
 
     return (
         <div className={theme==='dark' ? s.wrapper : `${s.wrapper} ${s.ligth}`}>
-            <label>
+            <div className={s.info}>
                 <p>{t("login.register")}
                     <a className={s.link}
                        href={'https://social-network.samuraijs.com/'}
@@ -57,7 +57,7 @@ const Login = () => {
                 <p>{t("login.info")}</p>
                 <p><b>{t("login.default_email")}:</b> <span className={s.default}>free@samuraijs.com</span></p>
                 <p style={{marginBottom: '10px'}}><b>{t("login.default_pass")}:</b> <span className={s.default}>free</span></p>
-            </label>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <div className={s.field}>
                     <span className={s.fieldName}>{t("login.login")}</span>
