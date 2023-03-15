@@ -3,6 +3,7 @@
 
 .App {
   font-family: 'Poppins', sans-serif;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: $secondaryDark;
@@ -18,4 +19,8 @@
 h1, h2, h3, h4, h5, ul, ol, p {
   padding: 0;
   margin: 0;
+}
+
+input, select, option  {
+  font-size: 16px;
 }
