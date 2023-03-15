@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import RequireAuth from "pages/RequireAuth";
@@ -12,12 +12,14 @@ import burger from '../assets/icons/burger.svg'
 import burgerOrange from '../assets/icons/burgerOrange.svg'
 import SideBar from 'common/components/SideBar/SideBar';
 import {themeSelector} from 'features/theme/themeSelectors';
+import {useWindowHeight} from 'common/hooks/useWindowHeight';
 
 const Pages = () => {
     const [isShowed, setIsShowed] = useState(true)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const theme = useAppSelector(themeSelector)
     const dispatch = useAppDispatch()
+    const height = useWindowHeight()
 
 
     const todolists = useAppSelector(state => state.todolists)
@@ -35,7 +37,7 @@ const Pages = () => {
                     <img src={theme === 'dark' ? burger : burgerOrange} alt={'show/hide'}/>
                 </button>
             </>}
-            <div className={s.main}>
+            <div className={s.main} style={{height}}>
                 <Routes>
                     <Route path={PATH.LOGIN} element={<Login/>}/>
                     <Route element={<RequireAuth/>}>

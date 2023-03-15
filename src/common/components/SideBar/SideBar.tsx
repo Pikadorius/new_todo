@@ -8,8 +8,9 @@ import addBlack from 'assets/icons/addBlack.svg';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
+import {useWindowHeight} from 'common/hooks/useWindowHeight';
 
-const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean, setShowed: (value: boolean)=>void }) => {
+const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean, setShowed: (value: boolean) => void }) => {
     const dispatch = useAppDispatch()
     const theme = useAppSelector(themeSelector)
 
@@ -17,14 +18,16 @@ const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean, se
     const addTodolist = () => {
         dispatch(setModalType('createTodo'))
     }
+    const height = useWindowHeight()
 
-    const sidebar = theme==='dark'? s.sidebar : `${s.sidebar} ${s.light}`
+    const sidebar = theme === 'dark' ? s.sidebar : `${s.sidebar} ${s.light}`
 
     return (
-        <div className={props.isShowed ? sidebar : `${sidebar} ${s.closed}`}>
+        <div style={{height}} className={props.isShowed ? sidebar : `${sidebar} ${s.closed}`}>
             <h2 className={s.sidebarTitle}>
                 <div>{t('todolists.title')}</div>
-                <button className={s.noBtn} onClick={addTodolist}><img src={theme==='dark' ? addIcon : addBlack} alt={'add'}/></button>
+                <button className={s.noBtn} onClick={addTodolist}><img src={theme === 'dark' ? addIcon : addBlack}
+                                                                       alt={'add'}/></button>
             </h2>
             {props.todolists.map(t => {
                 return <Todolist key={t.id} {...t} setSidebar={props.setShowed}/>
