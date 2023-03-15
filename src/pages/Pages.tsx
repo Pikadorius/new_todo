@@ -29,7 +29,7 @@ const Pages = () => {
 
     return (
         <div className={s.container}>
-            {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed}/>
+            {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed} setShowed={setIsShowed}/>
                 <button className={s.noBtn} style={{position: 'absolute', top: '18px', left: '20px', zIndex: '200'}}
                         onClick={() => setIsShowed(!isShowed)}>
                     <img src={theme === 'dark' ? burger : burgerOrange} alt={'show/hide'}/>

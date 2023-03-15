@@ -8,10 +8,8 @@ import addBlack from 'assets/icons/addBlack.svg';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
-import changeIcon from 'assets/icons/change.svg';
-import changeBlack from 'assets/icons/changeBlack.svg';
 
-const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean }) => {
+const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean, setShowed: (value: boolean)=>void }) => {
     const dispatch = useAppDispatch()
     const theme = useAppSelector(themeSelector)
 
@@ -29,7 +27,7 @@ const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean }) 
                 <button className={s.noBtn} onClick={addTodolist}><img src={theme==='dark' ? addIcon : addBlack} alt={'add'}/></button>
             </h2>
             {props.todolists.map(t => {
-                return <Todolist key={t.id} {...t}/>
+                return <Todolist key={t.id} {...t} setSidebar={props.setShowed}/>
             })}
         </div>
     );

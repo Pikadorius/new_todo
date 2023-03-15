@@ -13,8 +13,13 @@ import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
 
 
-const Todolist: FC<TodolistDomainType> = (props) => {
-    const {id, title, tasksCount} = props
+type TodoType = TodolistDomainType &
+{
+    setSidebar: (value: boolean) => void
+}
+
+const Todolist: FC<TodoType> = (props) => {
+    const {id, title, tasksCount,tasks,order,addedDate} = props
     const theme = useAppSelector(themeSelector)
 
     const {t} = useTranslation()
@@ -36,16 +41,17 @@ const Todolist: FC<TodolistDomainType> = (props) => {
 
     const deleteHandler = () => {
         dispatch(setModalType('deleteTodo'))
-        dispatch(setModalTodo(props))
+        dispatch(setModalTodo({title, id, tasksCount,addedDate,tasks,order}))
     }
 
     const updateHandler = () => {
         dispatch(setModalType('updateTodo'))
-        dispatch(setModalTodo(props))
+        dispatch(setModalTodo({title, id, tasksCount,addedDate,tasks,order}))
     }
 
     const chooseTodo = () => {
-        dispatch(setModalTodo(props))
+        dispatch(setModalTodo({title, id, tasksCount,addedDate,tasks,order}))
+        props.setSidebar(false)
     }
 
     const activeHandler = (props: {isActive: boolean}) => {

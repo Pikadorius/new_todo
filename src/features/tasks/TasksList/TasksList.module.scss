@@ -18,6 +18,10 @@
     display: flex;
     column-gap: 20px;
 
+    .buttonGroup {
+      display: none;
+    }
+
     .activeTitle {
       color: #d38612;
     }
@@ -72,12 +76,49 @@
   transform: translate(-10px, 0);
 }
 
-
-@media screen and (max-width: 600px) {
-  .tasks {
-    flex-direction: column;
+.light {
+  .activeBtn {
+    background-color: $lightAccentText!important;
   }
+  .btn {
+    &:hover {
+      background-color: $lightAccentText!important;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
   .activeTasks, .inProgressTasks, .completedTasks {
     width: 100%!important;
   }
+  .container {
+    width: 90%;
+    .tasks {
+      flex-direction: column;
+
+      .activeTasks, .inProgressTasks, .completedTasks {
+        width: 100%!important;
+      }
+      .buttonGroup {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        .btn {
+          width: 25%;
+          margin-bottom: 5px;
+        }
+        .activeBtn {
+          background-color: $darkAccentText;
+          color: white;
+        }
+      }
+    }
+    .backBnt {
+      margin-left: -15px;
+    }
+  }
+
 }
