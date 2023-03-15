@@ -11,6 +11,7 @@ import deleteIcon from 'assets/icons/delete.svg'
 import deleteBlack from 'assets/icons/deleteBlack.svg'
 import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
+import {useWindowSize} from "common/hooks/useWindowSize";
 
 
 type TodoType = TodolistDomainType &
@@ -21,6 +22,7 @@ type TodoType = TodolistDomainType &
 const Todolist: FC<TodoType> = (props) => {
     const {id, title, tasksCount,tasks,order,addedDate} = props
     const theme = useAppSelector(themeSelector)
+    const width = useWindowSize()
 
     const {t} = useTranslation()
 
@@ -51,7 +53,7 @@ const Todolist: FC<TodoType> = (props) => {
 
     const chooseTodo = () => {
         dispatch(setModalTodo({title, id, tasksCount,addedDate,tasks,order}))
-        props.setSidebar(false)
+        width<700 && props.setSidebar(false)
     }
 
     const activeHandler = (props: {isActive: boolean}) => {
