@@ -21,9 +21,10 @@
     display: flex;
     justify-content: flex-end;
     max-width: 30%;
-    cursor: pointer;
 
     .page {
+      position: relative;
+      cursor: pointer;
       white-space: nowrap; /* Текст не переносится */
       overflow: hidden; /* Обрезаем всё за пределами блока */
       text-overflow: ellipsis;

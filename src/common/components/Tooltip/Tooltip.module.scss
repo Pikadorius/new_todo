@@ -6,9 +6,9 @@
   .tooltip {
     font-size: 18px;
     position: absolute;
-    top: 60px;
-    right: calc((100% - 300px)/2);
-    width: 200px;
+    top: 30px;
+    right: -125px;
+    width: 250px;
     padding: 10px;
     margin-left: 10px;
     justify-content: center;
@@ -20,5 +20,6 @@
     word-break: break-word;
     font-weight: 700 ;
     pointer-events: none;
+    z-index: 3000;
   }
 }
