@@ -103,12 +103,16 @@
         margin: 0 auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         width: 100%;
         .btn {
           width: 30%;
+          height: auto;
+          padding: 2px;
+          word-break: break-word;
           margin-bottom: 5px;
+          font-size: 12px;
         }
         .activeBtn {
           background-color: $darkAccentText;
