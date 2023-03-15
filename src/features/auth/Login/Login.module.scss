@@ -10,6 +10,13 @@
   align-items: center;
   justify-content: center;
 
+  .iphone {
+    color: $darkAccentText;
+    text-align: center;
+    margin-bottom: 2%;
+    font-weight: 500;
+  }
+
   .info {
     width: 20%;
     align-self: center;
@@ -74,6 +81,9 @@
 }
 
 .ligth {
+  .iphone {
+    color: $lightAccentText;
+  }
   .btn {
     &:hover {
       background-color: $lightAccentText;

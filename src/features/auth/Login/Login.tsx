@@ -1,4 +1,4 @@
-import React, {useState,KeyboardEvent} from 'react';
+import React, {useState, KeyboardEvent, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
@@ -11,6 +11,7 @@ import eye from '../../../assets/icons/eye.svg'
 import eyeOff from '../../../assets/icons/eyeOff.svg'
 import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
+import IphoneHack from 'common/components/IphoneHack/IphoneHack';
 
 const Login = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
@@ -18,6 +19,21 @@ const Login = () => {
     const {t} = useTranslation()
     const theme = useAppSelector(themeSelector)
     const [showPass, setShowPass] = useState(false)
+
+    const [tooltip, showTooltip] = useState(false)
+    const refSetTimeout = useRef<NodeJS.Timeout>();
+
+    const onMouseEnterHandler = () => {
+        refSetTimeout.current = setTimeout(() => {
+            showTooltip(true);
+        }, 500);
+    };
+
+    const onMouseLeaveHandler = () => {
+        clearTimeout(refSetTimeout.current);
+        showTooltip(false);
+    };
+
     const passwordVisibility = () => {
         setShowPass(!showPass)
     }
@@ -46,6 +62,8 @@ const Login = () => {
     return (
         <div className={theme==='dark' ? s.wrapper : `${s.wrapper} ${s.ligth}`}>
             <div className={s.info}>
+                <div onMouseLeave={onMouseLeaveHandler} onMouseEnter={onMouseEnterHandler} className={s.iphone}>{t("login.iphone")}</div>
+                {tooltip && <IphoneHack/>}
                 <p>{t("login.register")}
                     <a className={s.link}
                        href={'https://social-network.samuraijs.com/'}
