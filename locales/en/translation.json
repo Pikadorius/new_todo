@@ -17,7 +17,8 @@
     "reusable": "Reusable components",
     "lc": "Local storage",
     "custom": "No libraries of React UI components \n (only custom components)",
-    "code": "Watch code"
+    "code": "Watch code",
+    "adaptive": "Adaptive design and code for desktop/mobile"
   },
   "tasks": {
     "main": "To main",
