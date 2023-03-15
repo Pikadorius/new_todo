@@ -10,7 +10,7 @@ type PropsType = {
 const ToolTip: React.FC<PropsType> = ({text,children}) => {
     return (
         <div className={s.container}>
-            {children}
+            {/*{children}*/}
             <div className={s.tooltip}>
                 {text}
             </div>

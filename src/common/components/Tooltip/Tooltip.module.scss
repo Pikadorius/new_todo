@@ -1,15 +1,16 @@
 .container {
   display: flex;
-  position: absolute;
-  z-index: 500;
+  position: relative;
+  z-index: 1000;
 
   .tooltip {
     font-size: 18px;
     position: absolute;
-    width: 180px;
+    top: 60px;
+    right: calc((100% - 300px)/2);
+    width: 200px;
     padding: 10px;
     margin-left: 10px;
-    //margin-left: calc(100%);
     justify-content: center;
     color: #FFFFFF;
     background-color: #363a45;
