@@ -8,7 +8,6 @@ import addBlack from 'assets/icons/addBlack.svg';
 import {TodolistDomainType} from 'features/todolists/todolistsTypes';
 import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
-import {useWindowHeight} from 'common/hooks/useWindowHeight';
 
 const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean, setShowed: (value: boolean) => void }) => {
     const dispatch = useAppDispatch()
@@ -18,7 +17,8 @@ const SideBar = (props: { todolists: TodolistDomainType[], isShowed: boolean, se
     const addTodolist = () => {
         dispatch(setModalType('createTodo'))
     }
-    const height = useWindowHeight()
+
+    const height = window.innerHeight-60
 
     const sidebar = theme === 'dark' ? s.sidebar : `${s.sidebar} ${s.light}`
 
