@@ -7,16 +7,16 @@
   width: 100vw;
   height: 100vh;
   background-color: $secondaryDark;
-  background-image: url("../assets/pics/wood.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  //background-image: url("../assets/pics/wood.jpg");
+  //background-position: center;
+  //background-repeat: no-repeat;
+  //background-size: cover;
   color: $darkMainText;
   z-index: -2;}
 
 .light {
   background-color: $secondaryLight;
-  background-image: url("../assets/pics/white_wood.jpg");
+  //background-image: url("../assets/pics/white_wood.jpg");
   color: $lightMainText;
 }
 

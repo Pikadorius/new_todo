@@ -9,10 +9,9 @@
   z-index: 5;
   width: 100%;
   height: 60px;
-  //background-color: $darkHeader;
-  background-color: transparent;
-  backdrop-filter: blur(5px);
-  //border-bottom: 1px solid $darkAccentText;
+  background-color: $darkHeader;
+  //background-color: transparent;
+  //backdrop-filter: blur(5px);
   color: $darkAccentText;
   display: flex;
   justify-content: space-between;
@@ -44,7 +43,7 @@
 }
 
 .light {
-  //background-color: $lightHeader;
+  background-color: $lightHeader;
   color: $lightAccentText;
   .btn {
     &:hover {
