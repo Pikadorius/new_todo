@@ -15,12 +15,13 @@ import {themeSelector} from 'features/theme/themeSelectors';
 import {useWindowHeight} from 'common/hooks/useWindowHeight';
 
 const Pages = () => {
-    const [isShowed, setIsShowed] = useState(true)
+    const [isShowed, setIsShowed] = useState(false)
     const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
     const theme = useAppSelector(themeSelector)
     const dispatch = useAppDispatch()
-    const height = useWindowHeight()
 
+    const height = window.innerHeight-60
+    const width = window.innerWidth
 
     const todolists = useAppSelector(state => state.todolists)
 
@@ -29,10 +30,14 @@ const Pages = () => {
         dispatch(fetchTodosTC())
     }, [])
 
+    useEffect(()=>{
+        if (width>700) setIsShowed(true)
+    }, [width])
+
     return (
         <div className={s.container}>
             {isLoggedIn && <><SideBar todolists={todolists} isShowed={isShowed} setShowed={setIsShowed}/>
-                <button className={s.noBtn} style={{position: 'absolute', top: '18px', left: '20px', zIndex: '200'}}
+                <button className={s.noBtn} style={{position: 'absolute', top: '15px', left: '20px', zIndex: '200'}}
                         onClick={() => setIsShowed(!isShowed)}>
                     <img src={theme === 'dark' ? burger : burgerOrange} alt={'show/hide'}/>
                 </button>
