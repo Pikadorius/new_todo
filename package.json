@@ -1,6 +1,6 @@
 {
   "name": "new_todo",
-  "homepage": "https://pikadorius.github.io/new_todo",
+  "homepage": ".",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
