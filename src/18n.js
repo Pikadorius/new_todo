@@ -12,7 +12,7 @@ i18n
         supportedLngs: ['en', 'ru'],
         debug: false,
         backend: {
-            loadPath: '/new_todo/locales/{{lng}}/{{ns}}.json'
+            loadPath: '/locales/{{lng}}/{{ns}}.json'
         },
     });
 
