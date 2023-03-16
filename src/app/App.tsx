@@ -9,6 +9,7 @@ import ModalWrapper from 'common/components/Modal/ModalWrapper';
 import InfoPopUp from 'common/components/InfoPopUp/InfoPopUp';
 import {appErrorSelector, appStatusSelector, isInitializedSelector, modalTypeSelector} from 'app/appSelectors';
 import {themeSelector} from 'features/theme/themeSelectors';
+import {isLoggedSelector} from 'features/auth/authSelectors';
 
 function App() {
 
@@ -17,11 +18,12 @@ function App() {
     const isAppLoading = useAppSelector(appStatusSelector) === 'loading'
     const isModalOpen = useAppSelector(modalTypeSelector) !== 'idle'
     const isInfoPopUpOpen = useAppSelector(appErrorSelector) !== ''
+    const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
 
 
     useLayoutEffect(() => {
-        dispatch(authMeTC())
+        !isLoggedIn && dispatch(authMeTC())
     }, [])
 
     if (!isInitialized) {
