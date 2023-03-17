@@ -31,7 +31,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 15%;
+    width: 20%;
     .logout {
       width: 40%;
     }
@@ -52,10 +52,9 @@
 @media screen and (max-width: 1200px){
   .container {
     .logoutField {
-      width: 30%;
+      width: 35%;
     }
   }
-
 }
 
 
