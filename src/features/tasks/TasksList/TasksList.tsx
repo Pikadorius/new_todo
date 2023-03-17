@@ -11,12 +11,16 @@ import {useTranslation} from 'react-i18next';
 import {themeSelector} from 'features/theme/themeSelectors';
 import 'common/styles/mixins.scss'
 import {useWindowSize} from "common/hooks/useWindowSize";
+import {setModalType} from 'app/appSlice';
+import addMain from 'assets/icons/addMain.svg';
+import addOrange from 'assets/icons/addOrange.svg';
 
 
 const TasksList = () => {
     const {id} = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.tasks)
+    const todoTitle = useAppSelector(state => state.todolists.find(t => t.id === id))
     const theme = useAppSelector(themeSelector)
     const navigate = useNavigate()
     const {t} = useTranslation()
@@ -27,6 +31,14 @@ const TasksList = () => {
     const [showTasks, setTasks] = useState<'all' | 'active' | 'inProgress' | 'completed'>('all')
 
     const width = useWindowSize()
+
+    const addTask = () => {
+        dispatch(setModalType('createTask'))
+    }
+
+    const backHandler = () => {
+        navigate(PATH.MAIN)
+    }
 
     const setActive = () => {
         setTasks('active')
@@ -44,38 +56,56 @@ const TasksList = () => {
         dispatch(fetchTasksTC(id))
     }, [id])
 
-    useEffect(()=>{
-        if (width>700) setTasks('all')
+    useEffect(() => {
+        if (width > 700) setTasks('all')
         else setTasks('active')
-    },[width])
-
-    const backHandler = () => {
-        navigate(PATH.MAIN)
-    }
+    }, [width])
 
 
     return (
-        <div className={theme==='dark' ? s.container : `${s.light} ${s.container}`}>
-            <button className={`${s.backBnt} ${s.noBtn}`} onClick={backHandler}><img src={theme==='dark' ? back : backBlack} alt={'go back'}/>{t("tasks.main")}
+        <div className={theme === 'dark' ? s.container : `${s.light} ${s.container}`}>
+            <button className={`${s.backBnt} ${s.noBtn}`}
+                    onClick={backHandler}>
+                <img src={theme === 'dark' ? back : backBlack} alt={'go back'}/>
+                {t("tasks.main")}
             </button>
+            <div className={s.tasksHeader}>
+                <h2 className={s.todoTitle}>
+                    {todoTitle && todoTitle.title}
+                </h2>
+                <button className={s.noBtn}
+                        title={'Add new task'}
+                        onClick={addTask}>
+                    <img src={theme === 'dark' ? addMain : addOrange} alt={'add'}/>
+                </button>
+            </div>
             {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
                 <div className={s.buttonGroup}>
-                    <button className={showTasks==='active' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setActive}>{t('tasks.active')}: {active.length}</button>
-                    <button  className={showTasks==='inProgress' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setInProgress}>{t('tasks.in_progress')}: {inProgress.length}</button>
-                    <button  className={showTasks==='completed' ? `${s.btn} + ${s.activeBtn}` : s.btn} onClick={setCompleted}>{t('tasks.completed')}: {completed.length}</button>
+                    <button className={showTasks === 'active' ? `${s.btn} + ${s.activeBtn}` : s.btn}
+                            onClick={setActive}>{t('tasks.active')}: {active.length}</button>
+                    <button className={showTasks === 'inProgress' ? `${s.btn} + ${s.activeBtn}` : s.btn}
+                            onClick={setInProgress}>{t('tasks.in_progress')}: {inProgress.length}</button>
+                    <button className={showTasks === 'completed' ? `${s.btn} + ${s.activeBtn}` : s.btn}
+                            onClick={setCompleted}>{t('tasks.completed')}: {completed.length}</button>
                 </div>
-                {showTasks!=='inProgress' && showTasks!=='completed' && <><div className={s.activeTasks}>
-                    <h3 className={s.activeTitle}>{t("tasks.active")}</h3>
-                    {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
-                </div></>}
-                {showTasks!=='completed' && showTasks!=='active' && <><div className={s.inProgressTasks}>
-                    <h3 className={theme==='dark' ? s.inProgressTitle : s.lightInProgress}>{t("tasks.in_progress")}</h3>
-                {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
-                    </div></>}
-                {showTasks!=='active' && showTasks!=='inProgress' && <><div className={s.completedTasks}>
-                    <h3 className={s.completedTitle}>{t("tasks.completed")}</h3>
-                    {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
-                </div></>}
+                {showTasks !== 'inProgress' && showTasks !== 'completed' && <>
+                    <div className={s.activeTasks}>
+                        <h3 className={s.activeTitle}>{t("tasks.active")}</h3>
+                        {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
+                    </div>
+                </>}
+                {showTasks !== 'completed' && showTasks !== 'active' && <>
+                    <div className={s.inProgressTasks}>
+                        <h3 className={theme === 'dark' ? s.inProgressTitle : s.lightInProgress}>{t("tasks.in_progress")}</h3>
+                        {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
+                    </div>
+                </>}
+                {showTasks !== 'active' && showTasks !== 'inProgress' && <>
+                    <div className={s.completedTasks}>
+                        <h3 className={s.completedTitle}>{t("tasks.completed")}</h3>
+                        {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
+                    </div>
+                </>}
             </div>}
         </div>
     );
@@ -84,7 +114,7 @@ const TasksList = () => {
 export default TasksList;
 
 const EmptyBlock = () => {
-    const {t}=useTranslation()
+    const {t} = useTranslation()
     return (
         <div className={s.emptyBlock}>
             <h2>{t("tasks.empty")}</h2>

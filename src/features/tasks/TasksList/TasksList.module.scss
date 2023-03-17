@@ -12,6 +12,40 @@
   align-items: flex-start;
   row-gap: 10px;
 
+  .tasksHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .todoTitle {
+      text-align: center;
+      width: 80%;
+      margin-left: 10%;
+      display: flex;
+      color: $darkAccentText;
+      position: relative;
+      overflow: hidden;
+      -webkit-line-clamp: 2; /* Число отображаемых строк */
+      display: -webkit-box; /* Включаем флексбоксы */
+      -webkit-box-orient: vertical;
+    }
+
+    .noBtn {
+      width: 10%;
+    }
+  }
+
+
+  .backBnt {
+    margin-top: 10px;
+    transition: 1s;
+
+    &:hover {
+      transition: 1s;
+      transform: translate(-10px, 0);
+    }
+  }
+
   .tasks {
     font-size: 16px;
     width: 100%;
@@ -66,17 +100,14 @@
   }
 }
 
-.backBnt {
-  margin: 10px auto 0 10px;
-  transition: 1s;
-}
-
-.backBnt:hover {
-  transition: 1s;
-  transform: translate(-10px, 0);
-}
 
 .light {
+  .tasksHeader {
+    .todoTitle {
+      color: $lightAccentText;
+    }
+  }
+
   .activeBtn {
     background-color: $lightAccentText!important;
   }
@@ -93,6 +124,7 @@
   }
   .container {
     width: 90%;
+
     .tasks {
       flex-direction: column;
 
