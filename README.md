@@ -1,3 +1,3 @@
 # Todolists
 
-Visit [project]([what-todo-app-kea.vercel.app](https://what-todo-app-kea.vercel.app/)).
+Visit [project](https://what-todo-app-kea.vercel.app).
