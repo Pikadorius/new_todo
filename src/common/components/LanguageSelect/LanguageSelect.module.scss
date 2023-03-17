@@ -1,16 +1,9 @@
 .flag {
   width: 24px;
   height: 15px;
-  margin-right: 20px;
   transition: 0.5s;
   &:hover {
     transition: 0.5s;
     transform: scale(1.3);
-  }
-}
-
-@media screen and (max-width: 600px){
-  .flag {
-    margin-right: 15px;
   }
 }
