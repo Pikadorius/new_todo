@@ -1,4 +1,4 @@
-import React, { useLayoutEffect} from 'react';
+import React, {useEffect} from 'react';
 import s from './App.module.scss'
 import Pages from "pages/Pages";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
@@ -18,12 +18,11 @@ function App() {
     const isAppLoading = useAppSelector(appStatusSelector) === 'loading'
     const isModalOpen = useAppSelector(modalTypeSelector) !== 'idle'
     const isInfoPopUpOpen = useAppSelector(appErrorSelector) !== ''
-    const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
 
 
-    useLayoutEffect(() => {
-        !isLoggedIn && dispatch(authMeTC())
+    useEffect(() => {
+        dispatch(authMeTC())
     }, [])
 
     if (!isInitialized) {
