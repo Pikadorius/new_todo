@@ -3,87 +3,69 @@
 @include btn;
 
 .container {
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
+  padding: 0 2%;
   z-index: 5;
   width: 100%;
   height: 60px;
   background-color: $darkHeader;
-  //background-color: transparent;
-  //backdrop-filter: blur(5px);
   color: $darkAccentText;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .plug {
-    width: 35%;
-  }
-
   .title {
-    display: flex;
-    justify-content: flex-end;
-    max-width: 50%;
-
-    .page {
-      position: relative;
-      cursor: pointer;
-      white-space: nowrap; /* Текст не переносится */
-      overflow: hidden; /* Обрезаем всё за пределами блока */
-      text-overflow: ellipsis;
-    }
+    width: 30%;
+    margin-left: 35%;
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .noBtn {
-    padding-left: 10px;
+  .logoutField {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 15%;
   }
 }
 
 .light {
   background-color: $lightHeader;
   color: $lightAccentText;
+
   .btn {
     &:hover {
-        background-color: $lightAccentText;
+      background-color: $lightAccentText;
     }
   }
 }
 
 
-.logoutField {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin: 0 2%;
-  width: 30%;
+@media screen and (max-width: 700px) {
+  .container {
+    .logoutField {
+      width: 45%;
 
-  .userName {
+      .userName {
+        display: none;
+      }
 
-  }
-
-  .logout {
-    margin-left: 10px;
-  }
-}
-
-
-@media screen and (max-width: 850px) {
-
-  .logoutField {
-    transform: scale(0.8);
-    .logout {
-      //margin-left: 10px;
+      .logout {
+        width: 40%;
+      }
     }
-  }
-  .title {
-    transform: scale(0.8);
-  }
 
-  .userName {
-    display: none;
+    .title {
+      transform: scale(0.8);
+      margin-left: 15%;
+      width: 40%;
+    }
   }
 }
 
