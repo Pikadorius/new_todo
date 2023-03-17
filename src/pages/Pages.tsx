@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {PATH} from "common/constants/PATH";
 import RequireAuth from "pages/RequireAuth";
@@ -12,7 +12,6 @@ import burger from '../assets/icons/burger.svg'
 import burgerOrange from '../assets/icons/burgerOrange.svg'
 import SideBar from 'common/components/SideBar/SideBar';
 import {themeSelector} from 'features/theme/themeSelectors';
-import {useWindowHeight} from 'common/hooks/useWindowHeight';
 
 const Pages = () => {
     const [isShowed, setIsShowed] = useState(false)
