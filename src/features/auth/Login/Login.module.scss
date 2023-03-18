@@ -43,8 +43,11 @@
   padding: 10px;
   position: relative;
 
-  .passwordInput {
-    position: relative;
+  .errorField {
+    width: 80%;
+    color: red;
+    position: absolute;
+    right: 10%;
   }
 
   i {
@@ -69,13 +72,7 @@
   padding-bottom: 30px;
 }
 
-.errorField {
-  display: block;
-  color: red;
-  position: absolute;
-  top: 32px;
-  left: 115px;
-}
+
 
 .btn {
   display: block;

@@ -80,14 +80,14 @@ const Login = () => {
                 <div className={s.field}>
                     <span className={s.fieldName}>{t("login.login")}</span>
                     <input {...register('email', {required: true})} />
-                    {errors.email && <span className={s.errorField}>{t("login.required")}</span>}
+                    {errors.email && <div className={s.errorField}>{t("login.required")}</div>}
                 </div>
                 <div className={s.field}>
                     <span className={s.fieldName}>{t("login.password")}</span>
-                    <input type={showPass ? 'text' : 'password'} {...register("password", {required: true})} className={s.passwordInput}/>
+                    <input type={showPass ? 'text' : 'password'} {...register("password", {required: true})}/>
 
                     <i onClick={passwordVisibility}><img src={showPass ? eyeOff : eye} alt={'show/hide'}/></i>
-                    {errors.password && <span className={s.errorField}>{t("login.required")}</span>}
+                    {errors.password && <div className={s.errorField}>{t("login.required")}</div>}
                 </div>
                 <div className={s.field}>
                     <input type={'checkbox'} {...register("rememberMe")}/> {t("login.remember")}
