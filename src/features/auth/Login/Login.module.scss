@@ -43,6 +43,15 @@
   padding: 10px;
   position: relative;
 
+  &:last-of-type {
+    padding-bottom: 30px;
+  }
+
+  .fieldName {
+    display: block;
+    width: 100px;
+  }
+
   .errorField {
     width: 80%;
     color: red;
@@ -61,17 +70,8 @@
       cursor: pointer;
     }
   }
-}
 
-.fieldName {
-  display: block;
-  width: 100px;
 }
-
-.field:last-of-type {
-  padding-bottom: 30px;
-}
-
 
 
 .btn {
