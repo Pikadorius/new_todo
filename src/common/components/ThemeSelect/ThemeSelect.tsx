@@ -22,8 +22,9 @@ const Theme = () => {
     return (
         <>
             <img onClick={handleChange} className={s.theme}
-                 src={theme === 'dark' ? day : night}
-                 alt={theme === 'dark' ? "Make light" : "Make dark"}/>
+                 src={theme === 'dark' ? night : day}
+                 alt={theme === 'dark' ? "Make light" : "Make dark"}
+                 title={theme === 'dark' ? "Make light" : "Make dark"}/>
         </>
     )
 }
