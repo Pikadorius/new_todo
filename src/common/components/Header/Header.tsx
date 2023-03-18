@@ -23,7 +23,7 @@ const Header = () => {
     return (
         <div className={theme === 'dark' ? s.container : `${s.container} ${s.light}`}>
             <h2 className={s.title}>
-                ToDo App
+                Todo App
             </h2>
             <div className={s.logoutField}>
                 <div className={s.buttons}>
