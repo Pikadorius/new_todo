@@ -21,13 +21,15 @@ const Header = () => {
     }
 
     return (
-        <div className={theme==='dark' ? s.container : `${s.container} ${s.light}`}>
+        <div className={theme === 'dark' ? s.container : `${s.container} ${s.light}`}>
             <h2 className={s.title}>
                 ToDo App
             </h2>
             <div className={s.logoutField}>
-                <Theme/>
-                <LanguageSelect/>
+                <div className={s.buttons}>
+                    <Theme/>
+                    <LanguageSelect/>
+                </div>
                 <div className={s.userName}>{userName}</div>
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}

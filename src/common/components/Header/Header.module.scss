@@ -28,12 +28,21 @@
   }
 
   .logoutField {
+    border: 1px solid;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 20%;
+
+    .buttons {
+      width: 25%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .logout {
-      width: 40%;
+      width: 30%;
     }
   }
 }
@@ -51,6 +60,7 @@
 
 @media screen and (max-width: 1200px){
   .container {
+
     .logoutField {
       width: 35%;
     }
@@ -63,8 +73,14 @@
     .logoutField {
       width: 45%;
 
+      .buttons {
+        width: 40%;
+      }
       .userName {
         display: none;
+      }
+      .logout {
+        width: 40%;
       }
     }
 
