@@ -28,9 +28,9 @@
   }
 
   .logoutField {
-    border: 1px solid;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 15%;
     align-items: center;
     width: 20%;
 

@@ -30,7 +30,7 @@ const Header = () => {
                     <Theme/>
                     <LanguageSelect/>
                 </div>
-                <div className={s.userName}>{userName}</div>
+                {userName && <div className={s.userName}>{userName}</div>}
                 {isLoggedIn &&
                     <button className={`${s.logout} ${s.btn}`} onClick={logout}>{t(`header.logout`)}</button>}
             </div>
