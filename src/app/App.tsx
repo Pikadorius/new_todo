@@ -9,7 +9,6 @@ import ModalWrapper from 'common/components/Modal/ModalWrapper';
 import InfoPopUp from 'common/components/InfoPopUp/InfoPopUp';
 import {appErrorSelector, appStatusSelector, isInitializedSelector, modalTypeSelector} from 'app/appSelectors';
 import {themeSelector} from 'features/theme/themeSelectors';
-import {isLoggedSelector} from 'features/auth/authSelectors';
 
 function App() {
 
