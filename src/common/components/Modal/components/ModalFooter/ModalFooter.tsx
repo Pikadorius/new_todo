@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from 'common/hooks/hooks';
 import { setModalType} from 'app/appSlice';
 import {deleteTodoTC} from 'features/todolists/todolistsSlice';
@@ -24,6 +24,20 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     const {t} = useTranslation()
     const id = document.location.hash.slice(7)
     const theme = useAppSelector(themeSelector)
+
+    const listener = (e:any) => {
+        if (e.key==='Enter') {
+            callback ? callback() : submit()
+        }
+    }
+
+    useEffect(()=>{
+        document.addEventListener('keydown', listener)
+        return ()=>{
+            document.removeEventListener('keydown', listener)
+        }
+    },[])
+
     const submit = () => {
         type === 'todo' ? todo && dispatch(deleteTodoTC(todo.id)).then(() => {
             if (id===todo.id) {
@@ -40,6 +54,7 @@ const ModalFooter: FC<ModalType> = ({type, todo,task,title,callback}) => {
     const closeHandler = () => {
         dispatch(setModalType('idle'))
     }
+
     return (
         <div className={theme==='dark' ? common.modalFooter : `${common.modalFooter} ${common.light}`}>
             <button className={common.btn} onClick={closeHandler}>{t("modal.cancel")}</button>
