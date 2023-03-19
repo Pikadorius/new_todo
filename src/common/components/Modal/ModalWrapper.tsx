@@ -11,13 +11,17 @@ const ModalWrapper = () => {
     const dispatch = useAppDispatch()
 
     let listener = (e: any) => {
-        console.log(1)
         if (e.key === 'Escape' && !modal) {
             closeHandler()
         }
     }
 
-    document.addEventListener('keydown', listener)
+    useEffect(()=>{
+        document.addEventListener('keydown', listener)
+        return ()=>{
+            document.removeEventListener('keydown', listener)
+        }
+    },[])
 
     const closeHandler = () => {
         dispatch(setModalType('idle'))
