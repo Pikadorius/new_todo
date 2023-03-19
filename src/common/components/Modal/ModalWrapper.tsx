@@ -13,7 +13,7 @@ const ModalWrapper = () => {
     let listener = (e: any) => {
         console.log(1)
         if (e.key === 'Escape' && !modal) {
-            dispatch(setModalType('idle'))
+            closeHandler()
         }
     }
 
@@ -21,7 +21,9 @@ const ModalWrapper = () => {
 
     const closeHandler = () => {
         dispatch(setModalType('idle'))
+        document.removeEventListener('keydown', listener)
     }
+
     return (
         <Portal>
             <div className={s.container} onClick={closeHandler} id={'modal'}>
