@@ -1,4 +1,4 @@
-import React, {DragEvent, FC} from 'react';
+import React, {FC} from 'react';
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {setModalTask, setModalType} from 'app/appSlice';
 import s from './Task.module.scss'
