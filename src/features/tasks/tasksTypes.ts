@@ -10,12 +10,12 @@ export type TaskType = {
     completed: boolean
     status: TASK_STATUSES
     priority: number
-    startDate: string
-    deadline: string
+    startDate: Date
+    deadline: Date
     id: string
     todoListId: string
     order: number
-    addedDate: string
+    addedDate: Date
 }
 
 export type UpdateTaskType = {
@@ -23,6 +23,6 @@ export type UpdateTaskType = {
     description: string,
     status: TASK_STATUSES,
     priority: number,
-    startDate: string,
-    deadline: string
+    startDate: Date,
+    deadline: Date
 }
