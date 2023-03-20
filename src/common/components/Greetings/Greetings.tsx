@@ -22,6 +22,7 @@ const Greetings = () => {
                     <ul>
                         <li>Typescript</li>
                         <li>Redux Toolkit</li>
+                        <li>Axios</li>
                         <li>React Router Dom</li>
                         <li>React Hook Form</li>
                         <li>SCSS</li>
