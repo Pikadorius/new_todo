@@ -8,6 +8,7 @@ import deleteIcon from 'assets/icons/delete.svg';
 import deleteIconBlack from 'assets/icons/deleteBlack.svg';
 import {TaskType} from 'features/tasks/tasksTypes';
 import {themeSelector} from 'features/theme/themeSelectors';
+import dayjs from 'dayjs';
 
 type Props = {
     taskStatus: 'active' | 'inProgress' | 'completed'
@@ -30,40 +31,20 @@ const Task: FC<TaskType & Props> = (props) => {
         dispatch(setModalTask(props))
     }
 
-    const dragStartHandler = (e: DragEvent<HTMLDivElement>) => {
-    }
-    const dragLeaveHandler = (e: DragEvent<HTMLDivElement>) => {
-        e.preventDefault()
-    }
-
-    const dragEndHandler = (e: DragEvent<HTMLDivElement>) => {
-        e.preventDefault()
-    }
-
-    const dragOverHandler = (e: DragEvent<HTMLDivElement>) => {
-        e.preventDefault()
-    }
-
-    const dropHandler = (e: DragEvent<HTMLDivElement>) => {
-
-    }
+    const d = dayjs(props.addedDate).format('DD.MM.YYYY')
 
     return (
-        <div className={theme==='dark'? taskClass : `${taskClass} ${s.ligth}`}
-             draggable={true}
-             onDragStart={dragStartHandler}
-             onDragLeave={dragLeaveHandler}
-             onDragEnd={dragEndHandler}
-             onDragOver={dragOverHandler}
-             onDrop={dropHandler}
-        >
+        <div className={theme === 'dark' ? taskClass : `${taskClass} ${s.ligth}`}>
             <div className={s.taskHeader}>
-                <button onClick={updateTask} className={s.noBtn}><img src={theme==='dark' ? changeIcon : changeIconBlack} alt={'Change'}/></button>
+                <button onClick={updateTask} className={s.noBtn}><img
+                    src={theme === 'dark' ? changeIcon : changeIconBlack} alt={'Change'}/></button>
                 <h3 className={s.taskTitle}>{props.title}</h3>
-                <button onClick={deleteHandler} className={s.noBtn}><img src={theme==='dark' ? deleteIcon : deleteIconBlack} alt={'Change'}/></button>
+                <button onClick={deleteHandler} className={s.noBtn}><img
+                    src={theme === 'dark' ? deleteIcon : deleteIconBlack} alt={'Change'}/></button>
             </div>
-
-            {props.description && <p className={s.description}>{props.description}</p>}
+            {props.description && <div className={s.description}>{props.description}</div>}
+            <div className={s.addedDate}>{d}</div>
+            {/*<div>{props.addedDate}</div>*/}
         </div>
     );
 };
