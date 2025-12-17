@@ -37,6 +37,7 @@ const ModalWrapper = () => {
     // </Portal>
     <Modal
       open={modal}
+      centered
       destroyOnClose
       onCancel={closeHandler}
       footer={false}
