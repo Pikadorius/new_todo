@@ -1,7 +1,15 @@
 import React from "react";
 
-const Counter = () => {
-  return <div></div>;
+type CounterType = {
+  name: string;
+};
+
+const Counter = ({ name }: CounterType) => {
+  return (
+    <div>
+      <h1>Hello! {name}</h1>
+    </div>
+  );
 };
 
 export default Counter;
