@@ -56,3 +56,9 @@
   background-color: $lightTasks!important;
   border-color: $lightAccentText;
 }
+
+.dragging {
+  opacity: 0.9;
+  transform: rotate(3deg);
+  box-shadow: 0px 10px 20px 5px rgba(34, 60, 80, 0.35);
+}

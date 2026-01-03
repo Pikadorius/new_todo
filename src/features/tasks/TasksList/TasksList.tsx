@@ -1,7 +1,7 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
-import {fetchTasksTC} from "features/tasks/tasksSlice";
+import {fetchTasksTC, updateTaskTC} from "features/tasks/tasksSlice";
 import Task from "features/tasks/TasksList/Task/Task";
 import {PATH} from 'common/constants/PATH';
 import s from 'features/tasks/TasksList/TasksList.module.scss'
@@ -14,6 +14,8 @@ import {useWindowSize} from "common/hooks/useWindowSize";
 import {setModalType} from 'app/appSlice';
 import addMain from 'assets/icons/addMain.svg';
 import addOrange from 'assets/icons/addOrange.svg';
+import {DragDropContext, Droppable, DropResult} from '@hello-pangea/dnd';
+import {TASK_STATUSES} from 'features/tasks/tasksTypes';
 
 
 const TasksList = () => {
@@ -61,6 +63,29 @@ const TasksList = () => {
         else setTasks('active')
     }, [width])
 
+    const onDragEnd = useCallback((result: DropResult) => {
+        const {destination, source, draggableId} = result
+
+        // Если нет места назначения или задача брошена в то же место
+        if (!destination) return
+        if (destination.droppableId === source.droppableId) return
+
+        // Определяем новый статус на основе колонки назначения
+        const statusMap: Record<string, TASK_STATUSES> = {
+            'active': TASK_STATUSES.Active,
+            'inProgress': TASK_STATUSES.InProgress,
+            'completed': TASK_STATUSES.Completed
+        }
+
+        const newStatus = statusMap[destination.droppableId]
+        if (newStatus === undefined || !id) return
+
+        dispatch(updateTaskTC({
+            todoId: id,
+            taskId: draggableId,
+            newTask: {status: newStatus}
+        }))
+    }, [dispatch, id])
 
     return (
         <div className={theme === 'dark' ? s.container : `${s.light} ${s.container}`}>
@@ -79,34 +104,69 @@ const TasksList = () => {
                     <img src={theme === 'dark' ? addMain : addOrange} alt={'add'}/>
                 </button>
             </div>
-            {tasks.length === 0 ? <EmptyBlock/> : <div className={s.tasks}>
-                <div className={s.buttonGroup}>
-                    <button className={showTasks === 'active' ? `${s.btn} + ${s.activeBtn}` : s.btn}
-                            onClick={setActive}>{t('tasks.active')}: {active.length}</button>
-                    <button className={showTasks === 'inProgress' ? `${s.btn} + ${s.activeBtn}` : s.btn}
-                            onClick={setInProgress}>{t('tasks.in_progress')}: {inProgress.length}</button>
-                    <button className={showTasks === 'completed' ? `${s.btn} + ${s.activeBtn}` : s.btn}
-                            onClick={setCompleted}>{t('tasks.completed')}: {completed.length}</button>
+            {tasks.length === 0 ? <EmptyBlock/> : <DragDropContext onDragEnd={onDragEnd}>
+                <div className={s.tasks}>
+                    <div className={s.buttonGroup}>
+                        <button className={showTasks === 'active' ? `${s.btn} + ${s.activeBtn}` : s.btn}
+                                onClick={setActive}>{t('tasks.active')}: {active.length}</button>
+                        <button className={showTasks === 'inProgress' ? `${s.btn} + ${s.activeBtn}` : s.btn}
+                                onClick={setInProgress}>{t('tasks.in_progress')}: {inProgress.length}</button>
+                        <button className={showTasks === 'completed' ? `${s.btn} + ${s.activeBtn}` : s.btn}
+                                onClick={setCompleted}>{t('tasks.completed')}: {completed.length}</button>
+                    </div>
+                    {showTasks !== 'inProgress' && showTasks !== 'completed' && (
+                        <Droppable droppableId="active">
+                            {(provided, snapshot) => (
+                                <div
+                                    className={`${s.activeTasks} ${snapshot.isDraggingOver ? s.dragOver : ''}`}
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                >
+                                    <h3 className={s.activeTitle}>{t("tasks.active")}</h3>
+                                    {active.map((t, index) => (
+                                        <Task key={t.id} {...t} taskStatus={'active'} index={index}/>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    )}
+                    {showTasks !== 'completed' && showTasks !== 'active' && (
+                        <Droppable droppableId="inProgress">
+                            {(provided, snapshot) => (
+                                <div
+                                    className={`${s.inProgressTasks} ${snapshot.isDraggingOver ? s.dragOver : ''}`}
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                >
+                                    <h3 className={theme === 'dark' ? s.inProgressTitle : s.lightInProgress}>{t("tasks.in_progress")}</h3>
+                                    {inProgress.map((t, index) => (
+                                        <Task key={t.id} {...t} taskStatus={'inProgress'} index={index}/>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    )}
+                    {showTasks !== 'active' && showTasks !== 'inProgress' && (
+                        <Droppable droppableId="completed">
+                            {(provided, snapshot) => (
+                                <div
+                                    className={`${s.completedTasks} ${snapshot.isDraggingOver ? s.dragOver : ''}`}
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                >
+                                    <h3 className={s.completedTitle}>{t("tasks.completed")}</h3>
+                                    {completed.map((t, index) => (
+                                        <Task key={t.id} {...t} taskStatus={'completed'} index={index}/>
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    )}
                 </div>
-                {showTasks !== 'inProgress' && showTasks !== 'completed' && <>
-                    <div className={s.activeTasks}>
-                        <h3 className={s.activeTitle}>{t("tasks.active")}</h3>
-                        {active.map(t => <Task key={t.id} {...t} taskStatus={'active'}/>)}
-                    </div>
-                </>}
-                {showTasks !== 'completed' && showTasks !== 'active' && <>
-                    <div className={s.inProgressTasks}>
-                        <h3 className={theme === 'dark' ? s.inProgressTitle : s.lightInProgress}>{t("tasks.in_progress")}</h3>
-                        {inProgress.map(t => <Task key={t.id} {...t} taskStatus={'inProgress'}/>)}
-                    </div>
-                </>}
-                {showTasks !== 'active' && showTasks !== 'inProgress' && <>
-                    <div className={s.completedTasks}>
-                        <h3 className={s.completedTitle}>{t("tasks.completed")}</h3>
-                        {completed.map(t => <Task key={t.id} {...t} taskStatus={'completed'}/>)}
-                    </div>
-                </>}
-            </div>}
+            </DragDropContext>}
         </div>
     );
 };

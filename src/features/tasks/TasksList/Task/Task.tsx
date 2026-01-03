@@ -9,9 +9,11 @@ import deleteIconBlack from 'assets/icons/deleteBlack.svg';
 import {TaskType} from 'features/tasks/tasksTypes';
 import {themeSelector} from 'features/theme/themeSelectors';
 import dayjs from 'dayjs';
+import {Draggable} from '@hello-pangea/dnd';
 
 type Props = {
     taskStatus: 'active' | 'inProgress' | 'completed'
+    index: number
 }
 const Task: FC<TaskType & Props> = (props) => {
     const dispatch = useAppDispatch()
@@ -34,18 +36,26 @@ const Task: FC<TaskType & Props> = (props) => {
     const d = dayjs(props.addedDate).format('DD.MM.YYYY')
 
     return (
-        <div className={theme === 'dark' ? taskClass : `${taskClass} ${s.ligth}`}>
-            <div className={s.taskHeader}>
-                <button onClick={updateTask} className={s.noBtn}><img
-                    src={theme === 'dark' ? changeIcon : changeIconBlack} alt={'Change'}/></button>
-                <h3 className={s.taskTitle}>{props.title}</h3>
-                <button onClick={deleteHandler} className={s.noBtn}><img
-                    src={theme === 'dark' ? deleteIcon : deleteIconBlack} alt={'Change'}/></button>
-            </div>
-            {props.description && <div className={s.description}>{props.description}</div>}
-            <div className={s.addedDate}>{d}</div>
-            {/*<div>{props.addedDate}</div>*/}
-        </div>
+        <Draggable draggableId={props.id} index={props.index}>
+            {(provided, snapshot) => (
+                <div
+                    className={`${theme === 'dark' ? taskClass : `${taskClass} ${s.ligth}`} ${snapshot.isDragging ? s.dragging : ''}`}
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                >
+                    <div className={s.taskHeader}>
+                        <button onClick={updateTask} className={s.noBtn}><img
+                            src={theme === 'dark' ? changeIcon : changeIconBlack} alt={'Change'}/></button>
+                        <h3 className={s.taskTitle}>{props.title}</h3>
+                        <button onClick={deleteHandler} className={s.noBtn}><img
+                            src={theme === 'dark' ? deleteIcon : deleteIconBlack} alt={'Change'}/></button>
+                    </div>
+                    {props.description && <div className={s.description}>{props.description}</div>}
+                    <div className={s.addedDate}>{d}</div>
+                </div>
+            )}
+        </Draggable>
     );
 };
 

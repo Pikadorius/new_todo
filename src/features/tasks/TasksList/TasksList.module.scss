@@ -90,6 +90,12 @@
       flex-direction: column;
       align-items: center;
     }
+
+    .dragOver {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
   }
 
   .emptyBlock {
@@ -115,6 +121,10 @@
     &:hover {
       background-color: $lightAccentText!important;
     }
+  }
+
+  .dragOver {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }
 
